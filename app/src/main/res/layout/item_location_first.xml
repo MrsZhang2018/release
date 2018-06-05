@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_activity"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal">
+
+    <TextView
+        android:background="@drawable/layer_white_corner_circle"
+        android:layout_marginTop="8dp"
+        android:text="#"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
+        android:id="@+id/tv_name"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="@color/main_color"
+        android:textSize="@dimen/text_size_content" />
+
+    <com.fanwe.library.customview.FlowLayout
+        android:layout_marginBottom="@dimen/margin_default"
+        android:id="@+id/flowlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_default" />
+
+</LinearLayout>

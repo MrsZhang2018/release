@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_press"
+    android:scrollbars="none">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical">
+
+
+    <FrameLayout
+        android:id="@+id/frame_container1"
+        android:background="@color/gray_press"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+      <com.fanwe.o2o.appview.AccountManageStateView
+          android:id="@+id/amsv_1"
+          android:layout_width="match_parent"
+          android:layout_height="156dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_container2"
+        android:background="@color/gray_press"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+      <com.fanwe.o2o.appview.AccountManageStateView
+          android:id="@+id/amsv_2"
+          android:layout_width="match_parent"
+          android:layout_height="156dp"
+          app:amhvStyle="1"
+          app:amhvProgressColor="@color/blue_light"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"/>
+    </FrameLayout>
+
+    <com.fanwe.o2o.appview.CommonRowView
+        android:id="@+id/crv_row1"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        app:crvLeftTxt="头像"
+        app:crvShowRightTxt="false"
+        app:crvShowRightDra="true"/>
+
+    <com.fanwe.o2o.appview.CommonRowView
+        android:id="@+id/crv_row2"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        app:crvLeftTxt="会员名"
+        app:crvShowRightActionImg="false"/>
+
+    <com.fanwe.o2o.appview.CommonRowView
+        android:id="@+id/crv_row3"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        app:crvLeftTxt="邮箱"
+        app:crvShowRightActionImg="false"
+        app:crvRightTxt="加载中"/>
+
+    <com.fanwe.o2o.appview.CommonRowView
+        android:id="@+id/crv_row4"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        app:crvLeftTxt="绑定手机"
+        app:crvRightTxt="加载中"/>
+
+    <com.fanwe.o2o.appview.CommonRowView
+        android:id="@+id/crv_row5"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        app:crvLeftTxt="修改密码"
+        app:crvRightTxt="******"
+        app:crvShowBottomDivider="false"/>
+
+
+  </LinearLayout>
+
+</ScrollView>

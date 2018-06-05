@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:text="退款说明"
+                    android:textSize="@dimen/text_size_item_title" />
+
+                <EditText
+                    android:id="@+id/et_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="@dimen/margin_default"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginTop="5dp"
+                    android:background="@null"
+                    android:gravity="left"
+                    android:hint="请输入您的退款原因"
+                    android:textSize="@dimen/text_size_content" />
+
+            </LinearLayout>
+
+            <!--商店列表-->
+            <com.fanwe.library.customview.SDGridLinearLayout
+                android:id="@+id/gv_stroe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_push"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_content"
+        android:background="@color/main_color"
+        android:gravity="center"
+        android:text="提交申请"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_item_title" />
+
+</LinearLayout>

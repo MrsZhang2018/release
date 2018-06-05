@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_marginBottom="@dimen/margin_default"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_margin="@dimen/margin_default"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/iv_deal_icon" />
+
+            <EditText
+                android:textColorHint="@color/text_hint"
+                android:textSize="@dimen/text_size_content"
+                android:gravity="left"
+                android:hint="请输入评价~"
+                android:background="@null"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:id="@+id/et_content" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_marginLeft="@dimen/margin_default"
+            android:background="@color/stroke"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_content">
+
+            <TextView
+                android:textColor="@color/text_content_deep"
+                android:textSize="@dimen/text_size_item_content"
+                android:text="评价星级"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+            <com.fanwe.o2o.view.CommonRatingBar
+                android:id="@+id/rb_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:starCount="5"
+                app:starEmpty="@drawable/ic_star_off_store_list_item"
+                app:starFill="@drawable/ic_star_on_store_list_item"
+                app:starHalf="@drawable/ic_star_half_item"
+                app:starImageSize="20dp"
+                app:starPadding="5dp"
+                app:starStep="0"
+                app:stepSize="Half"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

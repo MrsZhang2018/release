@@ -1,0 +1,139 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+    defaultConfig {
+        applicationId "com.fanwe.o2o.newo2o"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 2016113001
+        versionName "1.0.0"
+        ndk {
+            abiFilter 'armeabi'
+        }
+        multiDexEnabled true
+    }
+
+    //签名
+    signingConfigs {
+        release {
+            storeFile file("fanwe.keystore")
+            storePassword "fanwe99cnlin"
+            keyAlias "fanwe"
+            keyPassword "fanwe99cnlin"
+        }
+        release {
+            storeFile file("fanwe.keystore")
+            storePassword "fanwe99cnlin"
+            keyAlias "fanwe"
+            keyPassword "fanwe99cnlin"
+        }
+    }
+
+    buildTypes {
+        debug {
+            zipAlignEnabled false
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+        release {
+            zipAlignEnabled true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    dexOptions {
+        javaMaxHeapSize "2g"
+    }
+
+    productFlavors {
+        fanwe_o2o {
+            applicationId "com.fanwe.o2o.newo2o"
+            versionCode 2017052301
+            versionName "6.3"
+            //            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"192.168.1.109/o2onew"'
+            //            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"192.168.1.74/o2onew"'
+            //            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"192.168.1.189/o2onew"'
+//            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"o2owap.fanwe.net"'
+//            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"o2o.fanwe.net"'
+            //            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"192.168.1.170/o2onew"'
+//            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"testo2onew.fanwe.net"'
+//            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"multtest.fanwe.net"'
+            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"192.168.1.95/svn/o2oNew"'
+
+        }
+
+        mxkdsc {
+            applicationId "com.mxkdsc.www"
+            versionCode 2017062001
+            versionName "6.3"
+            //            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"192.168.1.109/o2onew"'
+            //            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"192.168.1.74/o2onew"'
+            //            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"192.168.1.189/o2onew"'
+//            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"o2owap.fanwe.net"'
+//            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"o2o.fanwe.net"'
+            //            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"192.168.1.170/o2onew"'
+//            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"testo2onew.fanwe.net"'
+//            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"multtest.fanwe.net"'
+            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"www.mxkdsc.com"'
+
+        }
+
+    }
+
+    flavorDimensions 'api'
+//    android.applicationVariants.all { variant ->
+//        variant.outputs.all{
+//            outputFileName = "variant.name + _ + variant.versionName + _ + variant.versionCode + .apk"
+//        }
+//
+//    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile(name: 'library_map_baidu-release', ext: 'aar')
+    compile(name: 'libraryAdapterHttp-release', ext: 'aar')
+    compile(name: 'libraryAndroidPercentSupportExtend-release', ext: 'aar')
+    compile(name: 'libraryAndroidPullToRefresh-release', ext: 'aar')
+    compile(name: 'libraryQrcodeZxing-release', ext: 'aar')
+    compile(name: 'PushSDK-release', ext: 'aar')
+    compile(name: 'librarySocialUmengV512-release', ext: 'aar')
+    compile(name: 'libraryPayAlipay-release', ext: 'aar')
+    compile(name: 'libraryPayUnionpay-release', ext: 'aar')
+    compile(name: 'libraryPhotoViewMaster-release', ext: 'aar')
+    compile(name: 'pickerview-release', ext: 'aar')
+    compile 'com.android.support:support-v4:23.0.0'
+    compile 'com.android.support:recyclerview-v7:23.0.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile project(path: ':libraryFanwe')
+    compile project(':xiaonengChatUI')
+}

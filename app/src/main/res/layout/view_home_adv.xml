@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/iv_adv"
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:src="@drawable/ic_fw_headlines"
+        android:layout_gravity="center"/>
+
+    <View
+        android:background="@color/stroke"
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="11dp"
+        android:layout_marginLeft="10dp"/>
+
+    <com.fanwe.o2o.view.HeadlinesView
+        android:id="@+id/view_adv"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+    <View
+        android:background="@color/stroke"
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="11dp"/>
+
+    <TextView
+        android:id="@+id/tv_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="更多"
+        android:textSize="@dimen/text_size_content"
+        android:textColor="@color/text_content_deep"
+        android:layout_gravity="center"
+        android:padding="10dp"/>
+
+</LinearLayout>

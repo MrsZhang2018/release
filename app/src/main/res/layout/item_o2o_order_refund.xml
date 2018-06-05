@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:background="@color/white"
+      android:paddingLeft="8dp"
+      android:layout_height="46dp">
+
+    <com.fanwe.library.title.TitleItem
+        android:id="@+id/title_item_shop"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/tv_refund_state"
+        tools:text="退款申请"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@color/text_title"
+        android:textSize="@dimen/text_size_content"
+        android:layout_marginRight="7dp"
+        android:layout_alignParentRight="true"/>
+  </RelativeLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="92dp"
+      android:orientation="horizontal"
+      android:paddingTop="12dp"
+      android:background="@color/gray_bg"
+      android:paddingLeft="8dp"
+      android:paddingBottom="14dp">
+
+    <ImageView android:id="@+id/iv_goods_image"
+        android:scaleType="fitXY"
+        android:layout_width="62dp"
+        android:layout_height="62dp"/>
+
+    <TextView
+        android:id="@+id/tv_instruct"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textColor="@color/text_title"
+        android:textSize="@dimen/text_size_content"
+        android:background="@color/gray_bg"
+        android:layout_marginLeft="10dp"
+        tools:text="ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="right"
+        android:orientation="vertical"
+        android:paddingRight="7dp">
+
+      <TextView
+          android:id="@+id/tv_price"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="@dimen/text_size_content"
+          tools:text="¥56532512"
+          android:textColor="@color/main_color"/>
+
+      <TextView
+          android:id="@+id/tv_sum"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="@color/text_title"
+          android:textSize="@dimen/text_size_content"
+          tools:text="x1"/>
+
+    </LinearLayout>
+  </LinearLayout>
+
+  <TextView
+      android:id="@+id/tv_refund_money"
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:gravity="center_vertical|right"
+      android:visibility="gone"
+      tools:text="asdasd"
+      android:paddingRight="7dp"/>
+
+  <ImageView
+      android:layout_marginTop="1.5dp"
+      android:layout_width="match_parent"
+      android:layout_height="10dp"
+      android:background="@color/bg_act_fra"/>
+
+</LinearLayout>

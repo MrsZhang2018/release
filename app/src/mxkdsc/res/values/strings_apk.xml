@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 打包需要修改 start -->
+    <string name="app_name">梦享快点</string>
+    <string name="baidu_key">V9BxsjS2leXyEYzVflFK13XyLx5mBw2h</string>
+    <string name="umeng_key">591ea6bec62dca2a3a0005d6</string>
+    <string name="umeng_message_secret">d548747675f5c0673e9da603993ae8f4</string>
+    <!-- 打包需要修改 end -->
+
+    <!-- QQ 微信 新浪KEY配置 -->
+    <string name="wx_app_id">wx9584d0970f35d712</string>
+    <string name="wx_app_secret">c1d967acca1f1a314067b48d24947e28</string>
+    <string name="qq_auth_scheme">tencent1106098519</string>
+    <string name="qq_app_id">1106098519</string>
+    <string name="qq_app_key">eEu9GlwoviypLMrs</string>
+    <string name="sina_app_key">1852776501</string>
+    <string name="sina_app_secret">538528c6a6965a4c928f660b3c8e84b5</string>
+
+    <!--小能 企业id以及sdk_key-->
+    <string name="xiaoneng_siteid">md_1000</string>
+    <string name="xiaoneng_sdk_key">B3124B43-8F9B-4A93-A0A2-5160797EC8BF</string>
+</resources>

@@ -1,0 +1,29 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="margin_default">10dp</dimen>
+
+
+    <!--重写LibraryFanwe里的dimens-->
+
+    <!-- 标题栏高度 -->
+    <dimen name="height_title_bar">45dp</dimen>
+    <dimen name="height_content">45dp</dimen>
+
+    <!-- 标题栏文字大小 -->
+    <dimen name="text_size_title_bar">18sp</dimen>
+    <!-- 标题栏较小的文字大小 -->
+    <dimen name="text_size_sub_title_bar">16sp</dimen>
+
+    <!-- 标题文字大小 -->
+    <dimen name="text_size_title">16sp</dimen>
+    <!-- 内容文字大小 -->
+    <dimen name="text_size_content">13sp</dimen>
+
+    <!-- item标题文字大小 -->
+    <dimen name="text_size_item_title">15sp</dimen>
+    <!-- item内容文字大小 -->
+    <dimen name="text_size_item_content">12sp</dimen>
+
+    <dimen name="base_textsize_14">14sp</dimen>
+
+</resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="1px"
+      android:background="@color/stroke"/>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="44dp"
+      android:gravity="center"
+      android:orientation="horizontal">
+
+    <com.fanwe.library.view.SDTabUnderline
+        android:layout_weight="1"
+        android:id="@+id/tab_group"
+        android:background="@color/white"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"/>
+
+    <com.fanwe.library.view.SDTabUnderline
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:background="@color/white"
+        android:id="@+id/tab_in_person"
+        android:layout_height="match_parent"/>
+
+    <com.fanwe.library.view.SDTabUnderline
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:background="@color/white"
+        android:id="@+id/tab_dist"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+  </LinearLayout>
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="1px"
+      android:background="@color/stroke"/>
+
+  <com.fanwe.library.customview.SDViewPager
+      android:id="@+id/vpg_content"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"/>
+
+</LinearLayout>

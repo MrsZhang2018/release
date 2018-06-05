@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+    <LinearLayout
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:id="@+id/iv_deal_icon_for_more"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_marginBottom="6dp"
+        android:layout_marginRight="6dp"
+        android:id="@+id/tv_number"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:text="0"
+        android:textSize="8sp"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_red_circle"
+        android:gravity="center"
+        android:layout_gravity="right|bottom"/>
+
+</FrameLayout>

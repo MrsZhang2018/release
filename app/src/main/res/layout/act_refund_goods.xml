@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+
+      android:scrollbars="none">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_act_fra">
+
+      <LinearLayout
+          android:id="@+id/ll_no_content"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:layout_gravity="center"
+          android:visibility="gone">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_o2o_no_content"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="暂无活动"
+            android:textColor="@color/text_content"
+            android:textSize="@dimen/text_size_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"/>
+
+      </LinearLayout>
+
+      <ImageView
+          android:id="@+id/iv_back_to_top"
+          android:layout_width="60dp"
+          android:layout_height="60dp"
+          android:src="@drawable/ic_back_to_top"
+          android:layout_gravity="bottom|right"
+          android:layout_marginBottom="30dp"
+          android:visibility="gone"/>
+
+      <View
+          android:layout_width="match_parent"
+          android:layout_height="1px"
+          android:background="@color/stroke"/>
+      <!--<com.fanwe.o2o.view.SDProgressPullToRefreshListView-->
+      <!--android:id="@+id/lv_content"-->
+      <!--android:layout_width="match_parent"-->
+      <!--android:layout_height="match_parent"-->
+      <!--android:cacheColorHint="#00000000"-->
+      <!--android:divider="@null"-->
+      <!--android:listSelector="#00000000"-->
+      <!--android:scrollbars="none"/>-->
+
+      <com.fanwe.library.customview.SDGridLinearLayout
+          android:id="@+id/gv_items"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+
+      <!--<com.fanwe.o2o.view.SDProgressPullToRefreshListView-->
+          <!--android:id="@+id/gv_items"-->
+          <!--android:layout_width="match_parent"-->
+          <!--android:layout_height="wrap_content"/>-->
+
+    </FrameLayout>
+
+  </ScrollView>
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:layout_gravity="bottom">
+
+    <CheckBox
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="6dp"
+        android:button="@drawable/selector_check_box_red_gray"
+        android:text=" 全选"
+        android:textColor="@color/text_title"
+        android:textSize="@dimen/text_size_content"
+        android:checked="false"
+        android:id="@+id/cb_check"/>
+
+    <Button
+        android:id="@+id/btn_done"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:background="@color/main_color"
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/white"
+        android:text="确定"/>
+
+  </RelativeLayout>
+
+</FrameLayout>

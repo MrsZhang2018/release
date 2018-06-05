@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_act_fra">
+
+    <!--头部轮播图片展示-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_slide_play"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:src="@drawable/ic_slide_play"
+            android:scaleType="fitXY"
+            android:layout_gravity="bottom"/>
+
+    </FrameLayout>
+
+    <!--首页导航分类-->
+    <LinearLayout
+        android:id="@+id/ll_page_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+    </LinearLayout>
+
+    <!--跑马灯-->
+    <LinearLayout
+        android:id="@+id/ll_adv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_up_on_fl_super_ben"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:visibility="gone"/>
+
+    <!--超实惠-->
+    <FrameLayout
+        android:id="@+id/fl_super_ben"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+
+    <View
+        android:id="@+id/view_up_on_fl_good_qua"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:visibility="gone"
+        android:background="@color/bg_act_fra"/>
+
+    <!--好品质-->
+    <FrameLayout
+        android:id="@+id/fl_good_qua"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+
+
+    <!--中间轮播图片展示-->
+    <LinearLayout
+        android:id="@+id/ll_slide_play2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_up_on_fl_group_pur"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:visibility="gone"
+        android:background="@color/bg_act_fra"/>
+
+    <!--精选团购-->
+    <FrameLayout
+        android:id="@+id/fl_group_pur"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+
+    <View
+        android:id="@+id/view_up_on_fl_shop_mall"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:visibility="gone"
+        android:background="@color/bg_act_fra"/>
+
+    <!--逛商城-->
+    <FrameLayout
+        android:id="@+id/fl_shop_mall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+
+    <View
+        android:id="@+id/view_up_on_ll_store"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:visibility="gone"
+        android:background="@color/bg_act_fra"/>
+
+    <!--好店推荐-->
+    <LinearLayout
+        android:id="@+id/ll_store"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <!--猜你喜欢-->
+    <LinearLayout
+        android:id="@+id/ll_like"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/ic_home_like"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="猜你喜欢"
+                android:textColor="@color/text_content_deep"
+                android:textSize="@dimen/text_size_content"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

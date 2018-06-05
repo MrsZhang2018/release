@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <TextView
+      android:id="@+id/tv_order_code"
+      android:layout_width="match_parent"
+      android:layout_height="46dp"
+      tools:text="订单编号 :"
+      android:layout_marginLeft="10dp"
+      android:gravity="center_vertical"
+      android:textColor="@color/text_content"
+      android:textSize="@dimen/text_size_content"/>
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="1px"
+      android:background="@color/stroke"/>
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:background="@color/white"
+      android:paddingLeft="8dp"
+      android:layout_height="46dp">
+
+    <com.fanwe.library.title.TitleItem
+        android:id="@+id/title_item_shop"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/tv_goods_count"
+        tools:text="215sad"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@color/text_content"
+        android:layout_toLeftOf="@+id/iv_arrow2"
+        android:textSize="@dimen/base_textsize_14"
+        android:layout_marginRight="7dp"/>
+
+    <ImageView
+        android:id="@+id/iv_arrow2"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:padding="5dp"
+        android:src="@drawable/ic_arrow_right_gray"
+        android:layout_marginRight="7dp"/>
+  </RelativeLayout>
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="1px"
+      android:background="@color/stroke"/>
+
+  <RelativeLayout
+      android:id="@+id/rl_coupon"
+      android:layout_width="match_parent"
+      android:paddingLeft="8dp"
+      android:layout_height="43dp">
+
+    <TextView android:id="@+id/tv_coupon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:text="券码 : "
+        android:textSize="@dimen/text_size_content"
+        android:textColor="@color/text_title"/>
+
+    <TextView android:id="@+id/tv_coupon_code"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@+id/tv_coupon"
+        tools:text="13515313513553"
+        android:textSize="@dimen/text_size_content"
+        android:textColor="@color/text_title"/>
+
+    <ImageView
+        android:id="@+id/iv_arrow"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:padding="5dp"
+        android:src="@drawable/ic_arrow_right_gray"
+        android:layout_marginRight="7dp"/>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@+id/iv_arrow"
+        android:src="@drawable/ic_qrcode"
+        android:layout_marginRight="7dp"/>
+
+  </RelativeLayout>
+
+  <com.fanwe.library.customview.SDGridLinearLayout
+      android:id="@+id/gv_coupon_codes"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
+
+  <RelativeLayout
+      android:id="@+id/rl_click"
+      android:layout_width="match_parent"
+      android:layout_height="46dp"
+      android:visibility="gone"
+      android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/tv_click"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="点击展开"/>
+
+    <ImageView
+        android:id="@+id/iv_arrow1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_arrow_down"
+        android:layout_toRightOf="@+id/tv_click"/>
+  </RelativeLayout>
+
+  <ImageView
+      android:layout_marginTop="1.5dp"
+      android:layout_width="match_parent"
+      android:layout_height="10dp"
+      android:background="@color/bg_act_fra"/>
+
+</LinearLayout>

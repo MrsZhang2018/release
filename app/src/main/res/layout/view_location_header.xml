@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_activity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_search"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <EditText
+            android:id="@+id/search_et_input"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/o2o_search_edittext_shape"
+            android:drawableLeft="@drawable/ic_search"
+            android:drawablePadding="@dimen/textview_default_padding"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="城市/行政区/拼音"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:paddingLeft="8dp"
+            android:textColor="@color/text_hint"
+            android:textSize="@dimen/text_size_content" />
+
+        <TextView
+            android:id="@+id/tv_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="重置"
+            android:textSize="@dimen/text_size_item_title"
+            android:padding="5dp"
+            android:layout_marginLeft="10dp"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="1px"
+                    android:background="@color/stroke" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="热门城市"
+                    android:textSize="@dimen/text_size_item_title" />
+
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="1px"
+                    android:background="@color/stroke" />
+
+            </LinearLayout>
+
+            <com.fanwe.library.customview.FlowLayout
+                android:id="@+id/flowlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="1px"
+                    android:background="@color/stroke" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="全部城市"
+                    android:textSize="@dimen/text_size_item_title" />
+
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="1px"
+                    android:background="@color/stroke" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_no_content"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="暂无数据"
+            android:textColor="@color/text_content"
+            android:textSize="@dimen/text_size_item_title"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_spinner_rectangle_radius"
+            android:paddingLeft="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"/>
+
+    </FrameLayout>
+</LinearLayout>

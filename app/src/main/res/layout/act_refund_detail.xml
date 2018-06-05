@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="1px"
+      android:background="@color/stroke"/>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/white"
+      android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/text_size_item_content"
+        android:text="退款原因 :    "
+        android:textColor="@color/text_content"/>
+
+    <TextView
+        android:id="@+id/tv_refund_reason"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:paddingRight="30dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/text_title"
+        android:textSize="@dimen/text_size_item_content"
+        tools:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
+
+  </LinearLayout>
+
+  <ImageView
+      android:layout_width="match_parent"
+      android:layout_height="10dp"
+      android:background="@color/bg_act_fra"/>
+
+  <FrameLayout android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <com.fanwe.o2o.view.SDProgressPullToRefreshListView
+        android:id="@+id/lv_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="#00000000"
+        android:divider="@null"
+        android:listSelector="#00000000"
+        android:background="@color/white"
+        android:scrollbars="none"/>
+
+    <LinearLayout
+        android:id="@+id/ll_no_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:visibility="gone">
+
+      <ImageView
+          android:layout_width="150dp"
+          android:layout_height="150dp"
+          android:src="@drawable/ic_o2o_no_content"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="暂无活动"
+          android:textColor="@color/text_content"
+          android:textSize="@dimen/text_size_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="5dp"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_back_to_top"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/ic_back_to_top"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="30dp"
+        android:visibility="gone"/>
+
+
+  </FrameLayout>
+
+</LinearLayout>

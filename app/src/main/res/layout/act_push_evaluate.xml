@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blur"
+    android:orientation="vertical">
+
+    <com.fanwe.o2o.view.SDProgressPullToRefreshListView
+        android:layout_margin="@dimen/margin_default"
+        android:id="@+id/lv_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:cacheColorHint="#00000000"
+        android:divider="@null"
+        android:listSelector="#00000000" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_content"
+        android:gravity="center_vertical|right">
+
+        <TextView
+            android:id="@+id/tv_push"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/selector_main_color"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="发表评价"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

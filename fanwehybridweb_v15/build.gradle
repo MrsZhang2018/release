@@ -4,6 +4,7 @@ android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
     flavorDimensions "22"
+    useLibrary('org.apache.http.legacy')
     defaultConfig {
         applicationId "com.fanwe.yi"
         minSdkVersion 17
@@ -79,6 +80,14 @@ android {
 //            output.outputFile = new File(output.outputFile.parent, variant.name + "_" + variant.versionName + "_" + variant.versionCode + ".apk");
 //        }
 //    }
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi-v7a'
+            universalApk true
+        }
+    }
 }
 repositories {
     flatDir {
@@ -87,19 +96,19 @@ repositories {
 }
 
 dependencies {
-    api fileTree(include: ['*.jar'], dir: 'libs')
-    api(name: 'library_adapter_http-release', ext: 'aar')
-    api(name: 'library_gesture-release', ext: 'aar')
-    api(name: 'library_iapppay_openid_plugin_res-release', ext: 'aar')
-    api(name: 'library_iapppay_plugin-release', ext: 'aar')
-    api(name: 'library_jubaosdk-release', ext: 'aar')
-    api(name: 'library_PhotoViewmastercrop-release', ext: 'aar')
-    api(name: 'library_qrcode_zxing-release', ext: 'aar')
-    api(name: 'library_PushSDK-release', ext: 'aar')
-    api(name: 'library_pay_baofoo-release', ext: 'aar')
-    api(name: 'library_map_tencent-release', ext: 'aar')
-    api(name: 'library_xml_drawable_o2o-release', ext: 'aar')
-    api(name: 'library_social_umeng_v512-release', ext: 'aar')
-    api 'com.android.support:support-v4:22.+'
-    api project(':library_fanwe')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation(name: 'library_adapter_http-release', ext: 'aar')
+    implementation(name: 'library_gesture-release', ext: 'aar')
+    implementation(name: 'library_iapppay_openid_plugin_res-release', ext: 'aar')
+    implementation(name: 'library_iapppay_plugin-release', ext: 'aar')
+    implementation(name: 'library_jubaosdk-release', ext: 'aar')
+    implementation(name: 'library_PhotoViewmastercrop-release', ext: 'aar')
+    implementation(name: 'library_qrcode_zxing-release', ext: 'aar')
+    implementation(name: 'library_PushSDK-release', ext: 'aar')
+    implementation(name: 'library_pay_baofoo-release', ext: 'aar')
+    implementation(name: 'library_map_tencent-release', ext: 'aar')
+    implementation(name: 'library_xml_drawable_o2o-release', ext: 'aar')
+    implementation(name: 'library_social_umeng_v512-release', ext: 'aar')
+    api 'com.android.support:support-v4:27.1.1'
+    implementation project(':library_fanwe')
 }

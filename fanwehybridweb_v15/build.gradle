@@ -1,0 +1,105 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+    flavorDimensions "22"
+    defaultConfig {
+        applicationId "com.fanwe.yi"
+        minSdkVersion 17
+        targetSdkVersion 22
+    }
+
+    //签名
+    signingConfigs {
+        debug {
+            storeFile file("fanwe.keystore")
+            storePassword "fanwe99cnlin"
+            keyAlias "fanwe"
+            keyPassword "fanwe99cnlin"
+        }
+        release {
+            storeFile file("fanwe.keystore")
+            storePassword "fanwe99cnlin"
+            keyAlias "fanwe"
+            keyPassword "fanwe99cnlin"
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    productFlavors {
+
+
+        fanwetest {
+            applicationId "com.fanwe.yi"
+            versionCode 1
+            versionName "1.0.0"
+
+            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"o2o.365csh.com"'
+            buildConfigField 'String', 'SERVER_URL_PATH', '"/wap/biz.php"'
+            buildConfigField 'String', 'SERVER_URL_INIT_URL', '"http://o2o.365csh.com/app.php?act=init"'
+            buildConfigField 'String', 'SERVER_URL_MAPI_URL', '"http://o2o.365csh.com/mapi/index.php?"'
+        }
+
+
+
+        niaozhiyu_shanghuduan {  //鸟知鱼 商家端
+            applicationId "com.xingfufamily.nzy.biz"
+            versionCode 2018021401
+            versionName "1.0.0"
+
+            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"nzy.xingfufamily.com"'
+            buildConfigField 'String', 'SERVER_URL_PATH', '"/wap/biz.php"'
+            buildConfigField 'String', 'SERVER_URL_INIT_URL', '"http://nzy.xingfufamily.com/wap/biz.php?act=init"'
+            buildConfigField 'String', 'SERVER_URL_MAPI_URL', '"http://nzy.xingfufamily.com/mapi/index.php?"'
+        }
+
+
+    }
+
+    buildTypes {
+        debug {
+            zipAlignEnabled false
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
+        release {
+            zipAlignEnabled true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.release
+        }
+    }
+
+//    android.applicationVariants.all { variant ->
+//        variant.outputs.each { output ->
+//            output.outputFile = new File(output.outputFile.parent, variant.name + "_" + variant.versionName + "_" + variant.versionCode + ".apk");
+//        }
+//    }
+}
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api(name: 'library_adapter_http-release', ext: 'aar')
+    api(name: 'library_gesture-release', ext: 'aar')
+    api(name: 'library_iapppay_openid_plugin_res-release', ext: 'aar')
+    api(name: 'library_iapppay_plugin-release', ext: 'aar')
+    api(name: 'library_jubaosdk-release', ext: 'aar')
+    api(name: 'library_PhotoViewmastercrop-release', ext: 'aar')
+    api(name: 'library_qrcode_zxing-release', ext: 'aar')
+    api(name: 'library_PushSDK-release', ext: 'aar')
+    api(name: 'library_pay_baofoo-release', ext: 'aar')
+    api(name: 'library_map_tencent-release', ext: 'aar')
+    api(name: 'library_xml_drawable_o2o-release', ext: 'aar')
+    api(name: 'library_social_umeng_v512-release', ext: 'aar')
+    api 'com.android.support:support-v4:22.+'
+    api project(':library_fanwe')
+}

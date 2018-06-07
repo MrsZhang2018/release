@@ -1,2 +1,4 @@
 include ':app', ':libraryFanwe'
 include ':xiaonengChatUI'
+include ':library_fanwe'
+include ':fanwehybridweb_v15'

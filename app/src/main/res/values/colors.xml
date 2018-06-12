@@ -54,4 +54,13 @@
     <!-- 选择器被选择字体颜色-->
     <color name="text_picker_selected">#e60012</color>
     <color name="orange_x">#ffa800</color>
+
+    <color name="login_hello_blue_shen">#1874CD</color>
+    <color name="login_bg_white">#FFFFFF</color>
+    <color name="login_bg_blue_qian">#C6DAF0</color>
+    <color name="login_hint">#999999</color>
+    <color name="login_code_bg">#3DB4FF</color>
+    <color name="login_btn_bg">#1994EB</color>
+    <color name="login_ed_bg">#999999</color>
+    <color name="login_view">#EAEAEA</color>
 </resources>

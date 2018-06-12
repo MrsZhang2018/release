@@ -18,7 +18,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-  <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -48,7 +48,6 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
 
-
     <application
         android:name=".app.App"
         android:allowBackup="true"
@@ -61,7 +60,7 @@
             android:name=".activity.InitAdvsMultiActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -70,12 +69,11 @@
         </activity>
 
         <activity
-            android:launchMode="singleTask"
             android:name=".activity.MainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
 
         <!-- liveWebView -->
         <activity
@@ -194,7 +192,7 @@
             android:name=".activity.AccountManageAcitivty"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
 
         <!-- 地图搜索页面 -->
         <activity
@@ -298,8 +296,8 @@
         <activity
             android:name=".activity.OrderDetailsActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
-            android:screenOrientation="portrait"
             android:parentActivityName=".activity.OrderListActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
         <!-- 我的收藏 -->
@@ -321,7 +319,7 @@
             android:name=".activity.RefundGoodsActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
 
         <!-- 编辑地址 -->
         <activity
@@ -384,22 +382,19 @@
         <!-- 友盟AppKey， 需要替换成你自己的 -->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="@string/umeng_key" >
-        </meta-data>
+            android:value="@string/umeng_key"></meta-data>
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
-            android:value="@string/umeng_message_secret" >
-        </meta-data>
+            android:value="@string/umeng_message_secret"></meta-data>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="Channel ID">
-        </meta-data>
+            android:value="Channel ID"></meta-data>
         <!-- 友盟分享start -->
         <!-- 分享内容编辑页 -->
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"
             android:excludeFromRecents="true"
-            android:theme="@style/Theme.UMDefault"/>
+            android:theme="@style/Theme.UMDefault" />
 
         <!-- 微信 start -->
         <activity
@@ -407,7 +402,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <activity
             android:name="${applicationId}.wxapi.WXPayEntryActivity"
@@ -416,9 +411,9 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="@string/wx_app_id"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="@string/wx_app_id" />
             </intent-filter>
         </activity>
         <!-- 微信 end -->
@@ -429,8 +424,8 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
@@ -438,13 +433,11 @@
             android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
             android:configChanges="keyboardHidden|orientation"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
+            android:windowSoftInputMode="adjustResize"></activity>
 
         <service
             android:name="com.sina.weibo.sdk.net.DownloadService"
-            android:exported="false">
-        </service>
+            android:exported="false"></service>
         <!--新浪 end-->
 
         <!-- 腾讯 start -->
@@ -453,19 +446,19 @@
             android:launchMode="singleTask"
             android:noHistory="true">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="@string/qq_auth_scheme"/>
+                <data android:scheme="@string/qq_auth_scheme" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!-- 腾讯 end -->
 
         <!-- 友盟分享end -->
@@ -487,51 +480,43 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|navigation|layoutDirection|touchscreen|locale|mnc|mcc|fontScale"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/MyDialogTopRight" >
-        </activity>
+            android:theme="@style/MyDialogTopRight"></activity>
         <activity
             android:name="cn.xiaoneng.activity.ShowAlbumActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent"></activity>
         <activity
             android:name="cn.xiaoneng.activity.ValuationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/valuationdialog" >
-        </activity>
+            android:theme="@style/valuationdialog"></activity>
         <activity
             android:name="cn.xiaoneng.activity.ShowPictureActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity
             android:name="cn.xiaoneng.activity.XNExplorerActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity
             android:name="cn.xiaoneng.video.VideoPreviewActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity
             android:name="cn.xiaoneng.video.RecordVideoActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity
             android:name="cn.xiaoneng.video.XNVideoPlayer"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar"></activity>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.fanwe.o2o.newo2o.fileprovider"
             android:exported="false"
-            android:grantUriPermissions="true" >
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />

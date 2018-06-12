@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fanwe.library.adapter.http.model.SDResponse;
@@ -35,22 +36,22 @@ public class LoginPhoneFragment extends LoginBaseFragment {
     public static final String EXTRA_PHONE_NUMBER = "extra_phone_number";
 
     @ViewInject(R.id.et_mobile)
-    private ClearEditText mEtMobile;
+    private EditText mEtMobile;
 
     @ViewInject(R.id.et_code)
-    private ClearEditText mEtCode;
+    private EditText mEtCode;
 
     @ViewInject(R.id.btn_send_code)
     private SDSendValidateButton mBtnSendCode;
 
-    @ViewInject(R.id.tv_user_agreement)
-    private TextView tv_user_agreement;
+//    @ViewInject(R.id.tv_user_agreement)
+//    private TextView tv_user_agreement;
 
     @ViewInject(R.id.tv_login)
     private TextView mTv_login;
 
-    @ViewInject(R.id.tv_find_password)
-    private TextView tv_find_password;
+//    @ViewInject(R.id.tv_find_password)
+//    private TextView tv_find_password;
 
     private String mStrMobile;
     private String mStrCode;
@@ -59,7 +60,7 @@ public class LoginPhoneFragment extends LoginBaseFragment {
 
     @Override
     protected int onCreateContentView() {
-        return R.layout.frag_phone_login;
+        return R.layout.act_login_newxy;
     }
 
     @Override
@@ -70,20 +71,19 @@ public class LoginPhoneFragment extends LoginBaseFragment {
         initSDSendValidateButton();
     }
 
-    private void reSetBtnSendCode()
-    {
-        mBtnSendCode.setmTextColorEnable(getResources().getColor(R.color.text_content_deep));
+    private void reSetBtnSendCode() {
+        mBtnSendCode.setmTextColorEnable(getResources().getColor(R.color.white));
         mBtnSendCode.setmTextColorDisable(getResources().getColor(R.color.text_content_deep));
         mBtnSendCode.setmBackgroundDisableResId(R.drawable.layer_white);
-        mBtnSendCode.setmBackgroundEnableResId(R.drawable.layer_white);
+        mBtnSendCode.setmBackgroundEnableResId(R.drawable.login_btn_code_bg);
         mBtnSendCode.setmTextEnable("发送验证码");
         mBtnSendCode.setmTextDisable("重新发送");
         mBtnSendCode.updateViewState(true);
     }
 
     private void getIntentData() {
-        final Bundle bundle=getArguments();
-        webUrl=bundle.getString(EXTRA_WEB_URL);
+        final Bundle bundle = getArguments();
+        webUrl = bundle.getString(EXTRA_WEB_URL);
         String mobile = getActivity().getIntent().getStringExtra(EXTRA_PHONE_NUMBER);
         if (!TextUtils.isEmpty(mobile)) {
             mEtMobile.setText(mobile);
@@ -108,32 +108,30 @@ public class LoginPhoneFragment extends LoginBaseFragment {
 
     private void registeClick() {
         mTv_login.setOnClickListener(this);
-        tv_user_agreement.setOnClickListener(this);
-
-        tv_find_password.setOnClickListener(this);
+//        tv_user_agreement.setOnClickListener(this);
+//        tv_find_password.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        if (v == mTv_login)
-        {
+        if (v == mTv_login) {
             clickLogin();
-        }else if (v == tv_user_agreement)
-        {
-            String url = ApkConstant.SERVER_URL_WAP + "?ctl=user&act=protocol";
-            clickWebView(url);
-        }else if (v == tv_find_password)
-        {
-            clickFindPwd();
         }
+//        else if (v == tv_user_agreement)
+//        {
+//            String url = ApkConstant.SERVER_URL_WAP + "?ctl=user&act=protocol";
+//            clickWebView(url);
+//        }else if (v == tv_find_password)
+//        {
+//            clickFindPwd();
+//        }
     }
 
     /**
      * 找回密码
      */
-    private void clickFindPwd()
-    {
+    private void clickFindPwd() {
         Intent intent = new Intent(getActivity(), ModifyPwdActivity.class);
         intent.putExtra(ModifyPwdActivity.EXTRA_TITLE, "找回密码");
         startActivity(intent);
@@ -142,15 +140,13 @@ public class LoginPhoneFragment extends LoginBaseFragment {
     /**
      * 用户协议
      */
-    private void clickWebView(String url)
-    {
-        if (!TextUtils.isEmpty(url))
-        {
+    private void clickWebView(String url) {
+        if (!TextUtils.isEmpty(url)) {
             Intent intent = new Intent(getActivity(), AppWebViewActivity.class);
-            intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE,false);
-            intent.putExtra(AppWebViewActivity.EXTRA_URL,url);
+            intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE, false);
+            intent.putExtra(AppWebViewActivity.EXTRA_URL, url);
             getActivity().startActivity(intent);
-        }else
+        } else
             SDToast.showToast("url为空");
     }
 
@@ -245,9 +241,9 @@ public class LoginPhoneFragment extends LoginBaseFragment {
     }
 
     protected void dealLoginNormalSuccess(User_infoModel actModel, boolean postEvent) {
-        int xiaoneng_login_status=Ntalker.getInstance().login(String.valueOf(actModel.getId()), actModel.getUser_name(),0 );
+        int xiaoneng_login_status = Ntalker.getInstance().login(String.valueOf(actModel.getId()), actModel.getUser_name(), 0);
         String new_user = actModel.getNew_user();
-        if(new_user!= null&&new_user.equals("1")){
+        if (new_user != null && new_user.equals("1")) {
             //首次使用手机快捷登录，前往修改密码
             Intent intent = new Intent(getActivity(), ModifyPwdActivity.class);
             intent.putExtra(ModifyPwdActivity.EXTRA_TITLE, "修改密码");

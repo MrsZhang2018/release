@@ -45,8 +45,7 @@ import static com.fanwe.o2o.activity.ConsumeCouponActivity.EXTRA_COUPON_NAME;
  * Created by Administrator on 2016/12/8.
  */
 
-public class MeFragmentNew extends BaseFragment
-{
+public class MeFragmentNew extends BaseFragment {
     @ViewInject(R.id.iv_setting)
     private ImageView iv_setting;
     @ViewInject(R.id.iv_news)
@@ -60,7 +59,7 @@ public class MeFragmentNew extends BaseFragment
     @ViewInject(R.id.tv_name)
     private TextView tv_name;//用户名
     @ViewInject(R.id.tv_account_manage)
-    private TextView tv_account_manage;//账户管理
+    private LinearLayout tv_account_manage;//账户管理
     @ViewInject(R.id.ll_group_friend)
     private LinearLayout ll_group_friend;//会员，朋友圈
     @ViewInject(R.id.ll_user_group)
@@ -153,70 +152,62 @@ public class MeFragmentNew extends BaseFragment
     private int login_status = 0;
 
     @Override
-    protected int onCreateContentView()
-    {
-        return R.layout.frag_o2o_tab_me_new;
+    protected int onCreateContentView() {
+        return R.layout.frag_o2o_tab_me_new_1;
     }
 
     @Override
-    protected void init()
-    {
+    protected void init() {
         super.init();
         initListener();
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         requestUserCenter();
     }
 
-    private void initListener()
-    {
+    private void initListener() {
         iv_setting.setOnClickListener(this);
         iv_news.setOnClickListener(this);
         ll_login.setOnClickListener(this);
         tv_account_manage.setOnClickListener(this);
-        ll_user_group.setOnClickListener(this);
-        ll_circle_friend.setOnClickListener(this);
-        ll_balance.setOnClickListener(this);
-        ll_integral.setOnClickListener(this);
-        tv_bind_mobile.setOnClickListener(this);
-        iv_dismiss.setOnClickListener(this);
-        rl_check_order.setOnClickListener(this);
-        ll_pen_pay.setOnClickListener(this);
-        ll_pen_sure.setOnClickListener(this);
-        ll_evaluate.setOnClickListener(this);
-        ll_refund.setOnClickListener(this);
-        ll_bill.setOnClickListener(this);
-        ll_red_bag.setOnClickListener(this);
-        ll_consume.setOnClickListener(this);
+//        ll_user_group.setOnClickListener(this);
+//        ll_circle_friend.setOnClickListener(this);
+//        ll_balance.setOnClickListener(this);
+//        ll_integral.setOnClickListener(this);
+//        tv_bind_mobile.setOnClickListener(this);
+//        iv_dismiss.setOnClickListener(this);
+//        rl_check_order.setOnClickListener(this);
+//        ll_pen_pay.setOnClickListener(this);
+//        ll_pen_sure.setOnClickListener(this);
+//        ll_evaluate.setOnClickListener(this);
+//        ll_refund.setOnClickListener(this);
+//        ll_bill.setOnClickListener(this);
+//        ll_red_bag.setOnClickListener(this);
+//        ll_consume.setOnClickListener(this);
         ll_coupon.setOnClickListener(this);
-        ll_active.setOnClickListener(this);
-        ll_luck_draw.setOnClickListener(this);
-        ll_integer_mall.setOnClickListener(this);
+//        ll_active.setOnClickListener(this);
+//        ll_luck_draw.setOnClickListener(this);
+//        ll_integer_mall.setOnClickListener(this);
         ll_share_polite.setOnClickListener(this);
         ll_collection.setOnClickListener(this);
-        ll_address.setOnClickListener(this);
-        ll_my_evaluate.setOnClickListener(this);
-        tv_dis.setOnClickListener(this);
-        ll_dis_manage.setOnClickListener(this);
-        ll_market.setOnClickListener(this);
-        ll_withdraw_cash.setOnClickListener(this);
-        ll_friends.setOnClickListener(this);
+//        ll_address.setOnClickListener(this);
+//        ll_my_evaluate.setOnClickListener(this);
+//        tv_dis.setOnClickListener(this);
+//        ll_dis_manage.setOnClickListener(this);
+//        ll_market.setOnClickListener(this);
+//        ll_withdraw_cash.setOnClickListener(this);
+//        ll_friends.setOnClickListener(this);
     }
 
-    private void requestUserCenter()
-    {
+    private void requestUserCenter() {
         showProgressDialog("");
-        CommonInterface.requestUserCenterWapIndex(new AppRequestCallback<AppUserCenterWapIndexActModel>()
-        {
+        CommonInterface.requestUserCenterWapIndex(new AppRequestCallback<AppUserCenterWapIndexActModel>() {
             @Override
-            protected void onSuccess(SDResponse sdResponse)
-            {
-                if (actModel.isOk())
-                {
+            protected void onSuccess(SDResponse sdResponse) {
+                if (actModel.isOk()) {
                     login_status = actModel.getUser_login_status();
                     String not_read_msg = actModel.getNot_read_msg();
                     String user_name = actModel.getUser_name();
@@ -231,94 +222,85 @@ public class MeFragmentNew extends BaseFragment
                     String new_youhui = actModel.getNew_youhui();//新发放给用户优惠券数
                     String new_event = actModel.getNew_event();//新增活动券数
                     String is_fx = actModel.getIs_user_fx();//0未开通分销 1开通分销
-                    String coupon_name=actModel.getCoupon_name();
-                    if (!TextUtils.isEmpty(coupon_name)){
+                    String coupon_name = actModel.getCoupon_name();
+                    if (!TextUtils.isEmpty(coupon_name)) {
                         tv_coupon_name.setText(coupon_name);
-                        }
+                    }
                     if (!TextUtils.isEmpty(not_read_msg))
                         SDViewUtil.show(iv_point);
                     else
                         SDViewUtil.hide(iv_point);
                     GlideUtil.load(actModel.getUser_avatar()).into(iv_header);
                     if (!TextUtils.isEmpty(user_name))
-                        SDViewBinder.setTextView(tv_name,user_name);
+                        SDViewBinder.setTextView(tv_name, user_name);
                     else
-                        SDViewBinder.setTextView(tv_name,"点击登录或注册");
+                        SDViewBinder.setTextView(tv_name, "点击登录或注册");
                     if (!TextUtils.isEmpty(balance))
-                        SDViewBinder.setTextView(tv_balance,balance);
+                        SDViewBinder.setTextView(tv_balance, balance);
                     else
-                        SDViewBinder.setTextView(tv_balance,"0");
+                        SDViewBinder.setTextView(tv_balance, "0");
                     if (!TextUtils.isEmpty(user_score_str))
-                        SDViewBinder.setTextView(tv_integral,user_score_str);
+                        SDViewBinder.setTextView(tv_integral, user_score_str);
                     else
-                        SDViewBinder.setTextView(tv_integral,"0");
+                        SDViewBinder.setTextView(tv_integral, "0");
                     if (actModel.getUser_mobile_empty() == 1)//0:已绑定手机 1未绑定手机
                     {
                         SDViewUtil.show(ll_bind);
-                    }else
+                    } else
                         SDViewUtil.hide(ll_bind);
-                    if (!TextUtils.isEmpty(pay_order_count))
-                    {
+                    if (!TextUtils.isEmpty(pay_order_count)) {
                         SDViewUtil.show(tv_pen_pay);
-                        SDViewBinder.setTextView(tv_pen_pay,pay_order_count);
-                    }else
+                        SDViewBinder.setTextView(tv_pen_pay, pay_order_count);
+                    } else
                         SDViewUtil.hide(tv_pen_pay);
-                    if (!TextUtils.isEmpty(wait_confirm))
-                    {
+                    if (!TextUtils.isEmpty(wait_confirm)) {
                         SDViewUtil.show(tv_pen_sure);
-                        SDViewBinder.setTextView(tv_pen_sure,wait_confirm);
-                    }else
+                        SDViewBinder.setTextView(tv_pen_sure, wait_confirm);
+                    } else
                         SDViewUtil.hide(tv_pen_sure);
-                    if (!TextUtils.isEmpty(wait_dp_count))
-                    {
+                    if (!TextUtils.isEmpty(wait_dp_count)) {
                         SDViewUtil.show(tv_evaluate);
-                        SDViewBinder.setTextView(tv_evaluate,wait_dp_count);
-                    }else
+                        SDViewBinder.setTextView(tv_evaluate, wait_dp_count);
+                    } else
                         SDViewUtil.hide(tv_evaluate);
-                    if (!TextUtils.isEmpty(new_ecv))
-                    {
+                    if (!TextUtils.isEmpty(new_ecv)) {
                         SDViewUtil.show(tv_red_bag);
-                        SDViewBinder.setTextView(tv_red_bag,new_ecv);
-                    }else
+                        SDViewBinder.setTextView(tv_red_bag, new_ecv);
+                    } else
                         SDViewUtil.hide(tv_red_bag);
-                    if (!TextUtils.isEmpty(new_coupon))
-                    {
+                    if (!TextUtils.isEmpty(new_coupon)) {
                         SDViewUtil.show(tv_consume);
-                        SDViewBinder.setTextView(tv_consume,new_coupon);
-                    }else
+                        SDViewBinder.setTextView(tv_consume, new_coupon);
+                    } else
                         SDViewUtil.hide(tv_consume);
-                    if (!TextUtils.isEmpty(new_youhui))
-                    {
+                    if (!TextUtils.isEmpty(new_youhui)) {
                         SDViewUtil.show(tv_coupon);
-                        SDViewBinder.setTextView(tv_coupon,new_youhui);
-                    }else
+                        SDViewBinder.setTextView(tv_coupon, new_youhui);
+                    } else
                         SDViewUtil.hide(tv_coupon);
-                    if (!TextUtils.isEmpty(new_event))
-                    {
+                    if (!TextUtils.isEmpty(new_event)) {
                         SDViewUtil.show(tv_active);
-                        SDViewBinder.setTextView(tv_active,new_event);
-                    }else
-                    {
+                        SDViewBinder.setTextView(tv_active, new_event);
+                    } else {
                         SDViewUtil.hide(tv_active);
                     }
-                    Init_indexActModel init_indexActModel= InitActModelDao.query();
-                     String isFx=String.valueOf(init_indexActModel.getIs_fx());
+                    Init_indexActModel init_indexActModel = InitActModelDao.query();
+                    String isFx = String.valueOf(init_indexActModel.getIs_fx());
                     if (!TextUtils.isEmpty(isFx) && isFx.equals("0"))  //0无分销功能 1有
                     {
                         SDViewUtil.hide(rl_dis);
                         SDViewUtil.hide(view_dis);
                         SDViewUtil.hide(ll_dis);
-                    }else if(!TextUtils.isEmpty(isFx) && isFx.equals("1")){
+                    } else if (!TextUtils.isEmpty(isFx) && isFx.equals("1")) {
                         SDViewUtil.show(rl_dis);
                         SDViewUtil.show(view_dis);
                         SDViewUtil.show(ll_dis);
-                        if(!TextUtils.isEmpty(is_fx) && is_fx.equals("1")){//0未开通分销 1开通分销
+                        if (!TextUtils.isEmpty(is_fx) && is_fx.equals("1")) {//0未开通分销 1开通分销
                             SDViewUtil.hide(tv_dis);
                             SDViewUtil.show(rl_dis);
                             SDViewUtil.show(view_dis);
                             SDViewUtil.show(ll_dis);
-                        } else if (login_status!=1|| is_fx.equals("0"))
-                        {
+                        } else if (login_status != 1 || is_fx.equals("0")) {
                             SDViewUtil.show(rl_dis);
                             SDViewUtil.show(tv_dis);
                             SDViewUtil.show(view_dis);
@@ -327,26 +309,22 @@ public class MeFragmentNew extends BaseFragment
 
                     }
 
-                    if (login_status == 1)
-                    {
+                    if (login_status == 1) {
                         SDViewUtil.show(ll_group_friend);
-                        SDViewBinder.setTextView(tv_user_group,actModel.getUser_group());
-                    }else
-                    {
+                        SDViewBinder.setTextView(tv_user_group, actModel.getUser_group());
+                    } else {
                         SDViewUtil.hide(ll_group_friend);
                     }
                 }
             }
 
             @Override
-            protected void onError(SDResponse resp)
-            {
+            protected void onError(SDResponse resp) {
                 super.onError(resp);
             }
 
             @Override
-            protected void onFinish(SDResponse resp)
-            {
+            protected void onFinish(SDResponse resp) {
                 super.onFinish(resp);
                 dismissProgressDialog();
             }
@@ -354,84 +332,68 @@ public class MeFragmentNew extends BaseFragment
     }
 
     @Override
-    public void onClick(View v)
-    {
+    public void onClick(View v) {
         super.onClick(v);
-        if (v == iv_setting)
-        {
+        if (v == iv_setting) {
             //设置
             clickSetting();
-        }else if (v == iv_news)
-        {
+        } else if (v == iv_news) {
             //消息
             if (login_status == 0)
                 clickLogin();
             else if (login_status == 1)
                 clickNews();
-        }else if (v == ll_login)
-        {
+        } else if (v == ll_login) {
             //登录
             if (login_status == 0)
                 clickLogin();
-        }else if (v == tv_account_manage)
-        {
+        } else if (v == tv_account_manage) {
             //账户管理
             clickAccountManage();
-        }else if (v == ll_user_group)
-        {
+        } else if (v == ll_user_group) {
             //会员
             clickAccountManage();
-        }else if (v == ll_circle_friend)
-        {
+        } else if (v == ll_circle_friend) {
             //朋友圈
             String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_home";
             isClickWebView(url);
-        }else if (v == ll_balance)
-        {
+        } else if (v == ll_balance) {
             //余额
             String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_money";
             isClickWebView(url);
-        }else if (v == ll_integral)
-        {
+        } else if (v == ll_integral) {
             //积分
             String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_score";
             isClickWebView(url);
-        }else if (v == tv_bind_mobile)
-        {
+        } else if (v == tv_bind_mobile) {
             //绑定手机号
             clickBindMobile();
-        }else if (v == iv_dismiss)
-        {
+        } else if (v == iv_dismiss) {
             SDViewUtil.hide(ll_bind);
-        }else if (v == rl_check_order)
-        {
+        } else if (v == rl_check_order) {
             //查看全部订单
 //            String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_order";
 //            isClickWebView(url);
             if (login_status == 0)
                 clickLogin();
-            else if (login_status == 1){
+            else if (login_status == 1) {
                 Intent intent = new Intent(getActivity(), OrderListActivity.class);
                 intent.putExtra(OrderListActivity.EXTRA_ORDER_TYPE, Constant.OrderType.ALL);
                 startActivity(intent);
             }
-        }else if (v == ll_pen_pay)
-        {
+        } else if (v == ll_pen_pay) {
             //待付款
 //            String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_order&pay_status=1";
 //            isClickWebView(url);
-            if (login_status == 0)
-            {
+            if (login_status == 0) {
                 clickLogin();
                 return;
             }
             Intent intent = new Intent(getActivity(), OrderListActivity.class);
             intent.putExtra(OrderListActivity.EXTRA_ORDER_TYPE, Constant.OrderType.WAIT_PAY);
             startActivity(intent);
-        }else if (v == ll_pen_sure)
-        {
-            if (login_status == 0)
-            {
+        } else if (v == ll_pen_sure) {
+            if (login_status == 0) {
                 clickLogin();
                 return;
             }
@@ -441,10 +403,8 @@ public class MeFragmentNew extends BaseFragment
             Intent intent = new Intent(getActivity(), OrderListActivity.class);
             intent.putExtra(OrderListActivity.EXTRA_ORDER_TYPE, Constant.OrderType.WAIT_CONFIRM);
             startActivity(intent);
-        }else if (v == ll_evaluate)
-        {
-            if (login_status == 0)
-            {
+        } else if (v == ll_evaluate) {
+            if (login_status == 0) {
                 clickLogin();
                 return;
             }
@@ -454,104 +414,87 @@ public class MeFragmentNew extends BaseFragment
             Intent intent = new Intent(getActivity(), OrderListActivity.class);
             intent.putExtra(OrderListActivity.EXTRA_ORDER_TYPE, Constant.OrderType.WAIT_EVALUATE);
             startActivity(intent);
-        }else if (v == ll_refund)
-        {
+        } else if (v == ll_refund) {
             //退款
             //String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_order&act=refund_list";
             //isClickWebView(url);
             clickRefund();
-        }else if (v == ll_bill)
-        {
+        } else if (v == ll_bill) {
             //买单
             //String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_store_pay_order";
             //isClickWebView(url);
             clickBill();
-        }else if (v == ll_red_bag)
-        {
+        } else if (v == ll_red_bag) {
             //红包
             String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_ecv";
             isClickWebView(url);
-        }else if (v == ll_consume)
-        {
+        } else if (v == ll_consume) {
             //消费券
             clickConsumeGroup();
             //String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_coupon";
             //isClickWebView(url);
-        }else if (v == ll_coupon)
-        {
+        } else if (v == ll_coupon) {
             //优惠券
             clickCoupon();
             //String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_youhui";
             //isClickWebView(url);
-        }else if (v == ll_active)
-        {
+        } else if (v == ll_active) {
             //活动券
             clickActivityCoupon();
             //String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_event";
             //isClickWebView(url);
-        }else if (v == ll_luck_draw)
-        {
+        } else if (v == ll_luck_draw) {
             //我的抽奖
             String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_lottery";
             isClickWebView(url);
-        }else if (v == ll_integer_mall)
-        {
+        } else if (v == ll_integer_mall) {
             //积分商城
             String url = ApkConstant.SERVER_URL_WAP + "?ctl=scores_index";
             clickWebView(url);
-        }else if (v == ll_share_polite)
-        {
+        } else if (v == ll_share_polite) {
             //分享有礼
             String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_share";
             isClickWebView(url);
-        }else if (v == ll_collection)
-        {
+        } else if (v == ll_collection) {
 //            //我的收藏
 //            String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_collect";
 //            isClickWebView(url);
             if (login_status == 0)
                 clickLogin();
-            else if (login_status == 1){
+            else if (login_status == 1) {
                 Intent intent = new Intent(getActivity(), KeepActivity.class);
                 startActivity(intent);
             }
-        }else if (v == ll_address)
-        {
+        } else if (v == ll_address) {
             //收货地址
 //            String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_address";
 //            isClickWebView(url);
             if (login_status == 0)
                 clickLogin();
-            else if (login_status == 1){
+            else if (login_status == 1) {
                 Intent intent = new Intent(getActivity(), ShippingAddressActivity.class);
                 startActivity(intent);
             }
-        }else if (v == ll_my_evaluate)
-        {
+        } else if (v == ll_my_evaluate) {
             //我的评价
             String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_review";
             isClickWebView(url);
-        }else if (v == tv_dis)
-        {
+        } else if (v == tv_dis) {
             String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_fx&act=vip_buy";
             isClickWebView(url);
-        }else if (v == ll_dis_manage)
-        {
+        } else if (v == ll_dis_manage) {
             //分销管理
             String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_fx";
             isClickWebView(url);
-        }else if (v == ll_market)
-        {
+        } else if (v == ll_market) {
             //市场
             String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_fx&act=deal_fx";
             isClickWebView(url);
-        }else if (v == ll_withdraw_cash)
-        {
+        } else if (v == ll_withdraw_cash) {
             //提现
             String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_fxwithdraw";
             isClickWebView(url);
-        }else if (v == ll_friends)
-        {
+        } else if (v == ll_friends) {
             //好友
             String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_fxinvite";
             isClickWebView(url);
@@ -561,8 +504,7 @@ public class MeFragmentNew extends BaseFragment
     /**
      * 设置
      */
-    private void clickSetting()
-    {
+    private void clickSetting() {
         Intent intent = new Intent(getActivity(), SettingActivity.class);
         startActivity(intent);
     }
@@ -570,8 +512,7 @@ public class MeFragmentNew extends BaseFragment
     /**
      * 消息
      */
-    private void clickNews()
-    {
+    private void clickNews() {
         Intent intent = new Intent(getActivity(), MessageCenterActivity.class);
         startActivity(intent);
     }
@@ -579,15 +520,13 @@ public class MeFragmentNew extends BaseFragment
     /**
      * 登录
      */
-    private void clickLogin()
-    {
+    private void clickLogin() {
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
     }
 
-    private void clickCoupon(){
-        if (login_status == 0)
-        {
+    private void clickCoupon() {
+        if (login_status == 0) {
             clickLogin();
             return;
         }
@@ -595,9 +534,8 @@ public class MeFragmentNew extends BaseFragment
         startActivity(intent);
     }
 
-    private void clickActivityCoupon(){
-        if (login_status == 0)
-        {
+    private void clickActivityCoupon() {
+        if (login_status == 0) {
             clickLogin();
             return;
         }
@@ -608,13 +546,10 @@ public class MeFragmentNew extends BaseFragment
     /**
      * 账户管理
      */
-    private void clickAccountManage()
-    {
-        if (login_status == 0)
-        {
+    private void clickAccountManage() {
+        if (login_status == 0) {
             clickLogin();
-        }else if (login_status == 1)
-        {
+        } else if (login_status == 1) {
             Intent intent = new Intent(getActivity(), AccountManageAcitivty.class);
             getActivity().startActivity(intent);
         }
@@ -623,8 +558,7 @@ public class MeFragmentNew extends BaseFragment
     /**
      * 绑定手机号
      */
-    private void clickBindMobile()
-    {
+    private void clickBindMobile() {
         Intent intent = new Intent(getActivity(), BindMobileActivity.class);
         startActivity(intent);
     }
@@ -632,10 +566,8 @@ public class MeFragmentNew extends BaseFragment
     /**
      * 退款
      */
-    private void clickRefund()
-    {
-        if (login_status == 0)
-        {
+    private void clickRefund() {
+        if (login_status == 0) {
             clickLogin();
             return;
         }
@@ -646,10 +578,8 @@ public class MeFragmentNew extends BaseFragment
     /**
      * 买单
      */
-    private void clickBill()
-    {
-        if (login_status == 0)
-        {
+    private void clickBill() {
+        if (login_status == 0) {
             clickLogin();
             return;
         }
@@ -660,39 +590,35 @@ public class MeFragmentNew extends BaseFragment
     /**
      * 消费券
      */
-    private void clickConsumeGroup()
-    {
-        if (login_status == 0)
-        {
+    private void clickConsumeGroup() {
+        if (login_status == 0) {
             clickLogin();
             return;
         }
         Intent intent = new Intent(getActivity(), ConsumeCouponActivity.class);
-        intent.putExtra(EXTRA_COUPON_NAME,tv_coupon_name.getText());
+        intent.putExtra(EXTRA_COUPON_NAME, tv_coupon_name.getText());
         startActivity(intent);
     }
 
     /**
      * 是否跳转webView（登录跳转对应页面，没有登录跳转登录页）
+     *
      * @param url
      */
-    private void isClickWebView(String url)
-    {
+    private void isClickWebView(String url) {
         if (login_status == 0)
             clickLogin();
         else if (login_status == 1)
             clickWebView(url);
     }
 
-    private void clickWebView(String url)
-    {
-        if (!TextUtils.isEmpty(url))
-        {
+    private void clickWebView(String url) {
+        if (!TextUtils.isEmpty(url)) {
             Intent intent = new Intent(getActivity(), AppWebViewActivity.class);
-            intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE,false);
-            intent.putExtra(AppWebViewActivity.EXTRA_URL,url);
+            intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE, false);
+            intent.putExtra(AppWebViewActivity.EXTRA_URL, url);
             getActivity().startActivity(intent);
-        }else
+        } else
             SDToast.showToast("url为空");
     }
 }

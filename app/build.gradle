@@ -5,9 +5,9 @@ android {
     buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "com.fanwe.o2o.newo2o"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 22
-        versionCode 2016113001
+        versionCode 1
         versionName "1.0.0"
         ndk {
             abiFilter 'armeabi'

@@ -30,8 +30,7 @@ import org.xutils.view.annotation.ViewInject;
  *
  * @author Administrator
  */
-public class BindMobileActivity extends BaseTitleActivity
-{
+public class BindMobileActivity extends BaseTitleActivity {
     /**
      * 标题内容显示
      */
@@ -65,62 +64,50 @@ public class BindMobileActivity extends BaseTitleActivity
     private String extraMobile;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_bind_mobile);
+        setContentView(R.layout.act_bind_mobile_1);
         init();
     }
 
-    private void init()
-    {
+    private void init() {
         initTitle();
         initData();
         reSetBtnSendCode();
         initSDSendValidateButton();
     }
 
-    private void initTitle()
-    {
+    private void initTitle() {
         strTitle = getIntent().getStringExtra(EXTRA_TITLE);
         extraMobile = getIntent().getStringExtra(EXTRA_MOBILE);
-        is_luck = getIntent().getIntExtra(EXTRA_IS_LUCK,0);
-        title.setLeftImageLeft(R.drawable.ic_o2o_back);
-        if (!TextUtils.isEmpty(strTitle))
-        {
+        is_luck = getIntent().getIntExtra(EXTRA_IS_LUCK, 0);
+        title.setLeftImageLeft(R.drawable.ic_arrow_left_grey);
+        if (!TextUtils.isEmpty(strTitle)) {
             title.setMiddleTextTop(strTitle);
-        }
-        else
-        {
+        } else {
             strTitle = "";
             title.setMiddleTextTop("绑定手机号");
         }
     }
 
-    private void initData()
-    {
-        if (strTitle.equals(EXTRA_VALUE))
-        {
+    private void initData() {
+        if (strTitle.equals(EXTRA_VALUE)) {
             step = 1;
             unique = 3;
-            if (!TextUtils.isEmpty(extraMobile))
-            {
-                String startMobile = extraMobile.substring(0,4);
+            if (!TextUtils.isEmpty(extraMobile)) {
+                String startMobile = extraMobile.substring(0, 4);
                 String endMobile = extraMobile.substring(8);
-                SDViewBinder.setTextView(et_mobile,startMobile + "****" + endMobile);
+                SDViewBinder.setTextView(et_mobile, startMobile + "****" + endMobile);
                 et_mobile.setEnabled(false);
             }
-            SDViewBinder.setTextView(tv_submit,"下一步");
-        }
-        else
-        {
+            SDViewBinder.setTextView(tv_submit, "下一步");
+        } else {
             step = 2;
             unique = 1;
-            SDViewBinder.setTextView(tv_submit,"确定");
+            SDViewBinder.setTextView(tv_submit, "立即绑定");
         }
 
-        tv_submit.setOnClickListener(new OnClickListener()
-        {
+        tv_submit.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -129,8 +116,7 @@ public class BindMobileActivity extends BaseTitleActivity
         });
     }
 
-    private void reSetBtnSendCode()
-    {
+    private void reSetBtnSendCode() {
         btn_send_code.setmTextColorEnable(getResources().getColor(R.color.text_content_deep));
         btn_send_code.setmTextColorDisable(getResources().getColor(R.color.text_content_deep));
         btn_send_code.setmBackgroundDisableResId(R.drawable.layer_white);
@@ -140,27 +126,20 @@ public class BindMobileActivity extends BaseTitleActivity
         btn_send_code.updateViewState(true);
     }
 
-    protected void clickSubmit()
-    {
-        if (validateParams())
-        {
+    protected void clickSubmit() {
+        if (validateParams()) {
             showProgressDialog("");
-            CommonInterface.requestBindMobile(strMobile, strCode, step, is_luck, new AppRequestCallback<User_infoModel>()
-            {
+            CommonInterface.requestBindMobile(strMobile, strCode, step, is_luck, new AppRequestCallback<User_infoModel>() {
                 @Override
-                protected void onSuccess(SDResponse sdResponse)
-                {
-                    if (actModel.isOk())
-                    {
-                        if (strTitle.equals(EXTRA_VALUE))
-                        {
-                            Intent intent = new Intent(BindMobileActivity.this,BindMobileActivity.class);
-                            intent.putExtra(BindMobileActivity.EXTRA_TITLE,"绑定新的手机号");
-                            intent.putExtra(BindMobileActivity.EXTRA_IS_LUCK,actModel.getIs_luck());
+                protected void onSuccess(SDResponse sdResponse) {
+                    if (actModel.isOk()) {
+                        if (strTitle.equals(EXTRA_VALUE)) {
+                            Intent intent = new Intent(BindMobileActivity.this, BindMobileActivity.class);
+                            intent.putExtra(BindMobileActivity.EXTRA_TITLE, "绑定新的手机号");
+                            intent.putExtra(BindMobileActivity.EXTRA_IS_LUCK, actModel.getIs_luck());
                             startActivity(intent);
                             finish();
-                        }else
-                        {
+                        } else {
                             SDEventManager.post(new EBindMobileSuccess());
                             finish();
                         }
@@ -168,14 +147,12 @@ public class BindMobileActivity extends BaseTitleActivity
                 }
 
                 @Override
-                protected void onError(SDResponse resp)
-                {
+                protected void onError(SDResponse resp) {
                     super.onError(resp);
                 }
 
                 @Override
-                protected void onFinish(SDResponse resp)
-                {
+                protected void onFinish(SDResponse resp) {
                     super.onFinish(resp);
                     dismissProgressDialog();
                 }
@@ -183,20 +160,17 @@ public class BindMobileActivity extends BaseTitleActivity
         }
     }
 
-    private boolean validateParams()
-    {
+    private boolean validateParams() {
         if (!TextUtils.isEmpty(extraMobile))
             strMobile = extraMobile;
         else
             strMobile = et_mobile.getText().toString();
-        if (TextUtils.isEmpty(strMobile))
-        {
+        if (TextUtils.isEmpty(strMobile)) {
             SDToast.showToast("请输入手机号码");
             return false;
         }
         strCode = et_code.getText().toString();
-        if (TextUtils.isEmpty(strCode))
-        {
+        if (TextUtils.isEmpty(strCode)) {
             SDToast.showToast("请输入验证码");
             return false;
         }
@@ -204,18 +178,14 @@ public class BindMobileActivity extends BaseTitleActivity
         return true;
     }
 
-    private void initSDSendValidateButton()
-    {
-        btn_send_code.setmListener(new SDSendValidateButtonListener()
-        {
+    private void initSDSendValidateButton() {
+        btn_send_code.setmListener(new SDSendValidateButtonListener() {
             @Override
-            public void onTick()
-            {
+            public void onTick() {
             }
 
             @Override
-            public void onClickSendValidateButton()
-            {
+            public void onClickSendValidateButton() {
                 requestSendCode();
             }
         });
@@ -225,26 +195,21 @@ public class BindMobileActivity extends BaseTitleActivity
     /**
      * 发送验证码
      */
-    protected void requestSendCode()
-    {
+    protected void requestSendCode() {
         if (!TextUtils.isEmpty(extraMobile))
             strMobile = extraMobile;
         else
             strMobile = et_mobile.getText().toString();
-        if (TextUtils.isEmpty(strMobile))
-        {
+        if (TextUtils.isEmpty(strMobile)) {
             SDToast.showToast("请输入手机号码");
             return;
         }
 
         showProgressDialog("");
-        CommonInterface.requestValidateCode(strMobile, unique, new AppRequestCallback<Sms_send_sms_codeActModel>()
-        {
+        CommonInterface.requestValidateCode(strMobile, unique, new AppRequestCallback<Sms_send_sms_codeActModel>() {
             @Override
-            protected void onSuccess(SDResponse sdResponse)
-            {
-                switch (actModel.getStatus())
-                {
+            protected void onSuccess(SDResponse sdResponse) {
+                switch (actModel.getStatus()) {
                     case -1:
                         break;
                     case 1:
@@ -258,24 +223,20 @@ public class BindMobileActivity extends BaseTitleActivity
             }
 
             @Override
-            protected void onError(SDResponse resp)
-            {
+            protected void onError(SDResponse resp) {
                 super.onError(resp);
             }
 
             @Override
-            protected void onFinish(SDResponse resp)
-            {
+            protected void onFinish(SDResponse resp) {
                 super.onFinish(resp);
                 dismissProgressDialog();
             }
         });
     }
 
-    public void onEventMainThread(EConfirmImageCode event)
-    {
-        if (SDActivityManager.getInstance().isLastActivity(this))
-        {
+    public void onEventMainThread(EConfirmImageCode event) {
+        if (SDActivityManager.getInstance().isLastActivity(this)) {
             requestSendCode();
         }
     }

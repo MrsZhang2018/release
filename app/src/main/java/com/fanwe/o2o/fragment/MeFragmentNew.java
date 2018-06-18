@@ -2,6 +2,7 @@ package com.fanwe.o2o.fragment;
 
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -149,6 +150,9 @@ public class MeFragmentNew extends BaseFragment {
     @ViewInject(R.id.tv_coupon_name)
     private TextView tv_coupon_name;
 
+    @ViewInject(R.id.ll_code_scan)//扫一扫
+            LinearLayout ll_code_scan;
+
     private int login_status = 0;
 
     @Override
@@ -199,7 +203,8 @@ public class MeFragmentNew extends BaseFragment {
 //        ll_dis_manage.setOnClickListener(this);
 //        ll_market.setOnClickListener(this);
 //        ll_withdraw_cash.setOnClickListener(this);
-//        ll_friends.setOnClickListener(this);
+//        ll_friends.setOnClickListener(this);.
+        ll_code_scan.setOnClickListener(this);
     }
 
     private void requestUserCenter() {
@@ -498,6 +503,8 @@ public class MeFragmentNew extends BaseFragment {
             //好友
             String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_fxinvite";
             isClickWebView(url);
+        } else if (v == ll_code_scan) {
+
         }
     }
 
@@ -606,6 +613,7 @@ public class MeFragmentNew extends BaseFragment {
      * @param url
      */
     private void isClickWebView(String url) {
+        Log.e("TAG","AAA******"+url);
         if (login_status == 0)
             clickLogin();
         else if (login_status == 1)

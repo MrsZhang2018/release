@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fanwe.library.adapter.SDSimpleAdapter;
 import com.fanwe.library.utils.SDViewBinder;
 import com.fanwe.o2o.R;
 import com.fanwe.o2o.model.WapIndexSupplierListModel;
+import com.fanwe.o2o.utils.GlideRoundTransform;
 import com.fanwe.o2o.utils.GlideUtil;
 
 import java.util.List;
@@ -18,10 +20,8 @@ import java.util.List;
  * Created by Administrator on 2016/12/9.
  */
 
-public class O2oGoodStoresAdapter extends SDSimpleAdapter<WapIndexSupplierListModel>
-{
-    public O2oGoodStoresAdapter(List<WapIndexSupplierListModel> listModel, Activity activity)
-    {
+public class O2oGoodStoresAdapter extends SDSimpleAdapter<WapIndexSupplierListModel> {
+    public O2oGoodStoresAdapter(List<WapIndexSupplierListModel> listModel, Activity activity) {
         super(listModel, activity);
     }
 
@@ -37,8 +37,9 @@ public class O2oGoodStoresAdapter extends SDSimpleAdapter<WapIndexSupplierListMo
         ImageView iv_store = get(R.id.iv_store,convertView);
         TextView tv_store = get(R.id.tv_store,convertView);
 
-        GlideUtil.load(model.getPreview()).placeholder(0).into(iv_store);
-        SDViewBinder.setTextView(tv_store,model.getName());
+//        GlideUtil.load(model.getPreview()).placeholder(0).transform(new GlideRoundTransform(getActivity())).into(iv_store);
+        GlideUtil.load("http://o2o.365csh.com/public/attachment/201805/19/121526703003ac627ab1ccbdb62ec96e702f07f6425b_740x740.jpg").placeholder(0).transform(new GlideRoundTransform(getActivity())).into(iv_store);
+        SDViewBinder.setTextView(tv_store, model.getName());
 
         convertView.setOnClickListener(new View.OnClickListener()
         {

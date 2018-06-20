@@ -1,46 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/main_color">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
 
-        <TextView
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="好店推荐"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_dialog_button"/>
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="30dp"
+                android:layout_height="1dp"
+                android:background="@color/color_865e0d" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:text="好店推荐"
+                android:textColor="@color/color_865e0d"
+                android:textSize="@dimen/text_size_dialog_button" />
+
+            <View
+                android:layout_width="30dp"
+                android:layout_height="1dp"
+                android:background="@color/color_865e0d" />
+
+
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/tv_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="更多精彩"
-            android:drawableRight="@drawable/ic_arrow_right_white"
+            android:layout_alignParentRight="true"
             android:drawablePadding="5dp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_dialog_button"
-            android:layout_alignParentRight="true"/>
+            android:drawableRight="@drawable/ic_arrow_right_white"
+            android:text="更多\>"
+            android:textColor="@color/color_865e0d"
+            android:textSize="@dimen/picker_default_text_size" />
 
     </RelativeLayout>
 
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none"
-        android:layout_marginBottom="30dp">
+        android:layout_marginBottom="30dp"
+        android:scrollbars="none">
 
         <LinearLayout
             android:id="@+id/ll_layout_store"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="5dp"/>
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:orientation="horizontal" />
 
     </HorizontalScrollView>
 

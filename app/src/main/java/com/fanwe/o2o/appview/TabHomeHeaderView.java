@@ -1,11 +1,15 @@
 package com.fanwe.o2o.appview;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.fanwe.library.fragment.WebViewFragment;
 import com.fanwe.library.utils.SDViewUtil;
@@ -13,6 +17,7 @@ import com.fanwe.library.view.SDAppView;
 import com.fanwe.o2o.R;
 import com.fanwe.o2o.fragment.AppWebViewFragment;
 import com.fanwe.o2o.fragment.HomeFragment;
+import com.fanwe.o2o.fragment.SmallWebViewFragment;
 import com.fanwe.o2o.model.WapIndexAdvs2Model;
 import com.fanwe.o2o.model.WapIndexAdvsModel;
 import com.fanwe.o2o.model.WapIndexArticleModel;
@@ -26,8 +31,7 @@ import java.util.List;
  * Created by Administrator on 2016/12/9.
  */
 
-public class TabHomeHeaderView extends SDAppView
-{
+public class TabHomeHeaderView extends SDAppView {
     private LinearLayout ll_slide_play;
     private LinearLayout ll_slide_play2;
     private LinearLayout ll_adv;
@@ -64,34 +68,29 @@ public class TabHomeHeaderView extends SDAppView
     private AppWebViewFragment fraHtml5;
     private AppWebViewFragment fraHtml6;
 
-    public TabHomeHeaderView(Context context)
-    {
+    public TabHomeHeaderView(Context context) {
         super(context);
         init();
     }
 
-    public TabHomeHeaderView(Context context, AttributeSet attrs)
-    {
+    public TabHomeHeaderView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public TabHomeHeaderView(Context context, AttributeSet attrs, int defStyle)
-    {
+    public TabHomeHeaderView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
 
-    public TabHomeHeaderView(Context context, HomeFragment homeFragment)
-    {
+    public TabHomeHeaderView(Context context, HomeFragment homeFragment) {
         super(context);
         this.homeFragment = homeFragment;
         init();
     }
 
     public void setData(List<WapIndexAdvsModel> advs, List<WapIndexAdvs2Model> advs2, List<WapIndexIndexsListModel> list, List<WapIndexArticleModel> article,
-                        List<WapIndexSupplierListModel> supplier_list, String html3, String html4, String html5, String html6)
-    {
+                        List<WapIndexSupplierListModel> supplier_list, String html3, String html4, String html5, String html6) {
         this.advs = advs;
         this.advs2 = advs2;
         this.list = list;
@@ -105,15 +104,13 @@ public class TabHomeHeaderView extends SDAppView
     }
 
     @Override
-    protected void init()
-    {
+    protected void init() {
         super.init();
         setContentView(R.layout.view_home_header);
         initView();
     }
 
-    private void initView()
-    {
+    private void initView() {
         ll_slide_play = find(R.id.ll_slide_play);
         ll_page_view = find(R.id.ll_page_view);
         ll_adv = find(R.id.ll_adv);
@@ -130,12 +127,19 @@ public class TabHomeHeaderView extends SDAppView
         view_up_on_fl_group_pur = find(R.id.view_up_on_fl_group_pur);
         view_up_on_fl_shop_mall = find(R.id.view_up_on_fl_shop_mall);
         view_up_on_ll_store = find(R.id.view_up_on_ll_store);
+
+        findViewById(R.id.tv_list_more).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO 商品推荐更多跳转
+
+            }
+        });
     }
 
-    private void initData()
-    {
+    private void initData() {
         initSlidingPlayView();
-        initSlidingPlayView2();
+//        initSlidingPlayView2();
         initAdvView();
         initGoodStoreRecommendView();
         initIndexPageView();
@@ -145,18 +149,15 @@ public class TabHomeHeaderView extends SDAppView
         initShopMall();
     }
 
-    public void setHomeFragment(HomeFragment homeFragment)
-    {
+    public void setHomeFragment(HomeFragment homeFragment) {
         this.homeFragment = homeFragment;
     }
 
     /**
      * 首页广告
      */
-    private void initSlidingPlayView()
-    {
-        if (slidingPlayView == null)
-        {
+    private void initSlidingPlayView() {
+        if (slidingPlayView == null) {
             slidingPlayView = new O2oSlidingPlayView(getActivity());
             SDViewUtil.replaceView(ll_slide_play, slidingPlayView);
         }
@@ -166,10 +167,8 @@ public class TabHomeHeaderView extends SDAppView
     /**
      * 首页导航分类
      */
-    private void initIndexPageView()
-    {
-        if (indexPageView == null)
-        {
+    private void initIndexPageView() {
+        if (indexPageView == null) {
             indexPageView = new IndexPageView(getActivity());
             SDViewUtil.replaceView(ll_page_view, indexPageView);
         }
@@ -179,10 +178,8 @@ public class TabHomeHeaderView extends SDAppView
     /**
      * 头条跑马灯
      */
-    private void initAdvView()
-    {
-        if (homeHeadlinesView == null)
-        {
+    private void initAdvView() {
+        if (homeHeadlinesView == null) {
             homeHeadlinesView = new HomeHeadlinesView(getActivity());
             SDViewUtil.replaceView(ll_adv, homeHeadlinesView);
         }
@@ -192,21 +189,17 @@ public class TabHomeHeaderView extends SDAppView
     /**
      * 超实惠
      */
-    private void initSuperBen()
-    {
-        if (!TextUtils.isEmpty(html3))
-        {
+    private void initSuperBen() {
+        if (!TextUtils.isEmpty(html3)) {
             view_up_on_fl_super_ben.setVisibility(VISIBLE);
-            if (fraHtml3 == null)
-            {
+            if (fraHtml3 == null) {
                 fraHtml3 = new AppWebViewFragment();
                 fraHtml3.setmProgressMode(WebViewFragment.EnumProgressMode.NONE);
                 fraHtml3.setmWebviewHeightMode(WebViewFragment.EnumWebviewHeightMode.WRAP_CONTENT);
                 homeFragment.getSDFragmentManager().replace(R.id.fl_super_ben, fraHtml3);
             }
             fraHtml3.setHtmlContent(html3);
-        } else
-        {
+        } else {
             fl_super_ben.setVisibility(GONE);
             view_up_on_fl_super_ben.setVisibility(GONE);
         }
@@ -215,21 +208,17 @@ public class TabHomeHeaderView extends SDAppView
     /**
      * 好品质
      */
-    private void initGoodQua()
-    {
-        if (!TextUtils.isEmpty(html6))
-        {
+    private void initGoodQua() {
+        if (!TextUtils.isEmpty(html6)) {
             view_up_on_fl_good_qua.setVisibility(VISIBLE);
-            if (fraHtml4 == null)
-            {
+            if (fraHtml4 == null) {
                 fraHtml4 = new AppWebViewFragment();
                 fraHtml4.setmProgressMode(WebViewFragment.EnumProgressMode.NONE);
                 fraHtml4.setmWebviewHeightMode(WebViewFragment.EnumWebviewHeightMode.WRAP_CONTENT);
                 homeFragment.getSDFragmentManager().replace(R.id.fl_good_qua, fraHtml4);
             }
             fraHtml4.setHtmlContent(html6);
-        }else
-        {
+        } else {
             fl_good_qua.setVisibility(GONE);
             view_up_on_fl_good_qua.setVisibility(GONE);
         }
@@ -238,12 +227,9 @@ public class TabHomeHeaderView extends SDAppView
     /**
      * 中间轮播广告
      */
-    private void initSlidingPlayView2()
-    {
-        if (advs2 != null && advs2.size() > 0)
-        {
-            if (slidingPlayView2 == null)
-            {
+    private void initSlidingPlayView2() {
+        if (advs2 != null && advs2.size() > 0) {
+            if (slidingPlayView2 == null) {
                 slidingPlayView2 = new HomeSlidingPlayView(getActivity());
                 SDViewUtil.replaceView(ll_slide_play2, slidingPlayView2);
             }
@@ -254,21 +240,17 @@ public class TabHomeHeaderView extends SDAppView
     /**
      * 精选团购
      */
-    private void initGroupPur()
-    {
-        if (!TextUtils.isEmpty(html5))
-        {
+    private void initGroupPur() {
+        if (!TextUtils.isEmpty(html5)) {
             SDViewUtil.show(view_up_on_fl_group_pur);
-            if (fraHtml5 == null)
-            {
+            if (fraHtml5 == null) {
                 fraHtml5 = new AppWebViewFragment();
                 fraHtml5.setmProgressMode(WebViewFragment.EnumProgressMode.NONE);
                 fraHtml5.setmWebviewHeightMode(WebViewFragment.EnumWebviewHeightMode.WRAP_CONTENT);
                 homeFragment.getSDFragmentManager().replace(R.id.fl_group_pur, fraHtml5);
             }
             fraHtml5.setHtmlContent(html5);
-        }else
-        {
+        } else {
             SDViewUtil.hide(fl_group_pur);
             SDViewUtil.hide(view_up_on_fl_group_pur);
         }
@@ -277,21 +259,28 @@ public class TabHomeHeaderView extends SDAppView
     /**
      * 逛商城
      */
-    private void initShopMall()
-    {
-        if (!TextUtils.isEmpty(html4))
-        {
+    SmallWebViewFragment webViewFragment;
+
+    private void initShopMall() {
+        if (!TextUtils.isEmpty(html4)) {
             SDViewUtil.show(view_up_on_fl_shop_mall);
-            if (fraHtml6 == null)
-            {
-                fraHtml6 = new AppWebViewFragment();
-                fraHtml6.setmProgressMode(WebViewFragment.EnumProgressMode.NONE);
-                fraHtml6.setmWebviewHeightMode(WebViewFragment.EnumWebviewHeightMode.WRAP_CONTENT);
-                homeFragment.getSDFragmentManager().replace(R.id.fl_shop_mall, fraHtml6);
+//            if (fraHtml6 == null) {
+//                handler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        fraHtml6 = new AppWebViewFragment();
+//                        fraHtml6.setHtmlContent(html4);
+//                        fraHtml6.setmProgressMode(WebViewFragment.EnumProgressMode.NONE);
+//                        fraHtml6.setmWebviewHeightMode(WebViewFragment.EnumWebviewHeightMode.WRAP_CONTENT);
+//                        homeFragment.getSDFragmentManager().replace(R.id.fl_shop_mall, fraHtml6);
+//                    }
+//                });
+//            }
+            if (webViewFragment == null) {
+                webViewFragment = new SmallWebViewFragment(getContext(), html4);
+                SDViewUtil.replaceView(fl_shop_mall, webViewFragment);
             }
-            fraHtml6.setHtmlContent(html4);
-        }else
-        {
+        } else {
             SDViewUtil.hide(fl_shop_mall);
             SDViewUtil.hide(view_up_on_fl_shop_mall);
         }
@@ -300,19 +289,15 @@ public class TabHomeHeaderView extends SDAppView
     /**
      * 好店推荐
      */
-    private void initGoodStoreRecommendView()
-    {
-        if (supplier_list != null &&supplier_list.size() > 0)
-        {
-            SDViewUtil.hide(view_up_on_ll_store);
-            if (storeView == null)
-            {
+    private void initGoodStoreRecommendView() {
+        if (supplier_list != null && supplier_list.size() > 0) {
+            SDViewUtil.show(view_up_on_ll_store);
+            if (storeView == null) {
                 storeView = new O2oGoodStoreRecommendView(getActivity());
                 SDViewUtil.replaceView(ll_store, storeView);
             }
             storeView.setData(supplier_list);
-        }else
-        {
+        } else {
             SDViewUtil.hide(view_up_on_ll_store);
             SDViewUtil.hide(ll_store);
         }

@@ -9,7 +9,8 @@
     <color name="main_color_press">#eee</color>
 
     <!-- activity或者fragment等通用背景颜色 -->
-    <color name="bg_act_fra">#F3F6F5</color>
+    <!--<color name="bg_act_fra">#F3F6F5</color>-->
+    <color name="bg_act_fra">#EFEFEF</color>
     <color name="bg_activity">@color/white</color>
     <!-- 标题栏颜色 -->
     <color name="bg_title_bar">@color/white</color>
@@ -23,6 +24,7 @@
     <color name="text_title">#353d44</color>
     <!-- 内容文字颜色 -->
     <color name="text_content">#999</color>
+    <color name="text_content1">#D3D3D3</color>
     <!-- 内容文字深的颜色 -->
     <color name="text_content_deep">#666</color>
     <!--浅蓝色-->
@@ -63,4 +65,6 @@
     <color name="login_btn_bg">#1994EB</color>
     <color name="login_ed_bg">#999999</color>
     <color name="login_view">#EAEAEA</color>
+    <color name="color_865e0d">#865e0d</color>
+    <color name="color_34D3CF">#34D3CF</color>
 </resources>

@@ -1,6 +1,9 @@
 package com.fanwe.o2o.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +17,7 @@ import com.fanwe.library.utils.SDToast;
 import com.fanwe.library.utils.SDViewBinder;
 import com.fanwe.library.utils.SDViewUtil;
 import com.fanwe.o2o.R;
+import com.fanwe.o2o.activity.AboutUsActivity;
 import com.fanwe.o2o.activity.AccountManageAcitivty;
 import com.fanwe.o2o.activity.ActivityCouponActivity;
 import com.fanwe.o2o.activity.AppWebViewActivity;
@@ -24,6 +28,7 @@ import com.fanwe.o2o.activity.CouponListActivity;
 import com.fanwe.o2o.activity.KeepActivity;
 import com.fanwe.o2o.activity.LoginActivity;
 import com.fanwe.o2o.activity.MessageCenterActivity;
+import com.fanwe.o2o.activity.MyCaptureActivity;
 import com.fanwe.o2o.activity.OrderRefundListActivity;
 import com.fanwe.o2o.activity.OrderListActivity;
 import com.fanwe.o2o.activity.SettingActivity;
@@ -34,8 +39,10 @@ import com.fanwe.o2o.constant.Constant;
 import com.fanwe.o2o.dao.InitActModelDao;
 import com.fanwe.o2o.http.AppRequestCallback;
 import com.fanwe.o2o.model.AppUserCenterWapIndexActModel;
+import com.fanwe.o2o.model.AppUserSettingActModel;
 import com.fanwe.o2o.model.Init_indexActModel;
 import com.fanwe.o2o.utils.GlideUtil;
+import com.fanwe.zxing.CaptureActivity;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -152,6 +159,12 @@ public class MeFragmentNew extends BaseFragment {
 
     @ViewInject(R.id.ll_code_scan)//扫一扫
             LinearLayout ll_code_scan;
+    @ViewInject(R.id.ll_service_code)//服务码
+            LinearLayout ll_service_code;
+    @ViewInject(R.id.ll_About_us)//关于我们
+            LinearLayout ll_About_us;
+    @ViewInject(R.id.ll_service_call)//客服中心
+            LinearLayout ll_service_call;
 
     private int login_status = 0;
 
@@ -205,6 +218,9 @@ public class MeFragmentNew extends BaseFragment {
 //        ll_withdraw_cash.setOnClickListener(this);
 //        ll_friends.setOnClickListener(this);.
         ll_code_scan.setOnClickListener(this);
+        ll_service_code.setOnClickListener(this);
+        ll_About_us.setOnClickListener(this);
+        ll_service_call.setOnClickListener(this);
     }
 
     private void requestUserCenter() {
@@ -504,7 +520,35 @@ public class MeFragmentNew extends BaseFragment {
             String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_fxinvite";
             isClickWebView(url);
         } else if (v == ll_code_scan) {
+            //二维码
+            Intent intent = new Intent(getActivity(), MyCaptureActivity.class);
+            startActivity(intent);
+        } else if (v == ll_service_code) {
+            //服务码
 
+        } else if (v == ll_About_us) {
+            //关于我们
+            requestUserSetting();
+        } else if (v == ll_service_call) {
+            //客服中心
+            AlertDialog.Builder builder = new AlertDialog.Builder(
+                    getActivity());
+            builder.setMessage("是否拨打客服电话？").setPositiveButton("取消", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            }).setNegativeButton("确认", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String phone_number = "123456";
+                    Intent intent2 = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"
+                            + phone_number));
+                    getActivity().startActivity(intent2);
+                }
+            }).show();
         }
     }
 
@@ -613,7 +657,7 @@ public class MeFragmentNew extends BaseFragment {
      * @param url
      */
     private void isClickWebView(String url) {
-        Log.e("TAG","AAA******"+url);
+        Log.e("TAG", "AAA******" + url);
         if (login_status == 0)
             clickLogin();
         else if (login_status == 1)
@@ -629,4 +673,24 @@ public class MeFragmentNew extends BaseFragment {
         } else
             SDToast.showToast("url为空");
     }
+
+    private void requestUserSetting() {
+        CommonInterface.requestUserSetting(new AppRequestCallback<AppUserSettingActModel>() {
+            @Override
+            protected void onSuccess(SDResponse sdResponse) {
+                if (actModel.isOk()) {
+                    String html = actModel.getAPP_ABOUT_US();
+                    Intent intent = new Intent(getActivity(), AboutUsActivity.class);
+                    intent.putExtra(AboutUsActivity.EXTRA_HTML_CONTENT, html);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            protected void onError(SDResponse resp) {
+                super.onError(resp);
+            }
+        });
+    }
+
 }

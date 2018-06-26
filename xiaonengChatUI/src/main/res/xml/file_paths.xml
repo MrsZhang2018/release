@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <paths>
-        <external-path path="Android/data/com.fanwe.o2o.newo2o/" name="camera_photos" />
+        <external-path path="Android/data/com.yitonggo.app/" name="camera_photos" />
         <external-path path="." name="external_storage_root" />
     </paths>
 </resources>

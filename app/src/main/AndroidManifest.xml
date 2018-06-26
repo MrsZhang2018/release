@@ -525,7 +525,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.fanwe.o2o.newo2o.fileprovider"
+            android:authorities="com.yitonggo.app.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

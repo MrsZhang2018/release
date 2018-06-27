@@ -29,8 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="40dp"
-        android:background="@mipmap/commodity_user_img_def"
-        android:elevation="6dp" />
+        android:elevation="6dp"
+        android:src="@mipmap/commodity_user_img_def" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -118,6 +118,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_service_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

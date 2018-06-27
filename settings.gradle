@@ -1,4 +1,5 @@
-include ':app', ':libraryFanwe'
+include ':app', ':libraryFanwe', ':libzxing-master1'
 include ':xiaonengChatUI'
 include ':library_fanwe'
 include ':fanwehybridweb_v15'
+include ':libzxing-master'

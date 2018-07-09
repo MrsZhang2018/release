@@ -295,9 +295,10 @@ public class CommonInterface
      * @param sms_verify
      * @param listener
      */
-    public static void requestShortcutLogin(String mobile, String sms_verify, AppRequestCallback<User_infoModel> listener)
+    public static void requestShortcutLogin(String msg_id, String mobile, String sms_verify, AppRequestCallback<User_infoModel> listener)
     {
         AppRequestParams params = new AppRequestParams();
+        params.put("msg_id", msg_id);
         params.putAct("dophlogin");
         params.putCtl("user");
         params.put("is_login", 1);

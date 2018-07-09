@@ -39,10 +39,10 @@ android {
             versionCode 1
             versionName "1.0.0"
 
-            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"dev.yitonggo.com"'
+            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"app.yitonggo.com"'
             buildConfigField 'String', 'SERVER_URL_PATH', '"/wap/biz.php"'
-            buildConfigField 'String', 'SERVER_URL_INIT_URL', '"https://dev.yitonggo.com/app.php?act=init"'
-            buildConfigField 'String', 'SERVER_URL_MAPI_URL', '"https://dev.yitonggo.com/mapi/index.php?"'
+            buildConfigField 'String', 'SERVER_URL_INIT_URL', '"https://app.yitonggo.com/app.php?act=init"'
+            buildConfigField 'String', 'SERVER_URL_MAPI_URL', '"https://app.yitonggo.com/mapi/index.php?"'
         }
 
 

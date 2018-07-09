@@ -13,12 +13,13 @@
             android:background="@mipmap/login_bg" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
-            android:src="@mipmap/app_icon" />
+            android:src="@mipmap/app_icon"
+            />
 
         <LinearLayout
             android:id="@+id/ll_pop_login"
@@ -142,11 +143,11 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <com.fanwe.o2o.appview.ThirdLoginView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="50dp" />
+        <!--<com.fanwe.o2o.appview.ThirdLoginView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_marginBottom="50dp" />-->
 
     </RelativeLayout>
 </FrameLayout>

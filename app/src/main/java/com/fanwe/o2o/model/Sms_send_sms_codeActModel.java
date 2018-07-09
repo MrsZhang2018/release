@@ -8,6 +8,16 @@ public class Sms_send_sms_codeActModel extends BaseActModel
 	private int width;
 	private int height;
 
+	public String msg_id;
+	public String ctl;
+	public String act;
+	public int status;
+	public String info;
+	public String city_name;
+	//	public int return;
+	public String sess_id;
+	public String ref_uid;
+
 	public String getVerify_image()
 	{
 		return verify_image;

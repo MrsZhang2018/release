@@ -49,6 +49,7 @@
                         android:layout_marginTop="15dp">
 
                         <ImageView
+                            android:id="@+id/index_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/classification_gas_bg_img" />
@@ -69,6 +70,7 @@
                         android:layout_marginTop="15dp">
 
                         <ImageView
+                            android:id="@+id/index_3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/classification_tirechange_bg_img" />
@@ -89,6 +91,7 @@
                         android:layout_marginTop="15dp">
 
                         <ImageView
+                            android:id="@+id/index_5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/classification_insurance_bg_img" />
@@ -117,6 +120,7 @@
                         android:layout_marginTop="15dp">
 
                         <ImageView
+                            android:id="@+id/index_2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/classification_oil_bg_img" />
@@ -137,6 +141,7 @@
                         android:layout_marginTop="15dp">
 
                         <ImageView
+                            android:id="@+id/index_4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/classification_repair_bg_img" />
@@ -157,6 +162,7 @@
                         android:layout_marginTop="15dp">
 
                         <ImageView
+                            android:id="@+id/index_6"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/classification_lorry_bg_img" />

@@ -79,7 +79,7 @@ android {
             //            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"192.168.1.170/o2onew"'
 //            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"testo2onew.fanwe.net"'
 //            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"multtest.fanwe.net"'
-            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"dev.yitonggo.com"'
+            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"app.yitonggo.com"'
 
         }
 

@@ -31,6 +31,8 @@ public class LoginActivity extends BaseActivity {
     public static final String EXTRA_WEB_URL = "extra_web_url";
     public static final String EXTRA_SELECT_TAG_INDEX = "extra_select_tag_index";
 
+    public static final int RESULT_CODE_LOGIN_SUCCESS = 100;
+
 //    @ViewInject(R.id.ll_tabs)
 //    private LinearLayout mLl_tabs;
 

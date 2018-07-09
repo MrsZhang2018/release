@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.fanwe.library.adapter.http.model.SDResponse;
 import com.fanwe.library.common.SDActivityManager;
-import com.fanwe.library.customview.ClearEditText;
 import com.fanwe.library.customview.SDSendValidateButton;
 import com.fanwe.library.customview.SDSendValidateButton.SDSendValidateButtonListener;
 import com.fanwe.library.utils.SDToast;
@@ -17,13 +16,15 @@ import com.fanwe.o2o.R;
 import com.fanwe.o2o.activity.AppWebViewActivity;
 import com.fanwe.o2o.activity.ModifyPwdActivity;
 import com.fanwe.o2o.common.CommonInterface;
-import com.fanwe.o2o.constant.ApkConstant;
 import com.fanwe.o2o.event.EConfirmImageCode;
+import com.fanwe.o2o.event.ELoginSuccess;
+import com.fanwe.o2o.event.EventLoginBack;
 import com.fanwe.o2o.http.AppRequestCallback;
 import com.fanwe.o2o.http.AppSessionRequestCallback;
 import com.fanwe.o2o.model.LocalUserModel;
 import com.fanwe.o2o.model.Sms_send_sms_codeActModel;
 import com.fanwe.o2o.model.User_infoModel;
+import com.sunday.eventbus.SDEventManager;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -57,6 +58,7 @@ public class LoginPhoneFragment extends LoginBaseFragment {
     private String mStrCode;
     private String webUrl;
 
+    public String msg_id;
 
     @Override
     protected int onCreateContentView() {
@@ -191,6 +193,8 @@ public class LoginPhoneFragment extends LoginBaseFragment {
                     case -1:
                         break;
                     case 1:
+                        sdResponse.getResult();
+                        msg_id = actModel.msg_id;
                         mBtnSendCode.setmDisableTime(actModel.getLesstime());
                         mBtnSendCode.startTickWork();
                         break;
@@ -219,7 +223,7 @@ public class LoginPhoneFragment extends LoginBaseFragment {
     private void requestShortcutLogin() {
 
         showProgressDialog("");
-        CommonInterface.requestShortcutLogin(mStrMobile, mStrCode, new AppSessionRequestCallback<User_infoModel>(webUrl) {
+        CommonInterface.requestShortcutLogin(msg_id, mStrMobile, mStrCode, new AppSessionRequestCallback<User_infoModel>(webUrl) {
             @Override
             protected void onSuccess(SDResponse sdResponse) {
                 if (actModel.isOk()) {
@@ -243,14 +247,17 @@ public class LoginPhoneFragment extends LoginBaseFragment {
     protected void dealLoginNormalSuccess(User_infoModel actModel, boolean postEvent) {
         int xiaoneng_login_status = Ntalker.getInstance().login(String.valueOf(actModel.getId()), actModel.getUser_name(), 0);
         String new_user = actModel.getNew_user();
-        if (new_user != null && new_user.equals("1")) {
-            //首次使用手机快捷登录，前往修改密码
-            Intent intent = new Intent(getActivity(), ModifyPwdActivity.class);
-            intent.putExtra(ModifyPwdActivity.EXTRA_TITLE, "修改密码");
-            intent.putExtra(ModifyPwdActivity.EXTRA_MOBILE, actModel.getMobile());
-            startActivity(intent);
-        }
+//        if (new_user != null && new_user.equals("1")) {
+//            //首次使用手机快捷登录，前往修改密码
+//            Intent intent = new Intent(getActivity(), ModifyPwdActivity.class);
+//            intent.putExtra(ModifyPwdActivity.EXTRA_TITLE, "修改密码");
+//            intent.putExtra(ModifyPwdActivity.EXTRA_MOBILE, actModel.getMobile());
+//            startActivity(intent);
+//        }
         LocalUserModel.dealLoginSuccess(actModel, postEvent);
+
+        SDEventManager.post(new EventLoginBack(actModel));
+
         getActivity().finish();
     }
 

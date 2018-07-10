@@ -8,6 +8,7 @@
         android:id="@+id/iv_adv"
         android:layout_width="60dp"
         android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
         android:src="@drawable/ic_fw_headlines"
         android:layout_gravity="center"/>
 

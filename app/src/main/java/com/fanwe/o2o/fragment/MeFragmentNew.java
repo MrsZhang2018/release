@@ -53,6 +53,7 @@ import com.sunday.eventbus.SDBaseEvent;
 
 import org.xutils.view.annotation.ViewInject;
 
+import static android.app.Activity.RESULT_OK;
 import static com.fanwe.o2o.activity.ConsumeCouponActivity.EXTRA_COUPON_NAME;
 
 /**
@@ -727,10 +728,17 @@ public class MeFragmentNew extends BaseFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == MyCaptureActivity.RESULT_CODE_SCAN_SUCCESS) {
+        if (requestCode == MyCaptureActivity.RESULT_CODE_SCAN_SUCCESS && resultCode == RESULT_OK) {
             String str = data.getStringExtra(MyCaptureActivity.EXTRA_RESULT_SUCCESS_STRING);
-            String url = ApkConstant.SERVER_URL_WAP + "/" + str;
-            isClickWebView(url);
+            if (!TextUtils.isEmpty(str)) {
+                String url;
+                if (str.startsWith("http")) {
+                    url = str;
+                } else {
+                    url = ApkConstant.SERVER_URL_WAP + "/" + str;
+                }
+                clickWebView(url);
+            }
         }
     }
 

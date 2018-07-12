@@ -76,6 +76,8 @@ public class CommonInterface
         params.putCtl("init");
         params.putUser();
         params.put("device_type", "android");
+        params.put("sdk_version", "android");
+        params.put("r_type", "0");
         params.setIsNeedShowErrorTip(false);
         AppHttpUtil.getInstance().post(params, new AppRequestCallbackWrapper<Init_indexActModel>(listener)
         {

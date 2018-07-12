@@ -263,6 +263,7 @@ public class MeFragmentNew extends BaseFragment {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == 0) {
+                if (getActivity() == null) return;
                 AppUserCenterWapIndexActModel actModel = (AppUserCenterWapIndexActModel) msg.obj;
                 login_status = actModel.getUser_login_status();
                 String not_read_msg = actModel.getNot_read_msg();

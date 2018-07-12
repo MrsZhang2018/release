@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">方维1元夺宝</string>
+    <string name="app_name">易通购商家</string>
     <string name="tencent_appkey">EXLBZ-B7TH5-CTZIK-QNQFR-76OGO-GNFCS</string>
     <!-- 友盟推送配置 -->
     <string name="umeng_appkey">56f398bd67e58e047b00253b</string>

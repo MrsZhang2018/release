@@ -70,7 +70,7 @@ android {
         fanwe_o2o {
             applicationId "com.yitonggo.app"
             versionCode 1
-            versionName "1.0.0"
+            versionName "1.0"
             //            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"192.168.1.109/o2onew"'
             //            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"192.168.1.74/o2onew"'
             //            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"192.168.1.189/o2onew"'

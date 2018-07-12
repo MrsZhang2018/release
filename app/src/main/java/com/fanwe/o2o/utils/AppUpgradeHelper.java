@@ -58,7 +58,7 @@ public class AppUpgradeHelper
     /**
      * 服务端日期版本号
      */
-    private int serverVersion;
+    private Double serverVersion;
     /**
      * 是否强制升级
      */
@@ -106,8 +106,8 @@ public class AppUpgradeHelper
         Init_indexActModel initActModel = InitActModelDao.query();
         if (initActModel != null)
         {
-            int localVersion = SDPackageUtil.getCurrentPackageInfo().versionCode;
-            serverVersion = SDTypeParseUtil.getInt(initActModel.getAndroid_version());
+            Double localVersion = SDTypeParseUtil.getDouble(SDPackageUtil.getCurrentPackageInfo().versionName);
+            serverVersion = SDTypeParseUtil.getDouble(initActModel.getServerVersion());
 
             if (serverVersion > localVersion)
             {

@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.fanwe.library.adapter.http.model.SDResponse;
@@ -485,12 +486,14 @@ public class MeFragmentNew extends BaseFragment {
 //            clickConsumeGroup();
 //            //String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_coupon";
 //            //isClickWebView(url);
-//        } else if (v == ll_coupon) {
-//            //优惠券
-//            clickCoupon();
-//            //String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_youhui";
-//            //isClickWebView(url);
-//        } else if (v == ll_active) {
+//        }
+        else if (v == ll_coupon) {
+            //优惠券
+            clickCoupon();
+            //String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_youhui";
+            //isClickWebView(url);
+        }
+//            else if (v == ll_active) {
 //            //活动券
 //            clickActivityCoupon();
 //            //String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_event";
@@ -505,8 +508,9 @@ public class MeFragmentNew extends BaseFragment {
 //            clickWebView(url);
         else if (v == ll_share_polite) {
             //分享有礼
-            String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_share";
-            isClickWebView(url);
+//            String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_share";
+//            isClickWebView(url);
+            Toast.makeText(getContext(), "暂未开放", Toast.LENGTH_SHORT).show();
         } else if (v == ll_collection) {
 //            //我的收藏
 //            String url = ApkConstant.SERVER_URL_WAP + "?ctl=uc_collect";

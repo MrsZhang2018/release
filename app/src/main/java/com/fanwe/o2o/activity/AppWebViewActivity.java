@@ -79,19 +79,19 @@ public class AppWebViewActivity extends WebViewActivity implements PayResultList
 		super.onEventMainThread(event);
 		switch (Constant.EnumEvent.valueOf(event.getTagInt())) {
 			case EVENT_PAY_SDK:
-				PaySdkModel uc_Save_InchargeActModel = (PaySdkModel) event.getData();
-				openSDKPAY(uc_Save_InchargeActModel);
+//				PaySdkModel uc_Save_InchargeActModel = (PaySdkModel) event.getData();
+//				openSDKPAY(uc_Save_InchargeActModel);
 				break;
       case EVENT_WX_PAY_JS_BACK:
-        mHandler.post(new Runnable()
-        {
-          @Override
-          public void run()
-          {
-            WXPayStateModel stateModel=(WXPayStateModel) event.getData();
-            mFragWebview.getWebView().loadJsFunction("js_pay_sdk("+String.valueOf(stateModel.getState())+")");
-          }
-        });
+//        mHandler.post(new Runnable()
+//        {
+//          @Override
+//          public void run()
+//          {
+//            WXPayStateModel stateModel=(WXPayStateModel) event.getData();
+//            mFragWebview.getWebView().loadJsFunction("js_pay_sdk("+String.valueOf(stateModel.getState())+")");
+//          }
+//        });
         break;
 			default:
 				break;

@@ -14,6 +14,8 @@ public class User_infoModel extends BaseActModel
 	private String money_format;
 	private String consignee;
 	private int is_luck;
+	private boolean is_set_pass;
+	private String msg_id;
 
 	public String getNew_user() {
 		return new_user;
@@ -142,4 +144,19 @@ public class User_infoModel extends BaseActModel
 		this.money_format = money_format;
 	}
 
+	public boolean isIs_set_pass() {
+		return is_set_pass;
+	}
+
+	public void setIs_set_pass(boolean is_set_pass) {
+		this.is_set_pass = is_set_pass;
+	}
+
+	public String getMsg_id() {
+		return msg_id;
+	}
+
+	public void setMsg_id(String msg_id) {
+		this.msg_id = msg_id;
+	}
 }

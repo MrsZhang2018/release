@@ -57,6 +57,7 @@ import com.fanwe.o2o.model.UcOrderOrderDpActModel;
 import com.fanwe.o2o.model.UcOrderWapViewActModel;
 import com.fanwe.o2o.model.UploadImageActModel;
 import com.fanwe.o2o.model.User_infoModel;
+import com.fanwe.o2o.model.User_is_set_pass;
 import com.fanwe.o2o.model.Youhuis_indexActModel;
 import com.fanwe.o2o.work.RetryInitWorker;
 
@@ -229,6 +230,17 @@ public class CommonInterface
         params.putCtl("user");
         params.put("user_key", user_key);
         params.put("user_pwd", user_pwd);
+        AppHttpUtil.getInstance().post(params, listener);
+    }
+
+    /**
+     * 用户是否设置登录密码接口
+     *
+     * @param listener
+     */
+    public static void requestUserSetPass(AppRequestCallback<User_is_set_pass> listener)
+    {
+        AppRequestParams params = new AppRequestParams();
         AppHttpUtil.getInstance().post(params, listener);
     }
 

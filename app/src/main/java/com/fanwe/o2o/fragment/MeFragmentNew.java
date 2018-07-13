@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.fanwe.library.adapter.http.model.SDResponse;
+import com.fanwe.library.config.SDConfig;
 import com.fanwe.library.utils.SDToast;
 import com.fanwe.library.utils.SDViewBinder;
 import com.fanwe.library.utils.SDViewUtil;
@@ -38,20 +39,28 @@ import com.fanwe.o2o.activity.OrderListActivity;
 import com.fanwe.o2o.activity.SettingActivity;
 import com.fanwe.o2o.activity.ShippingAddressActivity;
 import com.fanwe.o2o.common.CommonInterface;
+import com.fanwe.o2o.config.AppConfig;
 import com.fanwe.o2o.constant.ApkConstant;
 import com.fanwe.o2o.constant.Constant;
 import com.fanwe.o2o.dao.InitActModelDao;
+import com.fanwe.o2o.dao.LocalUserModelDao;
 import com.fanwe.o2o.event.EventLoginBack;
 import com.fanwe.o2o.http.AppRequestCallback;
+import com.fanwe.o2o.http.AppSessionRequestCallback;
 import com.fanwe.o2o.model.AppUserCenterWapIndexActModel;
 import com.fanwe.o2o.model.AppUserSettingActModel;
 import com.fanwe.o2o.model.Init_indexActModel;
+import com.fanwe.o2o.model.LocalUserModel;
 import com.fanwe.o2o.model.User_infoModel;
+import com.fanwe.o2o.model.User_is_set_pass;
 import com.fanwe.o2o.utils.GlideUtil;
 import com.fanwe.zxing.CaptureActivity;
 import com.sunday.eventbus.SDBaseEvent;
 
+import org.xutils.http.cookie.DbCookieStore;
 import org.xutils.view.annotation.ViewInject;
+
+import cn.xiaoneng.uiapi.Ntalker;
 
 import static android.app.Activity.RESULT_OK;
 import static com.fanwe.o2o.activity.ConsumeCouponActivity.EXTRA_COUPON_NAME;
@@ -175,6 +184,8 @@ public class MeFragmentNew extends BaseFragment {
             LinearLayout ll_service_call;
 
     private int login_status = 0;
+
+    private String PAY_PASS_URL = "/mapi/index.php?ctl=user&act=paypass";
 
     @Override
     protected int onCreateContentView() {
@@ -553,8 +564,25 @@ public class MeFragmentNew extends BaseFragment {
 //            isClickWebView(url);
         else if (v == ll_code_scan) {
             //二维码
-            Intent intent = new Intent(getActivity(), MyCaptureActivity.class);
-            startActivityForResult(intent, MyCaptureActivity.RESULT_CODE_SCAN_SUCCESS);
+            LocalUserModel userModel = LocalUserModelDao.queryModel();
+            if (userModel == null) {
+                clickLogin();
+            } else {
+                //是否已经设置过支付密码
+
+
+                boolean isSetPayWord = SDConfig.getInstance().getBoolean("is_set_pass", false);
+                if (isSetPayWord) {
+                    Intent intent = new Intent(getActivity(), MyCaptureActivity.class);
+                    startActivityForResult(intent, MyCaptureActivity.RESULT_CODE_SCAN_SUCCESS);
+                } else {
+                    //请求一下
+                    if (!TextUtils.isEmpty(userModel.getUser_name()) &&
+                            !TextUtils.isEmpty(userModel.getUser_pwd())) {
+                        requestPayInfo("");
+                    }
+                }
+            }
         } else if (v == ll_service_code) {
             //服务码
 
@@ -582,6 +610,39 @@ public class MeFragmentNew extends BaseFragment {
                 }
             }).show();
         }
+    }
+
+    private void requestPayInfo(String webUrl) {
+        CommonInterface.requestUserSetPass(new AppSessionRequestCallback<User_is_set_pass>(webUrl) {
+            @Override
+            protected void onSuccess(SDResponse sdResponse) {
+                if (actModel.isOk()) {
+                    /**
+                     * 是否设置过支付密码
+                     */
+                    boolean payPassWord = actModel.isIs_set_pass();
+                    if (payPassWord) {
+                        Intent intent = new Intent(getActivity(), MyCaptureActivity.class);
+                        startActivityForResult(intent, MyCaptureActivity.RESULT_CODE_SCAN_SUCCESS);
+                    } else {
+                        SDToast.showToast("请先设置支付密码");
+                        String url = ApkConstant.SERVER_URL_WAP + "/wap/index.php?ctl=uc_money&act=altPass";
+                        clickWebView(url);
+                    }
+                }
+            }
+
+            @Override
+            protected void onError(SDResponse resp) {
+                super.onError(resp);
+            }
+
+            @Override
+            protected void onFinish(SDResponse resp) {
+                super.onFinish(resp);
+                dismissProgressDialog();
+            }
+        });
     }
 
     /**
@@ -733,12 +794,12 @@ public class MeFragmentNew extends BaseFragment {
             String str = data.getStringExtra(MyCaptureActivity.EXTRA_RESULT_SUCCESS_STRING);
             if (!TextUtils.isEmpty(str)) {
                 String url;
-                if (str.startsWith("http")) {
-                    url = str;
-                } else {
+                if (str.startsWith("/wap/index.php?ctl=uc_money")) {
                     url = ApkConstant.SERVER_URL_WAP + "/" + str;
+                    clickWebView(url);
+                } else {
+                    SDToast.showToast("需指定商家端二维码");
                 }
-                clickWebView(url);
             }
         }
     }

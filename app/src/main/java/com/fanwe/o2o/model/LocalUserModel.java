@@ -14,7 +14,7 @@ public class LocalUserModel implements Serializable
 {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -29,6 +29,8 @@ public class LocalUserModel implements Serializable
 	private String user_score;
 	private String user_mobile;
 	private int is_tmp;
+	private boolean is_set_pass;
+	private String msg_id;
 
 	public static void dealLoginSuccess(User_infoModel model, boolean postEvent)
 	{
@@ -42,7 +44,8 @@ public class LocalUserModel implements Serializable
 			localModel.setUser_email(model.getEmail());
 			localModel.setUser_mobile(model.getMobile());
 			localModel.setIs_tmp(model.getIs_tmp());
-
+			localModel.setMsg_id(model.getMsg_id());
+            localModel.setIs_set_pass(model.isIs_set_pass());
 			dealLoginSuccess(localModel, postEvent);
 		}
 	}
@@ -154,6 +157,22 @@ public class LocalUserModel implements Serializable
 	public void setUser_score(String user_score)
 	{
 		this.user_score = user_score;
+	}
+
+	public boolean isIs_set_pass() {
+		return is_set_pass;
+	}
+
+	public void setIs_set_pass(boolean is_set_pass) {
+		this.is_set_pass = is_set_pass;
+	}
+
+	public String getMsg_id() {
+		return msg_id;
+	}
+
+	public void setMsg_id(String msg_id) {
+		this.msg_id = msg_id;
 	}
 
 	public LocalUserModel deepClone()

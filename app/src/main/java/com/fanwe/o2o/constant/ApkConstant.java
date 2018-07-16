@@ -52,4 +52,9 @@ public class ApkConstant {
     public static final String SERVER_URL_SHOW_ANIM = SERVER_URL + SERVER_URL_ADD_PARAMS;
 
     public static final String KEY_AES = "FANWE5LMUQC436IM";
+
+    /**
+     * 订单拼接
+     */
+    public static final String ORDER = "?ctl=uc_order&tuan=1";
 }

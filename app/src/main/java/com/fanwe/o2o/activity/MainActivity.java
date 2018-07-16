@@ -313,9 +313,9 @@ public class MainActivity extends BaseActivity {
 
     private void intentWebviewActivity(String ctlString) {
         Intent intent = new Intent(App.getApplication(), AppWebViewActivity.class);//wap
-        String url = ApkConstant.SERVER_URL_WAP;
+        String url = ApkConstant.SERVER_URL_WAP + ApkConstant.ORDER;
         UrlLinkBuilder urlBuilder = new UrlLinkBuilder(url);
-        urlBuilder.add("ctl", ctlString);
+//        urlBuilder.add("ctl", ctlString);
         intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE, false);
         intent.putExtra(AppWebViewActivity.EXTRA_URL, urlBuilder.build());
         startActivity(intent);

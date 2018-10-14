@@ -24,6 +24,7 @@ import com.fanwe.o2o.event.ERefreshRequest;
 import com.fanwe.o2o.http.AppRequestCallback;
 import com.fanwe.o2o.model.AppUserLoginOutActModel;
 import com.fanwe.o2o.model.AppUserSettingActModel;
+import com.fanwe.o2o.utils.BalanceMsgHelper;
 import com.fanwe.o2o.utils.DataCleanManager;
 import com.sunday.eventbus.SDEventManager;
 
@@ -33,8 +34,7 @@ import cn.xiaoneng.uiapi.Ntalker;
  * Created by Administrator on 2017/1/9.
  */
 
-public class SettingActivity extends BaseTitleActivity
-{
+public class SettingActivity extends BaseTitleActivity {
     private RelativeLayout rl_version;
     private TextView tv_version;
     private RelativeLayout rl_service_phone;
@@ -52,8 +52,7 @@ public class SettingActivity extends BaseTitleActivity
     private SDDialogConfirm dialog;
 
     @Override
-    protected void init(Bundle savedInstanceState)
-    {
+    protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         setContentView(R.layout.act_setting);
 
@@ -83,8 +82,7 @@ public class SettingActivity extends BaseTitleActivity
     }
 
     @Override
-    public void onCLickRight_SDTitleSimple(SDTitleItem v, int index)
-    {
+    public void onCLickRight_SDTitleSimple(SDTitleItem v, int index) {
         super.onCLickRight_SDTitleSimple(v, index);
         if (titleDialog == null)
             titleDialog = new MoreTitleDialog(this);
@@ -92,15 +90,11 @@ public class SettingActivity extends BaseTitleActivity
         titleDialog.showTop();
     }
 
-    private void requestUserSetting()
-    {
-        CommonInterface.requestUserSetting(new AppRequestCallback<AppUserSettingActModel>()
-        {
+    private void requestUserSetting() {
+        CommonInterface.requestUserSetting(new AppRequestCallback<AppUserSettingActModel>() {
             @Override
-            protected void onSuccess(SDResponse sdResponse)
-            {
-                if (actModel.isOk())
-                {
+            protected void onSuccess(SDResponse sdResponse) {
+                if (actModel.isOk()) {
                     html = actModel.getAPP_ABOUT_US();
                     int login_status = actModel.getUser_login_status();
                     if (login_status == 1)
@@ -108,48 +102,41 @@ public class SettingActivity extends BaseTitleActivity
                     else if (login_status == 0)
                         SDViewUtil.hide(rl_login_out);
 
-                    SDViewBinder.setTextView(tv_version,actModel.getDB_VERSION());
-                    SDViewBinder.setTextView(tv_tel,actModel.getSHOP_TEL());
-                    SDViewBinder.setTextView(tv_email,actModel.getREPLY_ADDRESS());
+                    SDViewBinder.setTextView(tv_version, actModel.getDB_VERSION());
+                    SDViewBinder.setTextView(tv_tel, actModel.getSHOP_TEL());
+                    SDViewBinder.setTextView(tv_email, actModel.getREPLY_ADDRESS());
                 }
             }
 
             @Override
-            protected void onError(SDResponse resp)
-            {
+            protected void onError(SDResponse resp) {
                 super.onError(resp);
             }
         });
     }
 
     @Override
-    public void onClick(View v)
-    {
+    public void onClick(View v) {
         super.onClick(v);
-        if (v == rl_version)
-        {
+        if (v == rl_version) {
             //版本更新
         } else if (v == rl_clean_cache) {
             //清理缓存
             clickCleanCache();
-        } else if (v == rl_service_phone)
-        {
+        } else if (v == rl_service_phone) {
             //客服电话
-        }else if (v == rl_about_us)
-        {
+        } else if (v == rl_about_us) {
             //关于我们
             clickAboutUs();
-        }else if (v == rl_login_out)
-        {
+        } else if (v == rl_login_out) {
             //退出登录
             clickLoginOut();
         }
     }
 
-    private void clickAboutUs()
-    {
+    private void clickAboutUs() {
         Intent intent = new Intent(this, AboutUsActivity.class);
-        intent.putExtra(AboutUsActivity.EXTRA_HTML_CONTENT,html);
+        intent.putExtra(AboutUsActivity.EXTRA_HTML_CONTENT, html);
         startActivity(intent);
     }
 
@@ -170,9 +157,9 @@ public class SettingActivity extends BaseTitleActivity
         final long totalSize;
         try {
             externalCacheSize =
-                DataCleanManager.getFolderSize(getApplicationContext().getExternalCacheDir());
+                    DataCleanManager.getFolderSize(getApplicationContext().getExternalCacheDir());
             externalFilesSize =
-                DataCleanManager.getFolderSize(getApplicationContext().getExternalFilesDir(null));
+                    DataCleanManager.getFolderSize(getApplicationContext().getExternalFilesDir(null));
             internalCacheSize = DataCleanManager.getFolderSize(getApplicationContext().getCacheDir());
             internalFileCacheSize = DataCleanManager.getFolderSize(getApplicationContext().getFilesDir());
             totalSize = externalCacheSize + externalFilesSize + internalCacheSize + internalFileCacheSize;
@@ -214,32 +201,29 @@ public class SettingActivity extends BaseTitleActivity
         dialog.show();
     }
 
-    private void clickLoginOut()
-    {
+    private void clickLoginOut() {
         CommonInterface.requestUserLoginOut(new AppRequestCallback<AppUserLoginOutActModel>() {
             @Override
             protected void onSuccess(SDResponse sdResponse) {
-                if (actModel.isOk())
-                {
+                if (actModel.isOk()) {
                     //用户登出： 用户注销时调用,调用之后用户为游客状态
                     Ntalker.getInstance().logout();
 
                     App.getApplication().clearAppsLocalUserModel();
                     SDEventManager.post(new ELoginEvent(false));
                     SDEventManager.post(new ELoginOut());
+                    BalanceMsgHelper.get().setUserInfoBean(null);
                     finish();
                 }
             }
         });
     }
 
-    public void onEventMainThread(ELoginSuccess event)
-    {
+    public void onEventMainThread(ELoginSuccess event) {
         requestUserSetting();
     }
 
-    public void onEventMainThread(ERefreshRequest event)
-    {
+    public void onEventMainThread(ERefreshRequest event) {
         requestUserSetting();
     }
 }

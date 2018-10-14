@@ -16,6 +16,9 @@ public class User_infoModel extends BaseActModel
 	private int is_luck;
 	private boolean is_set_pass;
 	private String msg_id;
+	private String truck_number;
+	private String wallet_gas;
+	private String wallet_any;
 
 	public String getNew_user() {
 		return new_user;
@@ -158,5 +161,29 @@ public class User_infoModel extends BaseActModel
 
 	public void setMsg_id(String msg_id) {
 		this.msg_id = msg_id;
+	}
+
+	public String getTruck_number() {
+		return truck_number;
+	}
+
+	public void setTruck_number(String truck_number) {
+		this.truck_number = truck_number;
+	}
+
+	public String getWallet_gas() {
+		return wallet_gas;
+	}
+
+	public void setWallet_gas(String wallet_gas) {
+		this.wallet_gas = wallet_gas;
+	}
+
+	public String getWallet_any() {
+		return wallet_any;
+	}
+
+	public void setWallet_any(String wallet_any) {
+		this.wallet_any = wallet_any;
 	}
 }

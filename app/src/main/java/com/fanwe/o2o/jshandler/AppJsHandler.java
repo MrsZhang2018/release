@@ -264,26 +264,26 @@ public class AppJsHandler extends BaseJsHandler
     @JavascriptInterface
     public void open_type(String json)
     {
-        String s = json;
-        WapPayMethod wpm = JsonUtil.json2Object(json, WapPayMethod.class);
-        final String open_url_type = wpm.getOpen_url_type();
-        final String url = wpm.getUrl();
-        final String titile = wpm.getTitle();
-        if (TextUtils.isEmpty(open_url_type))
-        {
-            return;
-        }
-        //TODO 0打开带WebActicity的标题变为url,需要h5改
-        if (open_url_type.equals("0"))
-        {//0打开带WebActicity 1打开系统浏览器
-            Intent intent = new Intent(App.getApplication(), AppWebViewActivity.class);
-            intent.putExtra(AppWebViewActivity.EXTRA_TITLE, titile);
-            intent.putExtra(AppWebViewActivity.EXTRA_URL, url);
-            startActivity(intent);
-        } else if (open_url_type.equals("1"))
-        {
-            jumpByDefaultChrome(url);
-        }
+//        String s = json;
+//        WapPayMethod wpm = JsonUtil.json2Object(json, WapPayMethod.class);
+//        final String open_url_type = wpm.getOpen_url_type();
+//        final String url = wpm.getUrl();
+//        final String titile = wpm.getTitle();
+//        if (TextUtils.isEmpty(open_url_type))
+//        {
+//            return;
+//        }
+//        //TODO 0打开带WebActicity的标题变为url,需要h5改
+//        if (open_url_type.equals("0"))
+//        {//0打开带WebActicity 1打开系统浏览器
+//            Intent intent = new Intent(App.getApplication(), AppWebViewActivity.class);
+//            intent.putExtra(AppWebViewActivity.EXTRA_TITLE, titile);
+//            intent.putExtra(AppWebViewActivity.EXTRA_URL, url);
+//            startActivity(intent);
+//        } else if (open_url_type.equals("1"))
+//        {
+//            jumpByDefaultChrome(url);
+//        }
     }
 
     /**
@@ -434,18 +434,18 @@ public class AppJsHandler extends BaseJsHandler
                 intent.putExtra(OrderDetailsActivity.EXTRA_ID, data);
                 break;
             case Constant.IndexType.ORDER_DETAILS2:
-                //jump2DealWap(getActivity(),"deal",)
-                SDActivityManager.getInstance().getLastActivity().finish(); //结束掉AppWebViewActivity
-                JSOrderDetailModel detailModel = JsonUtil.json2Object(data, JSOrderDetailModel.class);
-                String data_id = String.valueOf(detailModel.getData_id());
-//        if()
-                intent = new Intent(App.getApplication(), OrderDetailsActivity.class);
-                intent.putExtra(OrderDetailsActivity.EXTRA_ID, data_id);
-                if (SDActivityManager.getInstance().getLastActivity() instanceof OrderDetailsActivity)
-                {  //若上个页面是订单详情则关闭上个页面
-                    SDActivityManager.getInstance().getLastActivity().finish();
-                }
-                SDActivityManager.getInstance().getLastActivity().startActivity(intent);
+//                //jump2DealWap(getActivity(),"deal",)
+//                SDActivityManager.getInstance().getLastActivity().finish(); //结束掉AppWebViewActivity
+//                JSOrderDetailModel detailModel = JsonUtil.json2Object(data, JSOrderDetailModel.class);
+//                String data_id = String.valueOf(detailModel.getData_id());
+////        if()
+//                intent = new Intent(App.getApplication(), OrderDetailsActivity.class);
+//                intent.putExtra(OrderDetailsActivity.EXTRA_ID, data_id);
+//                if (SDActivityManager.getInstance().getLastActivity() instanceof OrderDetailsActivity)
+//                {  //若上个页面是订单详情则关闭上个页面
+//                    SDActivityManager.getInstance().getLastActivity().finish();
+//                }
+//                SDActivityManager.getInstance().getLastActivity().startActivity(intent);
                 break;
             //		case IndexType.STORE_PAY_LIST:
             //			intent = new Intent(App.getApplication(), StorePayListActivity.class);

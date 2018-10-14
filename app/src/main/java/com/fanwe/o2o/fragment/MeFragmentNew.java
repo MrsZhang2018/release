@@ -54,6 +54,7 @@ import com.fanwe.o2o.model.Init_indexActModel;
 import com.fanwe.o2o.model.LocalUserModel;
 import com.fanwe.o2o.model.User_infoModel;
 import com.fanwe.o2o.model.User_is_set_pass;
+import com.fanwe.o2o.utils.BalanceMsgHelper;
 import com.fanwe.o2o.utils.GlideUtil;
 import com.fanwe.zxing.CaptureActivity;
 import com.sunday.eventbus.SDBaseEvent;
@@ -98,6 +99,12 @@ public class MeFragmentNew extends BaseFragment {
 //    private LinearLayout ll_balance;
     @ViewInject(R.id.tv_balance)
     private TextView tv_balance;//余额
+    @ViewInject(R.id.tv_general)
+    private TextView tv_general;//通用余额
+    @ViewInject(R.id.tv_aerated)
+    private TextView tv_aerated;//加气余额
+    @ViewInject(R.id.tv_car_msg)
+    private TextView tv_car_msg;//车辆信息余额
     //    @ViewInject(R.id.ll_integral)
 //    private LinearLayout ll_integral;
 //    @ViewInject(R.id.tv_integral)
@@ -306,12 +313,18 @@ public class MeFragmentNew extends BaseFragment {
                 Log.e("aaaaaaaaaaa", "user_name = " + user_name);
                 if (!TextUtils.isEmpty(user_name)) {
                     SDViewBinder.setTextView(tv_name, user_name);
-                } else
+                } else {
                     SDViewBinder.setTextView(tv_name, "请点击登录");
-                if (!TextUtils.isEmpty(balance))
+                }
+
+                User_infoModel userInfoBean = BalanceMsgHelper.get().getUserInfoBean();
+                if (!TextUtils.isEmpty(balance)) {
                     SDViewBinder.setTextView(tv_balance, balance);
-                else
+                    getBalanceMsg(userInfoBean, true);
+                } else {
                     SDViewBinder.setTextView(tv_balance, "请登录后查看");
+                    getBalanceMsg(userInfoBean, false);
+                }
 //                if (!TextUtils.isEmpty(user_score_str))
 //                    SDViewBinder.setTextView(tv_integral, user_score_str);
 //                else
@@ -357,8 +370,8 @@ public class MeFragmentNew extends BaseFragment {
 //                } else {
 //                    SDViewUtil.hide(tv_active);
 //                }
-                Init_indexActModel init_indexActModel = InitActModelDao.query();
-                String isFx = String.valueOf(init_indexActModel.getIs_fx());
+//                Init_indexActModel init_indexActModel = InitActModelDao.query();
+//                String isFx = String.valueOf(init_indexActModel.getIs_fx());
 //                if (!TextUtils.isEmpty(isFx) && isFx.equals("0"))  //0无分销功能 1有
 //                {
 //                    SDViewUtil.hide(rl_dis);
@@ -811,12 +824,41 @@ public class MeFragmentNew extends BaseFragment {
     @Override
     public void onEvent(SDBaseEvent event) {
         super.onEvent(event);
-//        if (event instanceof EventLoginBack) {
-//            User_infoModel actModel = ((EventLoginBack) event).actModel;
+        if (event instanceof EventLoginBack) {
+            User_infoModel actModel = ((EventLoginBack) event).actModel;
+            getBalanceMsg(actModel, true);
+            BalanceMsgHelper.get().setUserInfoBean(actModel);
 //            tv_balance.setText(String.format("%s元", actModel.getMoney()));
-//            tv_name.setText(actModel.getUser_name());
-//            GlideUtil.load(actModel.getUser_avatar()).into(iv_header);
-//        }
+////            tv_name.setText(actModel.getUser_name());
+////            GlideUtil.load(actModel.getUser_avatar()).into(iv_header);
+        }
+    }
+
+    private void getBalanceMsg(User_infoModel actModel, boolean boo) {
+        if (boo) {
+            String wallet_gas = actModel.getWallet_gas();
+            String wallet_any = actModel.getWallet_any();
+            String truck_number = actModel.getTruck_number();
+
+            if (!TextUtils.isEmpty(wallet_gas))
+                SDViewBinder.setTextView(tv_general, wallet_gas);
+            else
+                SDViewBinder.setTextView(tv_general, "请登录后查看");
+
+            if (!TextUtils.isEmpty(wallet_any))
+                SDViewBinder.setTextView(tv_aerated, wallet_any);
+            else
+                SDViewBinder.setTextView(tv_aerated, "请登录后查看");
+
+            if (!TextUtils.isEmpty(truck_number))
+                SDViewBinder.setTextView(tv_car_msg, "绑定车辆信息 " + truck_number);
+            else
+                SDViewBinder.setTextView(tv_car_msg, "登录后查看车辆信息");
+        } else {
+            SDViewBinder.setTextView(tv_general, "请登录后查看");
+            SDViewBinder.setTextView(tv_aerated, "请登录后查看");
+            SDViewBinder.setTextView(tv_car_msg, "登录后查看车辆信息");
+        }
     }
 
     @Override

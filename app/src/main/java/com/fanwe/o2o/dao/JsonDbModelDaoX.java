@@ -41,12 +41,12 @@ public class JsonDbModelDaoX
 			{
 				JsonDbModel jsonDbModel = new JsonDbModel();
 				jsonDbModel.setKey(model.getClass().getName());
-				String json = JsonUtil.object2Json(model);
+//				String json = JsonUtil.object2Json(model);
 				if (encrypt) // 需要加密
 				{
-					json = AESUtil.encrypt(json);
+//					json = AESUtil.encrypt(json);
 				}
-				jsonDbModel.setValue(json);
+//				jsonDbModel.setValue(json);
 				DbManagerX.getDb().save(jsonDbModel);
 				return true;
 			} catch (Exception e)
@@ -107,7 +107,7 @@ public class JsonDbModelDaoX
 						{
 							value = AESUtil.decrypt(value);
 						}
-						return JsonUtil.json2Object(value, clazz);
+//						return JsonUtil.json2Object(value, clazz);
 					}
 				}
 			} catch (Exception e)

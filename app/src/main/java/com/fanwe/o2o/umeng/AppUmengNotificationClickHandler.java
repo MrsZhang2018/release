@@ -140,7 +140,7 @@ public class AppUmengNotificationClickHandler extends UmengNotificationClickHand
 			Map<String, String> mapData = msg.extra;
 			if (mapData != null)
 			{
-				model = JsonUtil.map2Object(mapData, JpushDataModel.class);
+//				model = JsonUtil.map2Object(mapData, JpushDataModel.class);
 			}
 		}
 		return model;

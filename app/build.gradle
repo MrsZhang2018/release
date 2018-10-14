@@ -136,4 +136,5 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile project(path: ':libraryFanwe')
     compile project(':xiaonengChatUI')
+    implementation 'com.google.code.gson:gson:2.8.5'
 }

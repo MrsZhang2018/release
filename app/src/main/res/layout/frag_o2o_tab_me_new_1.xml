@@ -33,8 +33,9 @@
         android:src="@mipmap/commodity_user_img_def" />
 
     <RelativeLayout
+        android:id="@+id/rl_pop"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="80dp"
@@ -68,12 +69,11 @@
             android:background="@color/black" />
 
         <RelativeLayout
+            android:id="@+id/rl_balance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="50dp"
-
-            >
+            android:layout_marginLeft="50dp">
 
             <TextView
                 android:id="@+id/textView_1"
@@ -81,19 +81,59 @@
                 android:layout_height="wrap_content"
                 android:text="您的余额"
                 android:textColor="@color/white"
-                android:textSize="13sp"
-                />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/tv_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView_1"
-                android:text="请登录后查看"
                 android:layout_marginTop="5dp"
+                android:text="请登录后查看"
                 android:textColor="#D7B475"
-                android:textSize="15sp"
-                />
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_balance"
+                android:layout_marginTop="5dp"
+                android:text="通用余额   "
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_general"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_balance"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/textView1"
+                android:text="请登录后查看"
+                android:textColor="#D7B475"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView1"
+                android:layout_marginTop="5dp"
+                android:text="加气余额   "
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_aerated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_general"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/textView2"
+                android:text="请登录后查看"
+                android:textColor="#D7B475"
+                android:textSize="13dp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -121,6 +161,7 @@
                     android:layout_marginTop="5dp"
                     android:text="扫一扫"
                     android:textColor="@color/white" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -147,15 +188,25 @@
                     android:text="付款码"
                     android:textColor="@color/white" />
             </LinearLayout>
+
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_car_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
+            android:text="登录后查看车辆信息"
+            android:textColor="#D7B475" />
 
     </RelativeLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp">
+        android:layout_below="@+id/rl_pop">
 
         <include layout="@layout/include_me_item_1" />
     </FrameLayout>

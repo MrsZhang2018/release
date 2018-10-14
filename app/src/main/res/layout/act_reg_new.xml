@@ -22,17 +22,6 @@
             android:textColor="@color/white"
             android:textSize="16dp" />
 
-        <TextView
-            android:id="@+id/tv_register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="5dp"
-            android:text="注 册"
-            android:textColor="@color/white"
-            android:textSize="16dp" />
-
         <ImageView
             android:layout_width="70dp"
             android:layout_height="70dp"
@@ -44,7 +33,7 @@
         <LinearLayout
             android:id="@+id/ll_pop_login"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="300dp"
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
@@ -58,18 +47,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
-                android:text="Hi，欢迎登陆"
+                android:text="注册账号"
                 android:textColor="@color/login_hello_blue_shen"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="新用户可直接使用手机号和短信验证码登陆"
-                android:textColor="@color/login_hint"
-                android:textSize="12sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -110,6 +91,36 @@
 
             </LinearLayout>
 
+            <EditText
+                android:id="@+id/et_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/login_edit_bg"
+                android:digits="1234567890"
+                android:hint="请输入密码"
+                android:inputType="number"
+                android:padding="5dp"
+                android:textColorHint="#585858"
+                android:textSize="14dp" />
+
+            <EditText
+                android:id="@+id/et_pwd_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/login_edit_bg"
+                android:digits="1234567890"
+                android:hint="请再次输入密码"
+                android:inputType="number"
+                android:padding="5dp"
+                android:textColorHint="#585858"
+                android:textSize="14dp" />
+
             <LinearLayout
                 android:id="@+id/ll_code"
                 android:layout_width="match_parent"
@@ -117,8 +128,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                android:visibility="gone">
+                android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/et_code"
@@ -147,26 +157,10 @@
 
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/et_pwd"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/login_edit_bg"
-                android:digits="1234567890"
-                android:hint="请输入密码"
-                android:inputType="number"
-                android:padding="5dp"
-                android:textColorHint="#585858"
-                android:textSize="14dp"
-                android:visibility="gone" />
-
         </LinearLayout>
 
         <Button
-            android:id="@+id/tv_login"
+            android:id="@+id/btn_reg"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/ll_pop_login"
@@ -176,22 +170,10 @@
             android:layout_marginTop="-25dp"
             android:background="@drawable/login_btn_bg"
             android:elevation="5dp"
-            android:text="登 录"
+            android:text="注 册"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
-
-
-        <TextView
-            android:id="@+id/tv_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_login"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:text="切换登录"
-            android:textColor="@color/login_btn_bg"
-            android:textSize="16dp" />
 
         <!--<com.fanwe.o2o.appview.ThirdLoginView-->
         <!--android:layout_width="match_parent"-->

@@ -62,38 +62,38 @@ public class CommonOpenSDK
 		{
 			return;
 		}
-		MalipayModel mainpayModel = model.getMalipay();
-		if (mainpayModel == null)
-		{
-			SDToast.showToast("获取支付参数失败");
-			listner.onOther();
-			return;
-		}
+//		MalipayModel mainpayModel = model.getMalipay();
+//		if (mainpayModel == null)
+//		{
+//			SDToast.showToast("获取支付参数失败");
+//			listner.onOther();
+//			return;
+//		}
 
-		String orderSpec = mainpayModel.getOrder_spec();
-		String sign = mainpayModel.getSign();
-		String signType = mainpayModel.getSign_type();
+//		String orderSpec = mainpayModel.getOrder_spec();
+//		String sign = mainpayModel.getSign();
+//		String signType = mainpayModel.getSign_type();
 
-		if (TextUtils.isEmpty(orderSpec))
-		{
-			SDToast.showToast("order_spec为空");
-			listner.onOther();
-			return;
-		}
+//		if (TextUtils.isEmpty(orderSpec))
+//		{
+//			SDToast.showToast("order_spec为空");
+//			listner.onOther();
+//			return;
+//		}
 
-		if (TextUtils.isEmpty(sign))
-		{
-			SDToast.showToast("sign为空");
-			listner.onOther();
-			return;
-		}
+//		if (TextUtils.isEmpty(sign))
+//		{
+//			SDToast.showToast("sign为空");
+//			listner.onOther();
+//			return;
+//		}
 
-		if (TextUtils.isEmpty(signType))
-		{
-			SDToast.showToast("signType为空");
-			listner.onOther();
-			return;
-		}
+//		if (TextUtils.isEmpty(signType))
+//		{
+//			SDToast.showToast("signType为空");
+//			listner.onOther();
+//			return;
+//		}
 
 		SDAlipayer payer = new SDAlipayer(activity);
 		payer.setListener(new SDAlipayerListener()
@@ -161,7 +161,7 @@ public class CommonOpenSDK
 				}
 			}
 		});
-		payer.pay(orderSpec, sign, signType);
+//		payer.pay(orderSpec, sign, signType);
 	}
 
 	/** 微信SDK支付 */

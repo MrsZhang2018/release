@@ -23,10 +23,10 @@ public class PaySdkModel extends BaseActModel
 		return JSON.parseObject(s_config, BfupwapModel.class);
 	}
 
-  public MalipayModel getMalipay()
-  {
-    return JsonUtil.map2Object(config, MalipayModel.class);
-  }
+//  public MalipayModel getMalipay()
+//  {
+//    return JsonUtil.map2Object(config, MalipayModel.class);
+//  }
 
 	public void setPay_sdk_type(String pay_sdk_type)
 	{

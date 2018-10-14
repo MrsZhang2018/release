@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fanwe.library.adapter.http.model.SDResponse;
@@ -15,6 +16,7 @@ import com.fanwe.library.utils.SDToast;
 import com.fanwe.o2o.R;
 import com.fanwe.o2o.activity.AppWebViewActivity;
 import com.fanwe.o2o.activity.ModifyPwdActivity;
+import com.fanwe.o2o.activity.NewRegisterActivity;
 import com.fanwe.o2o.common.CommonInterface;
 import com.fanwe.o2o.event.EConfirmImageCode;
 import com.fanwe.o2o.event.ELoginSuccess;
@@ -54,11 +56,28 @@ public class LoginPhoneFragment extends LoginBaseFragment {
 //    @ViewInject(R.id.tv_find_password)
 //    private TextView tv_find_password;
 
+    @ViewInject(R.id.tv_cancel)
+    TextView tv_cancel;
+
+    @ViewInject(R.id.tv_register)
+    TextView tv_register;
+
+    @ViewInject(R.id.tv_switch)
+    TextView tv_switch;
+
+    @ViewInject(R.id.ll_code)
+    LinearLayout ll_code;
+
+    @ViewInject(R.id.et_pwd)
+    TextView et_pwd;
+
     private String mStrMobile;
     private String mStrCode;
     private String webUrl;
 
     public String msg_id;
+
+    public boolean Is_Show = false;
 
     @Override
     protected int onCreateContentView() {
@@ -112,13 +131,47 @@ public class LoginPhoneFragment extends LoginBaseFragment {
         mTv_login.setOnClickListener(this);
 //        tv_user_agreement.setOnClickListener(this);
 //        tv_find_password.setOnClickListener(this);
+        tv_cancel.setOnClickListener(this);
+        tv_register.setOnClickListener(this);
+        tv_switch.setOnClickListener(this);
+
+        ll_code.setVisibility(View.GONE);
+        et_pwd.setVisibility(View.VISIBLE);
+        tv_switch.setText("使用手机号和验证码登录");
     }
 
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        if (v == mTv_login) {
-            clickLogin();
+        switch (v.getId()) {
+            case R.id.tv_login:
+                if (Is_Show) {
+                    clickLogin();
+                } else {
+                    mStrMobile = mEtMobile.getText().toString();
+                    String mStrPwd = et_pwd.getText().toString();
+                    getUserPwdLogin(mStrMobile, mStrPwd);
+                }
+                break;
+            case R.id.tv_cancel:
+                getActivity().finish();
+                break;
+            case R.id.tv_register:
+                getActivity().startActivity(new Intent(getActivity(), NewRegisterActivity.class));
+                break;
+            case R.id.tv_switch:
+                if (Is_Show) {
+                    ll_code.setVisibility(View.VISIBLE);
+                    et_pwd.setVisibility(View.GONE);
+                    tv_switch.setText("使用手机号和密码登录");
+                    Is_Show = false;
+                } else {
+                    ll_code.setVisibility(View.GONE);
+                    et_pwd.setVisibility(View.VISIBLE);
+                    tv_switch.setText("使用手机号和验证码登录");
+                    Is_Show = true;
+                }
+                break;
         }
 //        else if (v == tv_user_agreement)
 //        {
@@ -259,6 +312,25 @@ public class LoginPhoneFragment extends LoginBaseFragment {
         SDEventManager.post(new EventLoginBack(actModel));
 
         getActivity().finish();
+    }
+
+    /**
+     * 账号密码登录
+     */
+    public void getUserPwdLogin(String user_name, String user_pwd) {
+        CommonInterface.requestUserPwdLogin(user_name, user_pwd, new AppRequestCallback<User_infoModel>() {
+            @Override
+            protected void onSuccess(SDResponse sdResponse) {
+                if (actModel.isOk()) {
+                    dealLoginNormalSuccess(actModel, true);
+                }
+            }
+
+            @Override
+            protected void onError(SDResponse resp) {
+                super.onError(resp);
+            }
+        });
     }
 
     @Override

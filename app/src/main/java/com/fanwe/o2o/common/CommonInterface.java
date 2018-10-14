@@ -58,21 +58,20 @@ import com.fanwe.o2o.model.UcOrderWapViewActModel;
 import com.fanwe.o2o.model.UploadImageActModel;
 import com.fanwe.o2o.model.User_infoModel;
 import com.fanwe.o2o.model.User_is_set_pass;
+import com.fanwe.o2o.model.ValidationCodeModel;
 import com.fanwe.o2o.model.Youhuis_indexActModel;
 import com.fanwe.o2o.work.RetryInitWorker;
 
 import java.io.File;
 
-public class CommonInterface
-{
+public class CommonInterface {
 
     /**
      * 初始化
      *
      * @param listener
      */
-    public static void requestInit(AppRequestCallback<Init_indexActModel> listener)
-    {
+    public static void requestInit(AppRequestCallback<Init_indexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("init");
         params.putUser();
@@ -80,13 +79,10 @@ public class CommonInterface
         params.put("sdk_version", "android");
         params.put("r_type", "0");
         params.setIsNeedShowErrorTip(false);
-        AppHttpUtil.getInstance().post(params, new AppRequestCallbackWrapper<Init_indexActModel>(listener)
-        {
+        AppHttpUtil.getInstance().post(params, new AppRequestCallbackWrapper<Init_indexActModel>(listener) {
             @Override
-            protected void onSuccess(SDResponse resp)
-            {
-                if (actModel.getStatus() == 1)
-                {
+            protected void onSuccess(SDResponse resp) {
+                if (actModel.getStatus() == 1) {
                     // TODO:对初始化返回结果进行处理
                     InitActModelDao.insertOrUpdate(actModel);
                     LocalUserModel.dealLoginSuccess(actModel.getUser(), false);
@@ -95,16 +91,14 @@ public class CommonInterface
             }
 
             @Override
-            protected void onError(SDResponse resp)
-            {
+            protected void onError(SDResponse resp) {
                 InitActModelDao.deleteModel();
                 RetryInitWorker.getInstance().start(); // 如果初始化失败重试
                 super.onError(resp);
             }
 
             @Override
-            protected void onFinish(SDResponse resp)
-            {
+            protected void onFinish(SDResponse resp) {
                 super.onFinish(resp);
             }
         });
@@ -115,8 +109,7 @@ public class CommonInterface
      *
      * @param listener
      */
-    public static void requestWapIndex(AppRequestCallback<AppWapIndexActModel> listener)
-    {
+    public static void requestWapIndex(AppRequestCallback<AppWapIndexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putAct("wap");
         params.putCtl("index");
@@ -129,8 +122,7 @@ public class CommonInterface
      * @param page
      * @param listener
      */
-    public static void requestLoadMoreData(int page, AppRequestCallback<AppWapIndexDealListActModel> listener)
-    {
+    public static void requestLoadMoreData(int page, AppRequestCallback<AppWapIndexDealListActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putAct("load_index_list_data");
         params.putCtl("index");
@@ -143,8 +135,7 @@ public class CommonInterface
      *
      * @param listener
      */
-    public static void requestCity(AppRequestCallback<App_CityActModel> listener)
-    {
+    public static void requestCity(AppRequestCallback<App_CityActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("city");
         AppHttpUtil.getInstance().post(params, listener);
@@ -155,8 +146,7 @@ public class CommonInterface
      *
      * @param listener
      */
-    public static void requestShopIndex(AppRequestCallback<AppShopIndexActModel> listener)
-    {
+    public static void requestShopIndex(AppRequestCallback<AppShopIndexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("shop");
         AppHttpUtil.getInstance().post(params, listener);
@@ -168,8 +158,7 @@ public class CommonInterface
      * @param page
      * @param listener
      */
-    public static void requestShopLoadMore(int page, AppRequestCallback<AppShopIndexDealListActModel> listener)
-    {
+    public static void requestShopLoadMore(int page, AppRequestCallback<AppShopIndexDealListActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putAct("load_index_list_data");
         params.putCtl("shop");
@@ -182,8 +171,7 @@ public class CommonInterface
      *
      * @param listener
      */
-    public static void requestGroupPurchaseIndex(AppRequestCallback<AppGroupPurIndexActModel> listener)
-    {
+    public static void requestGroupPurchaseIndex(AppRequestCallback<AppGroupPurIndexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("main");
         AppHttpUtil.getInstance().post(params, listener);
@@ -195,8 +183,7 @@ public class CommonInterface
      * @param page
      * @param listener
      */
-    public static void requestGroupPurLoadMore(int page, AppRequestCallback<AppGroupPurIndexDealListActModel> listener)
-    {
+    public static void requestGroupPurLoadMore(int page, AppRequestCallback<AppGroupPurIndexDealListActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putAct("load_index_list_data");
         params.putCtl("main");
@@ -209,8 +196,7 @@ public class CommonInterface
      *
      * @param listener
      */
-    public static void requestShopCate(AppRequestCallback<AppShopCateActModel> listener)
-    {
+    public static void requestShopCate(AppRequestCallback<AppShopCateActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("cate");
         AppHttpUtil.getInstance().post(params, listener);
@@ -223,8 +209,7 @@ public class CommonInterface
      * @param user_pwd
      * @param listener
      */
-    public static void requestLoginNormal(String user_key, String user_pwd, AppRequestCallback<User_infoModel> listener)
-    {
+    public static void requestLoginNormal(String user_key, String user_pwd, AppRequestCallback<User_infoModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putAct("dologin");
         params.putCtl("user");
@@ -238,8 +223,7 @@ public class CommonInterface
      *
      * @param listener
      */
-    public static void requestUserSetPass(AppRequestCallback<User_is_set_pass> listener)
-    {
+    public static void requestUserSetPass(AppRequestCallback<User_is_set_pass> listener) {
         AppRequestParams params = new AppRequestParams();
         AppHttpUtil.getInstance().post(params, listener);
     }
@@ -251,8 +235,7 @@ public class CommonInterface
      * @param unique   是否需要检测被占用 0:不检测 1:要检测是否被抢占（用于注册，绑定时使用）2:要检测是否存在（取回密码）3 检测会员是否绑定手机
      * @param listener
      */
-    public static void requestValidateCode(String mobile, int unique, AppRequestCallback<Sms_send_sms_codeActModel> listener)
-    {
+    public static void requestValidateCode(String mobile, int unique, AppRequestCallback<Sms_send_sms_codeActModel> listener) {
         final AppRequestParams params = new AppRequestParams();
         params.putAct("send_sms_code");
         params.putCtl("sms");
@@ -261,20 +244,16 @@ public class CommonInterface
         params.put("verify_code", AppConfig.getImageCode());
         params.setIsNeedShowErrorTip(false);
         params.setNeedShowActInfo(false);
-        AppHttpUtil.getInstance().post(params, new AppRequestCallbackWrapper<Sms_send_sms_codeActModel>(listener)
-        {
+        AppHttpUtil.getInstance().post(params, new AppRequestCallbackWrapper<Sms_send_sms_codeActModel>(listener) {
             @Override
-            protected void onSuccess(SDResponse resp)
-            {
-                switch (actModel.getStatus())
-                {
+            protected void onSuccess(SDResponse resp) {
+                switch (actModel.getStatus()) {
                     case -1:
                         InputImageCodeDialog dialog = new InputImageCodeDialog(SDActivityManager.getInstance().getLastActivity());
                         dialog.setImage(actModel.getVerify_image());
                         dialog.show();
 
-                        if (getOriginalCallback() != null)
-                        {
+                        if (getOriginalCallback() != null) {
                             getOriginalCallback().showToast();
                         }
                         break;
@@ -294,11 +273,22 @@ public class CommonInterface
     /**
      * 账户管理接口
      */
-    public static void requestAccountManage(AppRequestCallback<AccountManageActModel> listener)
-    {
+    public static void requestAccountManage(AppRequestCallback<AccountManageActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putAct("wap_index");
         params.putCtl("uc_account");
+        AppHttpUtil.getInstance().post(params, listener);
+    }
+
+    /**
+     * 账号密码登陆接口
+     */
+    public static void requestUserPwdLogin(String user_key, String user_pwd, AppRequestCallback<User_infoModel> listener) {
+        AppRequestParams params = new AppRequestParams();
+        params.putAct("dologin");
+        params.putCtl("user");
+        params.put("user_key", user_key);
+        params.put("user_pwd", user_pwd);
         AppHttpUtil.getInstance().post(params, listener);
     }
 
@@ -309,12 +299,11 @@ public class CommonInterface
      * @param sms_verify
      * @param listener
      */
-    public static void requestShortcutLogin(String msg_id, String mobile, String sms_verify, AppRequestCallback<User_infoModel> listener)
-    {
+    public static void requestShortcutLogin(String msg_id, String mobile, String sms_verify, AppRequestCallback<User_infoModel> listener) {
         AppRequestParams params = new AppRequestParams();
-        params.put("msg_id", msg_id);
         params.putAct("dophlogin");
         params.putCtl("user");
+        params.put("msg_id", msg_id);
         params.put("is_login", 1);
         params.put("mobile", mobile);
         params.put("sms_verify", sms_verify);
@@ -322,19 +311,31 @@ public class CommonInterface
     }
 
     /**
+     * 验证码验证
+     */
+    public static void requestValidationCode(String msg_id, String sms_verify, AppRequestCallback<ValidationCodeModel> listener) {
+        AppRequestParams params = new AppRequestParams();
+        params.putAct("check_code");
+        params.putCtl("sms");
+        params.put("msg_id", msg_id);
+        params.put("sms_verify", sms_verify);
+        AppHttpUtil.getInstance().post(params, listener);
+    }
+
+    /**
      * 注册
      *
-     * @param user_mobile
+     * @param user_name
      * @param user_pwd
      * @param sms_verify
      * @param listener
      */
-    public static void requestRegister(String user_mobile, String user_pwd, String sms_verify, AppRequestCallback<User_infoModel> listener)
-    {
+    public static void requestRegister(String user_name, String user_pwd, String sms_verify, AppRequestCallback<User_infoModel> listener) {
         AppRequestParams params = new AppRequestParams();
-        params.putAct("dophregister");
+//        params.putAct("dophregister");
+        params.putAct("doregister");
         params.putCtl("user");
-        params.put("user_mobile", user_mobile);
+        params.put("user_name", "+86" + user_name);
         params.put("user_pwd", user_pwd);
         params.put("sms_verify", sms_verify);
         AppHttpUtil.getInstance().post(params, listener);
@@ -348,8 +349,7 @@ public class CommonInterface
      * @param new_pwd
      * @param listener
      */
-    public static void requestModifyPassword(String mobile, String sms_verify, String new_pwd, AppRequestCallback<User_infoModel> listener)
-    {
+    public static void requestModifyPassword(String mobile, String sms_verify, String new_pwd, AppRequestCallback<User_infoModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putAct("phmodifypassword");
         params.putCtl("user");
@@ -368,8 +368,7 @@ public class CommonInterface
      * @param is_luck    已绑定手机的第二步验证参数
      * @param listener
      */
-    public static void requestBindMobile(String mobile, String sms_verify, int step, int is_luck, AppRequestCallback<User_infoModel> listener)
-    {
+    public static void requestBindMobile(String mobile, String sms_verify, int step, int is_luck, AppRequestCallback<User_infoModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putAct("bindphone");
         params.putCtl("uc_account");
@@ -391,8 +390,7 @@ public class CommonInterface
      * @param headimgurl
      * @param listener
      */
-    public static void requestLoginWx(String openId, String access_token, String nickName, String unionid, String headimgurl, AppRequestCallback<User_infoModel> listener)
-    {
+    public static void requestLoginWx(String openId, String access_token, String nickName, String unionid, String headimgurl, AppRequestCallback<User_infoModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("synclogin");
         params.put("login_type", "Wechat");
@@ -412,15 +410,13 @@ public class CommonInterface
      * @param nickname
      * @param listener
      */
-    public static void requestQQLogin(String openId, String access_token, String nickname, AppRequestCallback<User_infoModel> listener)
-    {
+    public static void requestQQLogin(String openId, String access_token, String nickname, AppRequestCallback<User_infoModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("synclogin");
         params.put("login_type", "Qq");
         params.put("qqv2_id", openId);
         params.put("access_token", access_token);
-        if (nickname != null)
-        {
+        if (nickname != null) {
             params.put("nickname", nickname);
         }
         AppHttpUtil.getInstance().post(params, listener);
@@ -435,15 +431,13 @@ public class CommonInterface
      * @param nickname
      * @param listener
      */
-    public static void requestSinaLogin(String uid, String access_token, String nickname, AppRequestCallback<User_infoModel> listener)
-    {
+    public static void requestSinaLogin(String uid, String access_token, String nickname, AppRequestCallback<User_infoModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("synclogin");
         params.put("login_type", "Sina");
         params.put("sina_id", uid);
         params.put("access_token", access_token);
-        if (nickname != null)
-        {
+        if (nickname != null) {
             params.put("nickname", nickname);
         }
         AppHttpUtil.getInstance().post(params, listener);
@@ -454,8 +448,7 @@ public class CommonInterface
      *
      * @param listener
      */
-    public static void requestUserCenterWapIndex(AppRequestCallback<AppUserCenterWapIndexActModel> listener)
-    {
+    public static void requestUserCenterWapIndex(AppRequestCallback<AppUserCenterWapIndexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putAct("wap_index");
         params.putCtl("user_center");
@@ -467,8 +460,7 @@ public class CommonInterface
      *
      * @param listener
      */
-    public static void requestUserCenterMessage(AppRequestCallback<AppUserCenterMessageActModel> listener)
-    {
+    public static void requestUserCenterMessage(AppRequestCallback<AppUserCenterMessageActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_msg");
         AppHttpUtil.getInstance().post(params, listener);
@@ -479,8 +471,7 @@ public class CommonInterface
      *
      * @param listener
      */
-    public static void requestUserSetting(AppRequestCallback<AppUserSettingActModel> listener)
-    {
+    public static void requestUserSetting(AppRequestCallback<AppUserSettingActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("setting");
         AppHttpUtil.getInstance().post(params, listener);
@@ -492,8 +483,7 @@ public class CommonInterface
      * @param user_name
      * @param listener
      */
-    public static void requestUpdateNickName(String user_name, AppRequestCallback<AppUpdateNickNameActModel> listener)
-    {
+    public static void requestUpdateNickName(String user_name, AppRequestCallback<AppUpdateNickNameActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("user");
         params.putAct("dochangeuname");
@@ -506,8 +496,7 @@ public class CommonInterface
      *
      * @param listener
      */
-    public static void requestHaveReadMsg(AppRequestCallback<AppHaveReadMsgActModel> listener)
-    {
+    public static void requestHaveReadMsg(AppRequestCallback<AppHaveReadMsgActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_msg");
         params.putAct("countNotRead");
@@ -519,8 +508,7 @@ public class CommonInterface
      *
      * @param listener
      */
-    public static void requestUserLoginOut(AppRequestCallback<AppUserLoginOutActModel> listener)
-    {
+    public static void requestUserLoginOut(AppRequestCallback<AppUserLoginOutActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("user");
         params.putAct("loginout");
@@ -539,8 +527,7 @@ public class CommonInterface
      * @param mNotice
      * @param listener
      */
-    public static void requestTuanIndex(int page, String order_type, int tid, int cate_id, int qid, String keyword, int mNotice, AppRequestCallback<Tuan_indexActModel> listener)
-    {
+    public static void requestTuanIndex(int page, String order_type, int tid, int cate_id, int qid, String keyword, int mNotice, AppRequestCallback<Tuan_indexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("tuan");
         params.put("page", page);
@@ -549,8 +536,7 @@ public class CommonInterface
         params.put("cate_id", cate_id);// 大分类ID
         params.put("qid", qid); // 商圈
         params.put("keyword", keyword);
-        if (mNotice > 0)
-        {
+        if (mNotice > 0) {
             params.put("notice", 1);
         }
         AppHttpUtil.getInstance().post(params, listener);
@@ -568,8 +554,7 @@ public class CommonInterface
      * @param store_type
      * @param listener
      */
-    public static void requestStoresIndex(int page, String order_type, int tid, int cate_id, int qid, String keyword, int store_type, AppRequestCallback<Stores_indexActModel> listener)
-    {
+    public static void requestStoresIndex(int page, String order_type, int tid, int cate_id, int qid, String keyword, int store_type, AppRequestCallback<Stores_indexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("stores");
         params.put("keyword", keyword);
@@ -593,8 +578,7 @@ public class CommonInterface
      * @param keyword
      * @param listener
      */
-    public static void requestEventsIndex(int page, String order_type, int tid, int cate_id, int qid, String keyword, AppRequestCallback<Events_indexActModel> listener)
-    {
+    public static void requestEventsIndex(int page, String order_type, int tid, int cate_id, int qid, String keyword, AppRequestCallback<Events_indexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("events");
         params.put("keyword", keyword);
@@ -616,8 +600,7 @@ public class CommonInterface
      * @param keyword
      * @param listener
      */
-    public static void requestGoodsIndex(int page, String order_type, int bid, int cate_id, String keyword, AppRequestCallback<Goods_indexActModel> listener)
-    {
+    public static void requestGoodsIndex(int page, String order_type, int bid, int cate_id, String keyword, AppRequestCallback<Goods_indexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("goods");
         params.put("keyword", keyword);
@@ -639,8 +622,7 @@ public class CommonInterface
      * @param keyword
      * @param listener
      */
-    public static void requestYouhuisIndex(int page, String order_type, int tid, int cate_id, int qid, String keyword, AppRequestCallback<Youhuis_indexActModel> listener)
-    {
+    public static void requestYouhuisIndex(int page, String order_type, int tid, int cate_id, int qid, String keyword, AppRequestCallback<Youhuis_indexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("youhuis");
         params.put("keyword", keyword);
@@ -660,14 +642,12 @@ public class CommonInterface
      * @param order_type
      * @param listener
      */
-    public static void requestCouponWapIndex(int page, int tid,int cate_id, int qid, String order_type, AppRequestCallback<AppCouponWapIndexActModel> listener)
-    {
+    public static void requestCouponWapIndex(int page, int tid, int cate_id, int qid, String order_type, AppRequestCallback<AppCouponWapIndexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("youhuis");
         params.putAct("wap_index");
         params.put("page", page);
-        if (tid > 0)
-        {
+        if (tid > 0) {
             params.put("tid", tid);// 分类ID
         }
         if (cate_id > 0)
@@ -684,8 +664,7 @@ public class CommonInterface
      * @param data_id
      * @param listener
      */
-    public static void requestCouponReceive(int data_id, AppRequestCallback<AppCouponReceiveActModel> listener)
-    {
+    public static void requestCouponReceive(int data_id, AppRequestCallback<AppCouponReceiveActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("youhui");
         params.putAct("download_youhui");
@@ -699,8 +678,7 @@ public class CommonInterface
      * @param page
      * @param listener
      */
-    public static void requestCouponList(int page, AppRequestCallback<CouponActModel> listener)
-    {
+    public static void requestCouponList(int page, AppRequestCallback<CouponActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_youhui");
         params.putAct("wap_index");
@@ -714,8 +692,7 @@ public class CommonInterface
      * @param page
      * @param listener
      */
-    public static void requestActivityCouponList(int page, AppRequestCallback<ActivityCouponActModel> listener)
-    {
+    public static void requestActivityCouponList(int page, AppRequestCallback<ActivityCouponActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_event");
         params.putAct("wap_index");
@@ -729,8 +706,7 @@ public class CommonInterface
      * @param page
      * @param listener
      */
-    public static void requestBuyOrder(int page, AppRequestCallback<BuyOrderActModel> listener)
-    {
+    public static void requestBuyOrder(int page, AppRequestCallback<BuyOrderActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_store_pay_order");
         params.putAct("wap_index");
@@ -744,8 +720,7 @@ public class CommonInterface
      * @param page
      * @param listener
      */
-    public static void requestOrderRefundList(int page, AppRequestCallback<OrderRefundListModel> listener)
-    {
+    public static void requestOrderRefundList(int page, AppRequestCallback<OrderRefundListModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_order");
         params.putAct("refund_list");
@@ -758,14 +733,12 @@ public class CommonInterface
      *
      * @param listener
      */
-    public static void requestOrderRefundDetail(String mid, String id, AppRequestCallback<OrderRefundDetailModel> listener)
-    {
+    public static void requestOrderRefundDetail(String mid, String id, AppRequestCallback<OrderRefundDetailModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_order");
         params.putAct("refund_view");
         params.put("data_id", mid);
-        if (id != null && id.length() > 0)
-        {
+        if (id != null && id.length() > 0) {
             params.put("did", id);
         }
         AppHttpUtil.getInstance().get(params, listener);
@@ -781,8 +754,7 @@ public class CommonInterface
      * @param keyword
      * @param listener
      */
-    public static void requestStoreWapIndex(int page, int cate_id, int qid, String order_type, String keyword, AppRequestCallback<AppStoresIndexActModel> listener)
-    {
+    public static void requestStoreWapIndex(int page, int cate_id, int qid, String order_type, String keyword, AppRequestCallback<AppStoresIndexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("stores");
         params.putAct("wap_index");
@@ -807,8 +779,7 @@ public class CommonInterface
      * @param keyword
      * @param listener
      */
-    public static void requestGoodsWapIndex(int page, int cate_id, String bid, String order_type, String keyword, AppRequestCallback<AppGoodsWapIndexActModel> listener)
-    {
+    public static void requestGoodsWapIndex(int page, int cate_id, String bid, String order_type, String keyword, AppRequestCallback<AppGoodsWapIndexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("goods");
         params.putAct("wap_index");
@@ -832,8 +803,7 @@ public class CommonInterface
      * @param keyword
      * @param listener
      */
-    public static void requestActivitesWapIndex(int page, String cate_id, String keyword, AppRequestCallback<AppActivitesActModel> listener)
-    {
+    public static void requestActivitesWapIndex(int page, String cate_id, String keyword, AppRequestCallback<AppActivitesActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("events");
         params.putAct("wap_index");
@@ -851,8 +821,7 @@ public class CommonInterface
      * @param file     图片
      * @param listener
      */
-    public static void requestUploadImage(File file, AppRequestCallback<UploadImageActModel> listener)
-    {
+    public static void requestUploadImage(File file, AppRequestCallback<UploadImageActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_account");
         params.putAct("upload_avatar");
@@ -864,13 +833,11 @@ public class CommonInterface
      * 退款商品列表
      */
     public static void requestRefundGoodsList(String dataId,
-                                              AppRequestCallback<RefundGoodsActModel> listener)
-    {
+                                              AppRequestCallback<RefundGoodsActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_order");
         params.putAct("order_refund");
-        if (!TextUtils.isEmpty(dataId))
-        {
+        if (!TextUtils.isEmpty(dataId)) {
             params.put("data_id", dataId);
         }
         AppHttpUtil.getInstance().post(params, listener);
@@ -885,15 +852,13 @@ public class CommonInterface
      * @param listener
      */
     public static <T extends BaseActModel> void requestConsumeCouponList(int page, String coupon_status, String order_id,
-                                                                         AppRequestCallback<T> listener)
-    {
+                                                                         AppRequestCallback<T> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_coupon");
         params.putAct("wap_index");
         params.put("page", page);
         params.put("coupon_status", coupon_status);
-        if (!TextUtils.isEmpty(order_id))
-        {
+        if (!TextUtils.isEmpty(order_id)) {
             params.put("order_id", order_id);
         }
         AppHttpUtil.getInstance().post(params, listener);
@@ -909,8 +874,7 @@ public class CommonInterface
      * @param keyword
      * @param listener
      */
-    public static void requestGroupPurListIndex(int page, int tid, int cate_id, int qid, String order_type, String keyword, AppRequestCallback<AppGroupPurListIndexActModel> listener)
-    {
+    public static void requestGroupPurListIndex(int page, int tid, int cate_id, int qid, String order_type, String keyword, AppRequestCallback<AppGroupPurListIndexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("tuan");
         params.putAct("index_v2");
@@ -932,8 +896,7 @@ public class CommonInterface
      *
      * @param listener
      */
-    public static void requestShippingAddressListIndex(AppRequestCallback<AppGroupPurListIndexActModel> listener)
-    {
+    public static void requestShippingAddressListIndex(AppRequestCallback<AppGroupPurListIndexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_address");
         AppHttpUtil.getInstance().post(params, listener);
@@ -957,8 +920,7 @@ public class CommonInterface
      * @param listener
      */
     public static void requestAddShippingAddressListIndex(String address, int is_default, String consignee, String mobile, String street, String doorplate,
-                                                          int region_lv1, int region_lv2, int region_lv3, int region_lv4, double xpoint, double ypoint, AppRequestCallback<AppGroupPurListIndexActModel> listener)
-    {
+                                                          int region_lv1, int region_lv2, int region_lv3, int region_lv4, double xpoint, double ypoint, AppRequestCallback<AppGroupPurListIndexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_address");
         params.putAct("save");
@@ -996,8 +958,7 @@ public class CommonInterface
      * @param listener
      */
     public static void requestEditShippingAddressListIndex(String address, int id, int is_default, String consignee, String mobile, String street, String doorplate,
-                                                           int region_lv1, int region_lv2, int region_lv3, int region_lv4, double xpoint, double ypoint, AppRequestCallback<AppGroupPurListIndexActModel> listener)
-    {
+                                                           int region_lv1, int region_lv2, int region_lv3, int region_lv4, double xpoint, double ypoint, AppRequestCallback<AppGroupPurListIndexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_address");
         params.putAct("save");
@@ -1023,8 +984,7 @@ public class CommonInterface
      * @param id
      * @param listener
      */
-    public static void requestDeleteShippingAddressListIndex(int id, AppRequestCallback<AppGroupPurListIndexActModel> listener)
-    {
+    public static void requestDeleteShippingAddressListIndex(int id, AppRequestCallback<AppGroupPurListIndexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_address");
         params.putAct("del");
@@ -1038,8 +998,7 @@ public class CommonInterface
      * @param id
      * @param listener
      */
-    public static void requestDefaultShippingAddressListIndex(int id, AppRequestCallback<AppGroupPurListIndexActModel> listener)
-    {
+    public static void requestDefaultShippingAddressListIndex(int id, AppRequestCallback<AppGroupPurListIndexActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_address");
         params.putAct("set_default");
@@ -1053,8 +1012,7 @@ public class CommonInterface
      * @param page       分页
      * @param pay_status 状态
      */
-    public static void requestUcOrderWapIndex(int page, int pay_status, AppRequestCallback<UcOrderActModel> listener)
-    {
+    public static void requestUcOrderWapIndex(int page, int pay_status, AppRequestCallback<UcOrderActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_order");
 //        params.putAct("wap_index");
@@ -1069,8 +1027,7 @@ public class CommonInterface
      *
      * @param data_id 订单id
      */
-    public static void requestUcOrderWapView(String data_id, AppRequestCallback<UcOrderWapViewActModel> listener)
-    {
+    public static void requestUcOrderWapView(String data_id, AppRequestCallback<UcOrderWapViewActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_order");
         params.putAct("wap_view");
@@ -1083,8 +1040,7 @@ public class CommonInterface
      *
      * @param id 订单id
      */
-    public static void requestUcOrderOrderDp(String id, AppRequestCallback<UcOrderOrderDpActModel> listener)
-    {
+    public static void requestUcOrderOrderDp(String id, AppRequestCallback<UcOrderOrderDpActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_order");
         params.putAct("order_dp");
@@ -1095,8 +1051,7 @@ public class CommonInterface
     /**
      * 发表评论
      */
-    public static void requestUcOrderOrderDpDo(String order_id, String item_id, String content, String point, AppRequestCallback<UcOrderOrderDpActModel> listener)
-    {
+    public static void requestUcOrderOrderDpDo(String order_id, String item_id, String content, String point, AppRequestCallback<UcOrderOrderDpActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_order");
         params.putAct("order_dp_do");
@@ -1114,8 +1069,7 @@ public class CommonInterface
      * @param listener
      * @param page
      */
-    public static void requestKeepListIndex(int page, int sc_status, AppRequestCallback<AppKeepListActModel> listener)
-    {
+    public static void requestKeepListIndex(int page, int sc_status, AppRequestCallback<AppKeepListActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_collect");
         params.putAct("wap_index");
@@ -1131,8 +1085,7 @@ public class CommonInterface
      * @param id
      * @param type
      */
-    public static void requestCancelKeepIndex(String id, String type, AppRequestCallback<AppKeepListActModel> listener)
-    {
+    public static void requestCancelKeepIndex(String id, String type, AppRequestCallback<AppKeepListActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_collect");
         params.putAct("del_collect");
@@ -1144,8 +1097,7 @@ public class CommonInterface
     /**
      * 获取地区
      */
-    public static void requestDeliveryRegion(AppRequestCallback<App_RegionListActModel> listener)
-    {
+    public static void requestDeliveryRegion(AppRequestCallback<App_RegionListActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("delivery_region");
         AppHttpUtil.getInstance().post(params, listener);
@@ -1158,8 +1110,7 @@ public class CommonInterface
      * @param is_cancel 1:取消订单  0：删除订单
      * @param listener
      */
-    public static void requestUcOrderCancel(String id, int is_cancel, AppRequestCallback<BaseActModel> listener)
-    {
+    public static void requestUcOrderCancel(String id, int is_cancel, AppRequestCallback<BaseActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_order");
         params.putAct("cancel");
@@ -1173,8 +1124,7 @@ public class CommonInterface
      *
      * @param deal_id 订单id
      */
-    public static void requestUcOrderRefund(String deal_id, String coupon_id, AppRequestCallback<RefundRequestActModel> listener)
-    {
+    public static void requestUcOrderRefund(String deal_id, String coupon_id, AppRequestCallback<RefundRequestActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_order");
         params.putAct("refund");
@@ -1189,8 +1139,7 @@ public class CommonInterface
      *
      * @param deal_id 订单id
      */
-    public static void requestUcOrderDoRefund(String deal_id, String coupon_id, String content, AppRequestCallback<BaseActModel> listener)
-    {
+    public static void requestUcOrderDoRefund(String deal_id, String coupon_id, String content, AppRequestCallback<BaseActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_order");
         params.putAct("do_refund");
@@ -1200,8 +1149,7 @@ public class CommonInterface
         AppHttpUtil.getInstance().post(params, listener);
     }
 
-    public static void reuqestHotSearch(AppRequestCallback<HotKeyModel> listener)
-    {
+    public static void reuqestHotSearch(AppRequestCallback<HotKeyModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("search");
         AppHttpUtil.getInstance().post(params, listener);
@@ -1212,8 +1160,7 @@ public class CommonInterface
      *
      * @param type 消息类型
      */
-    public static void requestUcMsgCate(String type, AppRequestCallback<UcMsgCateActModel> listener)
-    {
+    public static void requestUcMsgCate(String type, AppRequestCallback<UcMsgCateActModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putCtl("uc_msg");
         params.putAct("cate");

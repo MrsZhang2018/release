@@ -145,9 +145,9 @@ public class LoginPhoneFragment extends LoginBaseFragment {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.tv_login:
-                if (Is_Show) {
+                if(ll_code.getVisibility()==View.VISIBLE){
                     clickLogin();
-                } else {
+                }else if(et_pwd.getVisibility()==View.VISIBLE){
                     mStrMobile = mEtMobile.getText().toString();
                     String mStrPwd = et_pwd.getText().toString();
                     getUserPwdLogin(mStrMobile, mStrPwd);

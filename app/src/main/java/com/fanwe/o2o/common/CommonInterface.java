@@ -225,6 +225,8 @@ public class CommonInterface {
      */
     public static void requestUserSetPass(AppRequestCallback<User_is_set_pass> listener) {
         AppRequestParams params = new AppRequestParams();
+        params.put("act", "paypass");
+        params.put("ctl", "user");
         AppHttpUtil.getInstance().post(params, listener);
     }
 
@@ -268,6 +270,16 @@ public class CommonInterface {
                 }
             }
         });
+    }
+
+    /**
+     * 轮询余额
+     */
+    public static void requestPollingBalance(AppRequestCallback<User_infoModel> listener) {
+        AppRequestParams params = new AppRequestParams();
+        params.putAct("getwallet");
+        params.putCtl("user");
+        AppHttpUtil.getInstance().post(params, listener);
     }
 
     /**

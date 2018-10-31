@@ -58,6 +58,7 @@ import com.fanwe.o2o.utils.BalanceMsgHelper;
 import com.fanwe.o2o.utils.GlideUtil;
 import com.fanwe.zxing.CaptureActivity;
 import com.sunday.eventbus.SDBaseEvent;
+import com.sunday.eventbus.SDEventManager;
 
 import org.xutils.http.cookie.DbCookieStore;
 import org.xutils.view.annotation.ViewInject;
@@ -192,8 +193,10 @@ public class MeFragmentNew extends BaseFragment {
             LinearLayout ll_service_call;
 
     private int login_status = 0;
+    private Handler mHandler = new Handler();
+    private Runnable runnable;
 
-    private String PAY_PASS_URL = "/mapi/index.php?ctl=user&act=paypass";
+    private String PAY_PASS_URL = "https://app.yitonggo.com/mapi/index.php?ctl=user&act=paypass";
 
     @Override
     protected int onCreateContentView() {
@@ -210,6 +213,34 @@ public class MeFragmentNew extends BaseFragment {
     public void onResume() {
         super.onResume();
         requestUserCenter();
+
+        getBalance();
+    }
+
+    private void getBalance() {
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                mHandler.postDelayed(this, 5000);
+                requestBalanceInfo();
+            }
+        };
+        mHandler.postDelayed(runnable, 5000);
+    }
+
+    private void requestBalanceInfo() {
+        CommonInterface.requestPollingBalance(new AppRequestCallback<User_infoModel>() {
+            @Override
+            protected void onSuccess(SDResponse sdResponse) {
+                SDEventManager.post(new EventLoginBack(actModel));
+            }
+        });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(runnable);
     }
 
     private void initListener() {
@@ -586,19 +617,19 @@ public class MeFragmentNew extends BaseFragment {
                 clickLogin();
             } else {
                 //是否已经设置过支付密码
+                requestPayInfo(PAY_PASS_URL);
 
-
-                boolean isSetPayWord = SDConfig.getInstance().getBoolean("is_set_pass", false);
-                if (isSetPayWord) {
-                    Intent intent = new Intent(getActivity(), MyCaptureActivity.class);
-                    startActivityForResult(intent, MyCaptureActivity.RESULT_CODE_SCAN_SUCCESS);
-                } else {
-                    //请求一下
-                    if (!TextUtils.isEmpty(userModel.getUser_name()) &&
-                            !TextUtils.isEmpty(userModel.getUser_pwd())) {
-                        requestPayInfo("");
-                    }
-                }
+//                boolean isSetPayWord = SDConfig.getInstance().getBoolean("is_set_pass", false);
+//                if (isSetPayWord) {
+//                    Intent intent = new Intent(getActivity(), MyCaptureActivity.class);
+//                    startActivityForResult(intent, MyCaptureActivity.RESULT_CODE_SCAN_SUCCESS);
+//                } else {
+//                    //请求一下
+//                    if (!TextUtils.isEmpty(userModel.getUser_name()) &&
+//                            !TextUtils.isEmpty(userModel.getUser_pwd())) {
+//                        requestPayInfo("");
+//                    }
+//                }
             }
         } else if (v == ll_service_code) {
             //服务码
@@ -620,7 +651,7 @@ public class MeFragmentNew extends BaseFragment {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    String phone_number = "123456";
+                    String phone_number = "09932901546";
                     Intent intent2 = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"
                             + phone_number));
                     getActivity().startActivity(intent2);
@@ -836,17 +867,23 @@ public class MeFragmentNew extends BaseFragment {
 
     private void getBalanceMsg(User_infoModel actModel, boolean boo) {
         if (boo) {
+            String wallet = actModel.getWallet();
             String wallet_gas = actModel.getWallet_gas();
             String wallet_any = actModel.getWallet_any();
             String truck_number = actModel.getTruck_number();
 
-            if (!TextUtils.isEmpty(wallet_gas))
-                SDViewBinder.setTextView(tv_general, wallet_gas);
+            if (!TextUtils.isEmpty(wallet_any))
+                SDViewBinder.setTextView(tv_balance, wallet);
+            else
+                SDViewBinder.setTextView(tv_balance, "请登录后查看");
+
+            if (!TextUtils.isEmpty(wallet_any))
+                SDViewBinder.setTextView(tv_general, wallet_any);
             else
                 SDViewBinder.setTextView(tv_general, "请登录后查看");
 
-            if (!TextUtils.isEmpty(wallet_any))
-                SDViewBinder.setTextView(tv_aerated, wallet_any);
+            if (!TextUtils.isEmpty(wallet_gas))
+                SDViewBinder.setTextView(tv_aerated, wallet_gas);
             else
                 SDViewBinder.setTextView(tv_aerated, "请登录后查看");
 

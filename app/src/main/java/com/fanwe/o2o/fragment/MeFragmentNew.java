@@ -221,18 +221,20 @@ public class MeFragmentNew extends BaseFragment {
         runnable = new Runnable() {
             @Override
             public void run() {
-                mHandler.postDelayed(this, 5000);
+                mHandler.postDelayed(this, 5 * 1000);
                 requestBalanceInfo();
             }
         };
-        mHandler.postDelayed(runnable, 5000);
+        mHandler.postDelayed(runnable, 5 * 1000);
     }
 
     private void requestBalanceInfo() {
         CommonInterface.requestPollingBalance(new AppRequestCallback<User_infoModel>() {
             @Override
             protected void onSuccess(SDResponse sdResponse) {
-                SDEventManager.post(new EventLoginBack(actModel));
+                if (actModel != null) {
+                    getBalanceMsgPolling(actModel);
+                }
             }
         });
     }
@@ -241,6 +243,27 @@ public class MeFragmentNew extends BaseFragment {
     public void onDestroy() {
         super.onDestroy();
         handler.removeCallbacks(runnable);
+    }
+
+    private void getBalanceMsgPolling(User_infoModel actModel) {
+        String wallet = actModel.getWallet();
+        String wallet_gas = actModel.getWallet_gas();
+        String wallet_any = actModel.getWallet_any();
+
+        if (!TextUtils.isEmpty(wallet))
+            SDViewBinder.setTextView(tv_balance, wallet);
+        else
+            SDViewBinder.setTextView(tv_balance, "请登录后查看");
+
+        if (!TextUtils.isEmpty(wallet_any))
+            SDViewBinder.setTextView(tv_general, wallet_any);
+        else
+            SDViewBinder.setTextView(tv_general, "请登录后查看");
+
+        if (!TextUtils.isEmpty(wallet_gas))
+            SDViewBinder.setTextView(tv_aerated, wallet_gas);
+        else
+            SDViewBinder.setTextView(tv_aerated, "请登录后查看");
     }
 
     private void initListener() {
@@ -867,15 +890,9 @@ public class MeFragmentNew extends BaseFragment {
 
     private void getBalanceMsg(User_infoModel actModel, boolean boo) {
         if (boo) {
-            String wallet = actModel.getWallet();
             String wallet_gas = actModel.getWallet_gas();
             String wallet_any = actModel.getWallet_any();
             String truck_number = actModel.getTruck_number();
-
-            if (!TextUtils.isEmpty(wallet_any))
-                SDViewBinder.setTextView(tv_balance, wallet);
-            else
-                SDViewBinder.setTextView(tv_balance, "请登录后查看");
 
             if (!TextUtils.isEmpty(wallet_any))
                 SDViewBinder.setTextView(tv_general, wallet_any);

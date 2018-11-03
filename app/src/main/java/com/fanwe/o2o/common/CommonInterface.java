@@ -361,13 +361,14 @@ public class CommonInterface {
      * @param new_pwd
      * @param listener
      */
-    public static void requestModifyPassword(String mobile, String sms_verify, String new_pwd, AppRequestCallback<User_infoModel> listener) {
+    public static void requestModifyPassword(String mobile, String sms_verify, String new_pwd, String msg_id, AppRequestCallback<User_infoModel> listener) {
         AppRequestParams params = new AppRequestParams();
         params.putAct("phmodifypassword");
         params.putCtl("user");
         params.put("mobile", mobile);
         params.put("sms_verify", sms_verify);
         params.put("new_pwd", new_pwd);
+        params.put("msg_id", msg_id);
         AppHttpUtil.getInstance().post(params, listener);
     }
 

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,8 +31,7 @@ import org.xutils.view.annotation.ViewInject;
 /**
  * 找回（修改）密码
  */
-public class ModifyPwdActivity extends BaseTitleActivity
-{
+public class ModifyPwdActivity extends BaseTitleActivity {
     /**
      * 页面标题(String)
      */
@@ -65,16 +65,16 @@ public class ModifyPwdActivity extends BaseTitleActivity
     private String extraMobile;
     private boolean isShow;
 
+    private String msg_id = "";
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_modify_pwd);
         init();
     }
 
-    private void init()
-    {
+    private void init() {
         getIntentData();
         initTitle();
         reSetBtnSendCode();
@@ -83,19 +83,16 @@ public class ModifyPwdActivity extends BaseTitleActivity
         showBindPhoneDialog();
     }
 
-    private void getIntentData()
-    {
+    private void getIntentData() {
         strTitle = getIntent().getStringExtra(EXTRA_TITLE);
         extraMobile = getIntent().getStringExtra(EXTRA_MOBILE);
     }
 
-    private void initTitle()
-    {
+    private void initTitle() {
         title.setMiddleTextTop(strTitle);
     }
 
-    private void reSetBtnSendCode()
-    {
+    private void reSetBtnSendCode() {
         btn_send_code.setmTextColorEnable(getResources().getColor(R.color.text_content_deep));
         btn_send_code.setmTextColorDisable(getResources().getColor(R.color.text_content_deep));
         btn_send_code.setmBackgroundDisableResId(R.drawable.layer_white);
@@ -105,17 +102,14 @@ public class ModifyPwdActivity extends BaseTitleActivity
         btn_send_code.updateViewState(true);
     }
 
-    private void showBindPhoneDialog()
-    {
+    private void showBindPhoneDialog() {
 //        LocalUserModel user = LocalUserModelDao.queryModel();
-        if (!TextUtils.isEmpty(extraMobile))
-        {
-            String startMobile = extraMobile.substring(0,4);
+        if (!TextUtils.isEmpty(extraMobile)) {
+            String startMobile = extraMobile.substring(0, 4);
             String endMobile = extraMobile.substring(8);
             et_mobile.setEnabled(false);
-            SDViewBinder.setTextView(et_mobile,startMobile + "****" + endMobile);
-        }else
-        {
+            SDViewBinder.setTextView(et_mobile, startMobile + "****" + endMobile);
+        } else {
             et_mobile.setEnabled(true);
         }
     }
@@ -123,74 +117,62 @@ public class ModifyPwdActivity extends BaseTitleActivity
     /**
      * 初始化发送验证码按钮
      */
-    private void initSDSendValidateButton()
-    {
-        btn_send_code.setmListener(new SDSendValidateButtonListener()
-        {
+    private void initSDSendValidateButton() {
+        btn_send_code.setmListener(new SDSendValidateButtonListener() {
             @Override
-            public void onTick()
-            {
+            public void onTick() {
             }
 
             @Override
-            public void onClickSendValidateButton()
-            {
+            public void onClickSendValidateButton() {
                 requestSendCode();
             }
         });
     }
 
-    private void requestSendCode()
-    {
+    private void requestSendCode() {
         if (!TextUtils.isEmpty(extraMobile))
             strMobile = extraMobile;
         else
             strMobile = et_mobile.getText().toString();
-        if (TextUtils.isEmpty(strMobile))
-        {
+        if (TextUtils.isEmpty(strMobile)) {
             SDToast.showToast("请输入手机号码");
             return;
         }
 
         showProgressDialog("");
-        CommonInterface.requestValidateCode(strMobile, unique, new AppRequestCallback<Sms_send_sms_codeActModel>()
-        {
+        CommonInterface.requestValidateCode(strMobile, unique, new AppRequestCallback<Sms_send_sms_codeActModel>() {
             @Override
-            protected void onSuccess(SDResponse sdResponse)
-            {
-                if (actModel.isOk())
-                {
+            protected void onSuccess(SDResponse sdResponse) {
+                if (actModel.isOk()) {
                     btn_send_code.setmDisableTime(actModel.getLesstime());
                     btn_send_code.startTickWork();
+                    msg_id = actModel.msg_id;
+                    Log.e("msg_id", "msg_id = " + msg_id);
                 }
             }
 
             @Override
-            protected void onError(SDResponse resp)
-            {
+            protected void onError(SDResponse resp) {
                 super.onError(resp);
             }
 
             @Override
-            protected void onFinish(SDResponse resp)
-            {
+            protected void onFinish(SDResponse resp) {
                 super.onFinish(resp);
                 dismissProgressDialog();
             }
         });
     }
 
-    private void registeClick()
-    {
+    private void registeClick() {
         ll_show.setOnClickListener(this);
         tv_submit.setOnClickListener(this);
     }
 
     @Override
-    public void onClick(View v)
-    {
-        switch (v.getId())
-        {
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.ll_show:
                 clickShowPwd();
                 break;
@@ -203,49 +185,39 @@ public class ModifyPwdActivity extends BaseTitleActivity
     }
 
     /**
-     *是否显示密码
+     * 是否显示密码
      */
-    private void clickShowPwd()
-    {
-        if (isShow)
-        {
+    private void clickShowPwd() {
+        if (isShow) {
             isShow = false;
             iv_show.setImageResource(R.drawable.ic_o2o_show_pwd);
             et_pwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-        }else
-        {
+        } else {
             isShow = true;
             iv_show.setImageResource(R.drawable.ic_o2o_hide_pwd);
             et_pwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
         }
     }
 
-    private void clickSubmit()
-    {
-        if (validateParam())
-        {
+    private void clickSubmit() {
+        if (validateParam()) {
             showProgressDialog("");
-            CommonInterface.requestModifyPassword(strMobile, strCode, strPwd, new AppRequestCallback<User_infoModel>()
-            {
+            CommonInterface.requestModifyPassword(strMobile, strCode, strPwd, msg_id, new AppRequestCallback<User_infoModel>() {
                 @Override
-                protected void onSuccess(SDResponse sdResponse)
-                {
-                    if (actModel.isOk())
-                    {
+                protected void onSuccess(SDResponse sdResponse) {
+                    if (actModel.isOk()) {
                         LocalUserModel.dealLoginSuccess(actModel, false);
                         finish();
                     }
                 }
 
                 @Override
-                protected void onError(SDResponse resp)
-                {
+                protected void onError(SDResponse resp) {
                     super.onError(resp);
                 }
 
                 @Override
-                protected void onFinish(SDResponse resp)
-                {
+                protected void onFinish(SDResponse resp) {
                     super.onFinish(resp);
                     dismissProgressDialog();
                 }
@@ -254,28 +226,24 @@ public class ModifyPwdActivity extends BaseTitleActivity
 
     }
 
-    private boolean validateParam()
-    {
+    private boolean validateParam() {
         if (!TextUtils.isEmpty(extraMobile))
             strMobile = extraMobile;
         else
             strMobile = et_mobile.getText().toString();
-        if (TextUtils.isEmpty(strMobile))
-        {
+        if (TextUtils.isEmpty(strMobile)) {
             SDToast.showToast("请输入手机号码");
             return false;
         }
 
         strPwd = et_pwd.getText().toString();
-        if (TextUtils.isEmpty(strPwd))
-        {
+        if (TextUtils.isEmpty(strPwd)) {
             SDToast.showToast("请输入密码");
             return false;
         }
 
         strCode = et_code.getText().toString();
-        if (TextUtils.isEmpty(strCode))
-        {
+        if (TextUtils.isEmpty(strCode)) {
             SDToast.showToast("请输入验证码");
             return false;
         }
@@ -283,10 +251,8 @@ public class ModifyPwdActivity extends BaseTitleActivity
         return true;
     }
 
-    public void onEventMainThread(EConfirmImageCode event)
-    {
-        if (SDActivityManager.getInstance().isLastActivity(this))
-        {
+    public void onEventMainThread(EConfirmImageCode event) {
+        if (SDActivityManager.getInstance().isLastActivity(this)) {
             requestSendCode();
         }
     }

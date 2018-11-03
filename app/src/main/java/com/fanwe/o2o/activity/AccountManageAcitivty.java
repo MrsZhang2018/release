@@ -51,8 +51,8 @@ public class AccountManageAcitivty extends BaseTitleActivity {
 //    private CommonRowView crv_row3;
     @ViewInject(R.id.crv_row4)
     private CommonRowView crv_row4;
-//    @ViewInject(R.id.crv_row5)
-//    private CommonRowView crv_row5;
+    @ViewInject(R.id.crv_row5)
+    private CommonRowView crv_row5;
 
     private boolean isPhoneUnbind = false;
     private boolean hasChangeName = false;
@@ -88,7 +88,7 @@ public class AccountManageAcitivty extends BaseTitleActivity {
         crv_row1.setOnClickListener(this);
         crv_row2.setOnClickListener(this);
         crv_row4.setOnClickListener(this);
-//        crv_row5.setOnClickListener(this);
+        crv_row5.setOnClickListener(this);
 
         mHandler = new PhotoHandler(this);
         mHandler.setListener(new PhotoHandler.PhotoHandlerListener() {

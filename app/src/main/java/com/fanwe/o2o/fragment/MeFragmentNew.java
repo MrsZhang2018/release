@@ -364,10 +364,11 @@ public class MeFragmentNew extends BaseFragment {
                 Glide.with(getActivity()).load(actModel.getUser_avatar())
                         .placeholder(R.mipmap.commodity_user_img_def)
                         .error(R.mipmap.commodity_user_img_def).into(iv_header);
-                Log.e("aaaaaaaaaaa", "user_name = " + user_name);
                 if (!TextUtils.isEmpty(user_name)) {
+                    Log.e("aaaaaaaaaaa", "user_name = " + user_name);
                     SDViewBinder.setTextView(tv_name, user_name);
                 } else {
+                    Log.e("aaaaaaaaaaa", "user_name = null");
                     SDViewBinder.setTextView(tv_name, "请点击登录");
                 }
 
@@ -861,7 +862,7 @@ public class MeFragmentNew extends BaseFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == MyCaptureActivity.RESULT_CODE_SCAN_SUCCESS && resultCode == RESULT_OK) {
+        if (requestCode == MyCaptureActivity.RESULT_CODE_SCAN_SUCCESS && resultCode == MyCaptureActivity.RESULT_CODE_SCAN_SUCCESS) {
             String str = data.getStringExtra(MyCaptureActivity.EXTRA_RESULT_SUCCESS_STRING);
             if (!TextUtils.isEmpty(str)) {
                 String url;
@@ -907,7 +908,7 @@ public class MeFragmentNew extends BaseFragment {
             if (!TextUtils.isEmpty(truck_number))
                 SDViewBinder.setTextView(tv_car_msg, "绑定车辆信息 " + truck_number);
             else
-                SDViewBinder.setTextView(tv_car_msg, "登录后查看车辆信息");
+                SDViewBinder.setTextView(tv_car_msg, "暂无车辆信息");
         } else {
             SDViewBinder.setTextView(tv_general, "请登录后查看");
             SDViewBinder.setTextView(tv_aerated, "请登录后查看");

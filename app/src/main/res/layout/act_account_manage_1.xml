@@ -38,7 +38,14 @@
             android:layout_width="match_parent"
             android:layout_height="53dp"
             app:crvLeftTxt="社交账号绑定"
-            app:crvRightTxt="微信"
+            app:crvRightTxt="微信" />
+
+        <com.fanwe.o2o.appview.CommonRowView
+            android:id="@+id/crv_row5"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            app:crvLeftTxt="修改密码"
+            app:crvRightTxt="******"
             app:crvShowBottomDivider="false" />
 
     </LinearLayout>

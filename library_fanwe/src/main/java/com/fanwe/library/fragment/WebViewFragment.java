@@ -52,6 +52,7 @@ public class WebViewFragment extends SDBaseFragment implements SDTitleListener
 	protected String mStrHtmlContent;
 	protected String mStrReferer;
 	protected String mStrTitle;
+	protected String mToken;
 
 	protected boolean isShowTitle = false;
 	protected boolean isScaleToShowAll = false;
@@ -111,6 +112,14 @@ public class WebViewFragment extends SDBaseFragment implements SDTitleListener
 		{
 			mTitle.setMiddleTextTop(title);
 		}
+	}
+
+	public String getmToken() {
+		return mToken;
+	}
+
+	public void setmToken(String mToken) {
+		this.mToken = mToken;
 	}
 
 	public void setHtmlContent(String htmlContent)

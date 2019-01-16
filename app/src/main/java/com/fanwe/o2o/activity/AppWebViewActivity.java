@@ -16,6 +16,7 @@ import com.fanwe.o2o.fragment.AppWebViewFragment;
 import com.fanwe.o2o.listener.PayResultListner;
 import com.fanwe.o2o.model.PaySdkModel;
 import com.fanwe.o2o.model.WXPayStateModel;
+import com.fanwe.o2o.utils.SharePreferencesUtil;
 import com.sunday.eventbus.SDBaseEvent;
 
 /**
@@ -70,6 +71,8 @@ public class AppWebViewActivity extends WebViewActivity implements PayResultList
     @Override
     protected WebViewFragment createFragment() {
         AppWebViewFragment fragment = new AppWebViewFragment();
+        String url_token = SharePreferencesUtil.getString(this, "Url_Token", "");
+        fragment.setmToken(url_token);
         fragment.setmProgressMode(EnumProgressMode.NONE);
         fragment.setmWebviewHeightMode(EnumWebviewHeightMode.MATCH_PARENT);
         return fragment;

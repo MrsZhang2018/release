@@ -14,6 +14,7 @@ public class BaseActModel
 	protected int user_login_status = 999;
 	protected String page_title;
 	protected String ref_uid;
+	protected String token;
 
 	public boolean isOk() {
 		return this.status == 1;
@@ -97,6 +98,14 @@ public class BaseActModel
 	public void setAct(String act)
 	{
 		this.act = act;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	public void showToast()

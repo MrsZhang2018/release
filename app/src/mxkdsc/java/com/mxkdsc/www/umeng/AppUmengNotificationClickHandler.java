@@ -20,7 +20,6 @@ import com.fanwe.library.common.SDActivityManager;
 import com.fanwe.library.utils.SDToast;
 import com.fanwe.library.utils.SDTypeParseUtil;
 import com.fanwe.o2o.activity.ActivityCouponActivity;
-import com.fanwe.o2o.activity.AppWebViewActivity;
 import com.fanwe.o2o.activity.MainActivity;
 import com.fanwe.o2o.app.App;
 import com.fanwe.o2o.constant.ApkConstant;

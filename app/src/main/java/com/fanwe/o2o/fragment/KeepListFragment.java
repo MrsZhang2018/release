@@ -2,7 +2,6 @@ package com.fanwe.o2o.fragment;
 
 import android.content.Intent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -10,10 +9,8 @@ import android.widget.Toast;
 
 import com.fanwe.library.adapter.SDAdapter;
 import com.fanwe.library.adapter.http.model.SDResponse;
-import com.fanwe.library.utils.SDToast;
 import com.fanwe.library.utils.SDViewUtil;
 import com.fanwe.o2o.R;
-import com.fanwe.o2o.activity.ActivityCouponActivity;
 import com.fanwe.o2o.activity.AppWebViewActivity;
 import com.fanwe.o2o.adapter.KeepListAdapter;
 import com.fanwe.o2o.common.CommonInterface;
@@ -91,7 +88,6 @@ public class KeepListFragment extends BaseFragment {
                 if (item.getIs_select() == 0) {
                     //// TODO: 17/3/14 未编辑状态下 点击item 
                     Intent intent = new Intent(getActivity(), AppWebViewActivity.class);
-                    intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE,false);
                     intent.putExtra(AppWebViewActivity.EXTRA_URL,item.getUrl());
                     getActivity().startActivity(intent);
                 }

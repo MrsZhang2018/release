@@ -27,7 +27,6 @@ import com.fanwe.library.utils.SDJsonUtil;
 import com.fanwe.library.utils.SDOtherUtil;
 import com.fanwe.library.utils.SDToast;
 import com.fanwe.library.utils.UrlLinkBuilder;
-import com.fanwe.library.webview.CustomWebView;
 import com.fanwe.o2o.R;
 import com.fanwe.o2o.activity.AccountManageAcitivty;
 import com.fanwe.o2o.activity.ActivitiesListActivity;
@@ -56,14 +55,11 @@ import com.fanwe.o2o.event.EUnLogin;
 import com.fanwe.o2o.http.AppRequestCallback;
 import com.fanwe.o2o.listener.listenerimpl.XNSDKListenerImpl;
 import com.fanwe.o2o.model.AppUserLoginOutActModel;
-import com.fanwe.o2o.model.JSOrderDetailModel;
 import com.fanwe.o2o.model.PaySdkModel;
 import com.fanwe.o2o.model.ShareModel;
-import com.fanwe.o2o.model.WapPayMethod;
 import com.fanwe.o2o.model.XiaoNengGoodsModel;
 import com.fanwe.o2o.umeng.UmengSocialManager;
 import com.fanwe.o2o.utils.GlideUtil;
-import com.fanwe.o2o.utils.JsonUtil;
 import com.fanwe.o2o.utils.StorageFileUtils;
 import com.fanwe.o2o.work.AppRuntimeWorker;
 import com.sunday.eventbus.SDBaseEvent;
@@ -369,7 +365,6 @@ public class AppJsHandler extends BaseJsHandler
                 String url = ApkConstant.SERVER_URL_WAP;
                 UrlLinkBuilder urlBuilder = new UrlLinkBuilder(url);
                 urlBuilder.add("ctl", "cart");
-                intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE, false);
                 intent.putExtra(AppWebViewActivity.EXTRA_URL, urlBuilder.build());
                 startActivity(intent);
 
@@ -632,7 +627,6 @@ public class AppJsHandler extends BaseJsHandler
                     .append("&data_id=").append(deal_id);
             String url = String.valueOf(sb);
             Intent intent = new Intent(context.getApplicationContext(), AppWebViewActivity.class);
-            intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE, false);
             intent.putExtra(AppWebViewActivity.EXTRA_URL, url);
             context.startActivity(intent);
         } else

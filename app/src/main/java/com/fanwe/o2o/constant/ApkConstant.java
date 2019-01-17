@@ -31,6 +31,8 @@ public class ApkConstant {
     public static final String SERVER_URL_PATH_WAP = "/wap/index.php";
 
     public static final String SERVER_URL_WAP = SERVER_URL_SCHEMES + SERVER_URL_DOMAIN + SERVER_URL_PATH_WAP;
+
+    public static final String SERVER_URL_WAP1 = SERVER_URL_SCHEMES + SERVER_URL_DOMAIN ;
     /**
      * 首页完整地址
      */

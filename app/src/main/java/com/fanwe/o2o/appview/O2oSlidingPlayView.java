@@ -2,18 +2,15 @@ package com.fanwe.o2o.appview;
 
 import android.content.Context;
 import android.content.Intent;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.fanwe.library.adapter.SDAdapter;
 import com.fanwe.library.customview.SDSlidingPlayView;
 import com.fanwe.library.utils.SDActivityUtil;
-import com.fanwe.library.utils.SDToast;
 import com.fanwe.library.utils.SDViewUtil;
 import com.fanwe.library.view.SDAppView;
 import com.fanwe.o2o.R;
-import com.fanwe.o2o.activity.AppWebViewActivity;
 import com.fanwe.o2o.adapter.O2oTabHotBannerPagerAdapter;
 import com.fanwe.o2o.constant.ApkConstant;
 import com.fanwe.o2o.model.WapIndexAdvsDataModel;

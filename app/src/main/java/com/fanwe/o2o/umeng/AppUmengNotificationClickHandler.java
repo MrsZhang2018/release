@@ -2,7 +2,6 @@ package com.fanwe.o2o.umeng;
 
 import android.content.Context;
 import android.content.Intent;
-import android.text.TextUtils;
 
 //import com.fanwe.AppWebViewActivity;
 //import com.fanwe.EventDetailActivity;
@@ -17,18 +16,14 @@ import android.text.TextUtils;
 //import com.fanwe.model.JpushDataModel;
 //import com.fanwe.utils.JsonUtil;
 import com.fanwe.library.common.SDActivityManager;
-import com.fanwe.library.utils.SDToast;
 import com.fanwe.library.utils.SDTypeParseUtil;
-import com.fanwe.o2o.activity.ActivityCouponActivity;
 import com.fanwe.o2o.activity.AppWebViewActivity;
 import com.fanwe.o2o.activity.MainActivity;
 import com.fanwe.o2o.app.App;
 import com.fanwe.o2o.constant.ApkConstant;
 import com.fanwe.o2o.constant.Constant;
 import com.fanwe.o2o.event.EIntentAppMain;
-import com.fanwe.o2o.jshandler.AppJsHandler;
 import com.fanwe.o2o.model.JpushDataModel;
-import com.fanwe.o2o.utils.JsonUtil;
 import com.sunday.eventbus.SDEventManager;
 import com.umeng.message.UmengNotificationClickHandler;
 import com.umeng.message.entity.UMessage;
@@ -126,7 +121,6 @@ public class AppUmengNotificationClickHandler extends UmengNotificationClickHand
                     .append("?ctl=").append(ctl)
                     .append("&data_id=").append(deal_id);
             String url = String.valueOf(sb);
-            intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE, false);
             intent.putExtra(AppWebViewActivity.EXTRA_URL, url);
 //            context.startActivity(intent);
         return intent;

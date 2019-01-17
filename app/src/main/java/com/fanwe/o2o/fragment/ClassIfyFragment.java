@@ -84,7 +84,6 @@ public class ClassIfyFragment extends BaseFragment implements View.OnClickListen
         if (!TextUtils.isEmpty(url))
         {
             Intent intent = new Intent(getActivity(), AppWebViewActivity.class);
-            intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE,false);
             intent.putExtra(AppWebViewActivity.EXTRA_URL,url);
             getActivity().startActivity(intent);
         }else

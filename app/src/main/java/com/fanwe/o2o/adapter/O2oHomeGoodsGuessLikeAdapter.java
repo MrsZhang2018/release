@@ -69,7 +69,6 @@ public class O2oHomeGoodsGuessLikeAdapter extends SDSimpleAdapter<List<WapIndexD
                     AppHttpUtil.syncCookie(app_url, AppConfig.getSessionId());
                 }
                 Intent intent  = new Intent(getActivity(), AppWebViewActivity.class);
-                intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE,false);
                 intent.putExtra(AppWebViewActivity.EXTRA_URL,app_url);
                 getActivity().startActivity(intent);
             }else

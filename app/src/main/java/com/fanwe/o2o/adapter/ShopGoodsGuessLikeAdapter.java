@@ -64,7 +64,6 @@ public class ShopGoodsGuessLikeAdapter extends SDSimpleAdapter<List<ShopIndexSup
             if (!TextUtils.isEmpty(app_url))
             {
                 Intent intent  = new Intent(getActivity(), AppWebViewActivity.class);
-                intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE,false);
                 intent.putExtra(AppWebViewActivity.EXTRA_URL,app_url);
                 getActivity().startActivity(intent);
             }else

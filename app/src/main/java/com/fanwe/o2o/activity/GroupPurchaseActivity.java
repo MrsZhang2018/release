@@ -167,7 +167,6 @@ public class GroupPurchaseActivity extends BaseTitleActivity
         if (!TextUtils.isEmpty(url))
         {
             Intent intent = new Intent(this, AppWebViewActivity.class);
-            intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE,false);
             intent.putExtra(AppWebViewActivity.EXTRA_URL,url);
             startActivity(intent);
         }else

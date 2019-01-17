@@ -1,12 +1,9 @@
 package com.fanwe.o2o.dialog;
 
-import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -28,13 +25,10 @@ import com.fanwe.o2o.common.CommonInterface;
 import com.fanwe.o2o.constant.ApkConstant;
 import com.fanwe.o2o.constant.Constant;
 import com.fanwe.o2o.event.EIntentAppMain;
-import com.fanwe.o2o.event.EIntentDiscover;
-import com.fanwe.o2o.event.EIntentShopCart;
 import com.fanwe.o2o.event.EIntentUserCenter;
 import com.fanwe.o2o.event.ERefreshRequest;
 import com.fanwe.o2o.http.AppRequestCallback;
 import com.fanwe.o2o.model.AppHaveReadMsgActModel;
-import com.fanwe.o2o.work.AppRuntimeWorker;
 import com.sunday.eventbus.SDEventManager;
 
 import org.xutils.view.annotation.ViewInject;
@@ -221,7 +215,6 @@ public class MoreTitleDialog extends SDDialogCustom
         String url = ApkConstant.SERVER_URL_WAP;
         UrlLinkBuilder urlBuilder = new UrlLinkBuilder(url);
         urlBuilder.add("ctl", "cart");
-        intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE,false);
         intent.putExtra(AppWebViewActivity.EXTRA_URL, urlBuilder.build());
         getOwnerActivity().startActivity(intent);
         dismiss();

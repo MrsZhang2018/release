@@ -88,11 +88,6 @@
             android:windowSoftInputMode="adjustPan" />
 
         <!-- O2OWebView -->
-        <activity
-            android:name=".activity.AppWebViewActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
 
         <!-- 搜索 -->
         <activity
@@ -111,6 +106,13 @@
         <!-- 团购首页 -->
         <activity
             android:name=".activity.GroupPurchaseActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!-- 团购首页 -->
+        <activity
+            android:name=".activity.AppWebViewActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />

@@ -25,6 +25,7 @@ public class DefaultWebViewClient extends WebViewClient
 		this.listener = listener;
 	}
 
+
 	@Override
 	public boolean shouldOverrideUrlLoading(WebView view, String url)
 	{
@@ -155,7 +156,8 @@ public class DefaultWebViewClient extends WebViewClient
 		{
 			listener.onReceivedSslError(view, handler, error);
 		}
-		super.onReceivedSslError(view, handler, error);
+		handler.proceed();
+//		super.onReceivedSslError(view, handler, error);
 	}
 
 	@Override

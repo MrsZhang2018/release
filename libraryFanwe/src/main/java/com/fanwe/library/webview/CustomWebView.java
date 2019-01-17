@@ -5,10 +5,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.net.http.SslError;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.webkit.DownloadListener;
+import android.webkit.SslErrorHandler;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -150,6 +152,13 @@ public class CustomWebView extends WebView
      */
     private SDWebViewClientWrapper webViewClient = new SDWebViewClientWrapper()
     {
+
+        @Override
+        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+//            super.onReceivedSslError(view, handler, error);
+            handler.proceed();
+        }
+
         @Override
         public void onPageFinished(WebView view, String url)
         {

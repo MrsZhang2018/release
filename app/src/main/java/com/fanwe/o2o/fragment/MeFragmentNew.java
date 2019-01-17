@@ -12,21 +12,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.fanwe.library.adapter.http.model.SDResponse;
-import com.fanwe.library.config.SDConfig;
 import com.fanwe.library.utils.SDToast;
 import com.fanwe.library.utils.SDViewBinder;
-import com.fanwe.library.utils.SDViewUtil;
 import com.fanwe.o2o.R;
 import com.fanwe.o2o.activity.AboutUsActivity;
 import com.fanwe.o2o.activity.AccountManageAcitivty;
 import com.fanwe.o2o.activity.ActivityCouponActivity;
-import com.fanwe.o2o.activity.AppWebViewActivity;
 import com.fanwe.o2o.activity.BindMobileActivity;
 import com.fanwe.o2o.activity.BuyOrderActivity;
 import com.fanwe.o2o.activity.ConsumeCouponActivity;
@@ -36,36 +32,24 @@ import com.fanwe.o2o.activity.LoginActivity;
 import com.fanwe.o2o.activity.MessageCenterActivity;
 import com.fanwe.o2o.activity.MyCaptureActivity;
 import com.fanwe.o2o.activity.OrderRefundListActivity;
-import com.fanwe.o2o.activity.OrderListActivity;
 import com.fanwe.o2o.activity.SettingActivity;
-import com.fanwe.o2o.activity.ShippingAddressActivity;
+import com.fanwe.o2o.activity.AppWebViewActivity;
 import com.fanwe.o2o.common.CommonInterface;
-import com.fanwe.o2o.config.AppConfig;
 import com.fanwe.o2o.constant.ApkConstant;
-import com.fanwe.o2o.constant.Constant;
-import com.fanwe.o2o.dao.InitActModelDao;
 import com.fanwe.o2o.dao.LocalUserModelDao;
 import com.fanwe.o2o.event.EventLoginBack;
 import com.fanwe.o2o.http.AppRequestCallback;
 import com.fanwe.o2o.http.AppSessionRequestCallback;
 import com.fanwe.o2o.model.AppUserCenterWapIndexActModel;
 import com.fanwe.o2o.model.AppUserSettingActModel;
-import com.fanwe.o2o.model.Init_indexActModel;
 import com.fanwe.o2o.model.LocalUserModel;
 import com.fanwe.o2o.model.User_infoModel;
 import com.fanwe.o2o.model.User_is_set_pass;
 import com.fanwe.o2o.utils.BalanceMsgHelper;
-import com.fanwe.o2o.utils.GlideUtil;
-import com.fanwe.zxing.CaptureActivity;
 import com.sunday.eventbus.SDBaseEvent;
-import com.sunday.eventbus.SDEventManager;
 
-import org.xutils.http.cookie.DbCookieStore;
 import org.xutils.view.annotation.ViewInject;
 
-import cn.xiaoneng.uiapi.Ntalker;
-
-import static android.app.Activity.RESULT_OK;
 import static com.fanwe.o2o.activity.ConsumeCouponActivity.EXTRA_COUPON_NAME;
 
 /**
@@ -832,7 +816,6 @@ public class MeFragmentNew extends BaseFragment {
     private void clickWebView(String url) {
         if (!TextUtils.isEmpty(url)) {
             Intent intent = new Intent(getActivity(), AppWebViewActivity.class);
-            intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE, false);
             intent.putExtra(AppWebViewActivity.EXTRA_URL, url);
             getActivity().startActivity(intent);
         } else
@@ -861,15 +844,17 @@ public class MeFragmentNew extends BaseFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == MyCaptureActivity.RESULT_CODE_SCAN_SUCCESS && resultCode == RESULT_OK) {
-            String str = data.getStringExtra(MyCaptureActivity.EXTRA_RESULT_SUCCESS_STRING);
-            if (!TextUtils.isEmpty(str)) {
-                String url;
-                if (str.startsWith("/wap/index.php?ctl=uc_money")) {
-                    url = ApkConstant.SERVER_URL_WAP + "/" + str;
-                    clickWebView(url);
-                } else {
-                    SDToast.showToast("需指定商家端二维码");
+        if (requestCode == MyCaptureActivity.RESULT_CODE_SCAN_SUCCESS) {
+            if (data != null) {
+                String str = data.getStringExtra(MyCaptureActivity.EXTRA_RESULT_SUCCESS_STRING);
+                if (!TextUtils.isEmpty(str)) {
+                    String url;
+                    if (str.startsWith("/wap/index.php?ctl=uc_money")) {
+                        url = ApkConstant.SERVER_URL_WAP1 + str;
+                        clickWebView(url);
+                    } else {
+                        SDToast.showToast("需指定商家端二维码");
+                    }
                 }
             }
         }

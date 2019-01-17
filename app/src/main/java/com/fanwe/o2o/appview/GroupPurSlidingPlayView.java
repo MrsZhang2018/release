@@ -14,9 +14,7 @@ import com.fanwe.library.view.SDAppView;
 import com.fanwe.o2o.R;
 import com.fanwe.o2o.activity.AppWebViewActivity;
 import com.fanwe.o2o.adapter.GroupPurHotBannerPagerAdapter;
-import com.fanwe.o2o.adapter.O2oTabHotBannerPagerAdapter;
 import com.fanwe.o2o.model.GroupPurIndexAdvsModel;
-import com.fanwe.o2o.model.WapIndexAdvsModel;
 
 import java.util.List;
 

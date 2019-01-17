@@ -19,8 +19,6 @@ import com.fanwe.o2o.view.HeadlinesView;
 
 import java.util.List;
 
-import static com.fanwe.o2o.constant.ApkConstant.SERVER_URL_PATH_WAP;
-
 /**
  * Created by Administrator on 2016/12/13.
  */
@@ -134,7 +132,6 @@ public class HomeHeadlinesView extends SDAppView
         if (!TextUtils.isEmpty(url))
         {
             Intent intent = new Intent(getActivity(), AppWebViewActivity.class);
-            intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE,false);
             intent.putExtra(AppWebViewActivity.EXTRA_URL,url);
             getActivity().startActivity(intent);
         }else

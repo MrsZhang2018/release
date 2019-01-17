@@ -19,7 +19,6 @@ import com.fanwe.o2o.activity.ModifyPwdActivity;
 import com.fanwe.o2o.activity.NewRegisterActivity;
 import com.fanwe.o2o.common.CommonInterface;
 import com.fanwe.o2o.event.EConfirmImageCode;
-import com.fanwe.o2o.event.ELoginSuccess;
 import com.fanwe.o2o.event.EventLoginBack;
 import com.fanwe.o2o.http.AppRequestCallback;
 import com.fanwe.o2o.http.AppSessionRequestCallback;
@@ -199,7 +198,6 @@ public class LoginPhoneFragment extends LoginBaseFragment {
     private void clickWebView(String url) {
         if (!TextUtils.isEmpty(url)) {
             Intent intent = new Intent(getActivity(), AppWebViewActivity.class);
-            intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE, false);
             intent.putExtra(AppWebViewActivity.EXTRA_URL, url);
             getActivity().startActivity(intent);
         } else

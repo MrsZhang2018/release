@@ -316,7 +316,6 @@ public class MainActivity extends BaseActivity {
         String url = ApkConstant.SERVER_URL_WAP + ApkConstant.ORDER;
         UrlLinkBuilder urlBuilder = new UrlLinkBuilder(url);
 //        urlBuilder.add("ctl", ctlString);
-        intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE, false);
         intent.putExtra(AppWebViewActivity.EXTRA_URL, urlBuilder.build());
         startActivity(intent);
         overridePendingTransition(R.anim.anim_nothing, R.anim.anim_nothing);

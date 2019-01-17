@@ -44,8 +44,6 @@ import com.fanwe.o2o.event.EIntentAppMain;
 import com.fanwe.o2o.event.EIntentDiscover;
 import com.fanwe.o2o.event.EIntentUserCenter;
 import com.fanwe.o2o.event.EOrderListRefresh;
-import com.fanwe.o2o.event.ERefreshOrderList;
-import com.fanwe.o2o.event.ERefreshRequest;
 import com.fanwe.o2o.http.AppRequestCallback;
 import com.fanwe.o2o.model.AdvsDataModel;
 import com.fanwe.o2o.model.App_RegionListActModel;
@@ -56,7 +54,6 @@ import com.fanwe.o2o.model.LocalUserModel;
 import com.sunday.eventbus.SDEventManager;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -357,7 +354,6 @@ public class AppRuntimeWorker
                 if (!TextUtils.isEmpty(url))
                 {
                     intent = new Intent(App.getApplication(), AppWebViewActivity.class);
-                    intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE, false);
                     intent.putExtra(AppWebViewActivity.EXTRA_URL, new UrlLinkBuilder(url).add("from", "app").add("r_type", "5").add("page_finsh", "1").build());
                 }
                 break;
@@ -593,7 +589,6 @@ public class AppRuntimeWorker
                 //物流&收货
                 intent = new Intent(App.getApplication(), AppWebViewActivity.class);
                 intent.putExtra(AppWebViewActivity.EXTRA_URL, new UrlLinkBuilder(ApkConstant.SERVER_URL_SCHEMES + ApkConstant.SERVER_URL_DOMAIN + url).build());
-                intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE, false);
                 SDActivityManager.getInstance().getLastActivity().startActivity(intent);
                 break;
             case Constant.OrderBtnType.COUPON:
@@ -640,7 +635,6 @@ public class AppRuntimeWorker
                 //去支付
                 intent = new Intent(App.getApplication(), AppWebViewActivity.class);
                 intent.putExtra(AppWebViewActivity.EXTRA_URL, new UrlLinkBuilder(ApkConstant.SERVER_URL_SCHEMES + ApkConstant.SERVER_URL_DOMAIN + url).build());
-                intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE, false);
                 SDActivityManager.getInstance().getLastActivity().startActivity(intent);
                 break;
             case Constant.OrderBtnType.CANCEL:
@@ -762,7 +756,6 @@ public class AppRuntimeWorker
 
         String url = String.valueOf(sb);
         Intent intent2 = new Intent(activity, AppWebViewActivity.class);
-        intent2.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE, false);
         intent2.putExtra(AppWebViewActivity.EXTRA_URL, url);
         activity.startActivity(intent2);
     }

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -208,7 +207,6 @@ public class LoginFragment extends LoginBaseFragment
 		if (!TextUtils.isEmpty(url))
 		{
 			Intent intent = new Intent(getActivity(), AppWebViewActivity.class);
-			intent.putExtra(AppWebViewActivity.EXTRA_IS_SHOW_TITLE,false);
 			intent.putExtra(AppWebViewActivity.EXTRA_URL,url);
 			getActivity().startActivity(intent);
 		}else

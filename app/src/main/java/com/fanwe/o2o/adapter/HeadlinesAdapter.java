@@ -1,15 +1,10 @@
 package com.fanwe.o2o.adapter;
 
-import android.content.Intent;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.fanwe.library.utils.SDToast;
 import com.fanwe.o2o.R;
-import com.fanwe.o2o.activity.AppWebViewActivity;
-import com.fanwe.o2o.constant.ApkConstant;
 import com.fanwe.o2o.model.WapIndexArticleModel;
 import com.fanwe.o2o.view.HeadlinesView;
 

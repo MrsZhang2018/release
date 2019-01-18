@@ -31,6 +31,7 @@ public class LocalUserModel implements Serializable
 	private int is_tmp;
 	private boolean is_set_pass;
 	private String msg_id;
+	private String token;
 
 	public static void dealLoginSuccess(User_infoModel model, boolean postEvent)
 	{
@@ -46,6 +47,7 @@ public class LocalUserModel implements Serializable
 			localModel.setIs_tmp(model.getIs_tmp());
 			localModel.setMsg_id(model.getMsg_id());
             localModel.setIs_set_pass(model.isIs_set_pass());
+			localModel.setToken(model.getToken());
 			dealLoginSuccess(localModel, postEvent);
 		}
 	}
@@ -173,6 +175,14 @@ public class LocalUserModel implements Serializable
 
 	public void setMsg_id(String msg_id) {
 		this.msg_id = msg_id;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	public LocalUserModel deepClone()

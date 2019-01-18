@@ -890,29 +890,31 @@ public class MeFragmentNew extends BaseFragment {
     }
 
     private void getBalanceMsg(User_infoModel actModel, boolean boo) {
-        if (boo) {
-            String wallet_gas = actModel.getWallet_gas();
-            String wallet_any = actModel.getWallet_any();
-            String truck_number = actModel.getTruck_number();
+        if (actModel != null) {
+            if (boo) {
+                String wallet_gas = actModel.getWallet_gas();
+                String wallet_any = actModel.getWallet_any();
+                String truck_number = actModel.getTruck_number();
 
-            if (!TextUtils.isEmpty(wallet_any))
-                SDViewBinder.setTextView(tv_general, wallet_any);
-            else
+                if (!TextUtils.isEmpty(wallet_any))
+                    SDViewBinder.setTextView(tv_general, wallet_any);
+                else
+                    SDViewBinder.setTextView(tv_general, "请登录后查看");
+
+                if (!TextUtils.isEmpty(wallet_gas))
+                    SDViewBinder.setTextView(tv_aerated, wallet_gas);
+                else
+                    SDViewBinder.setTextView(tv_aerated, "请登录后查看");
+
+                if (!TextUtils.isEmpty(truck_number))
+                    SDViewBinder.setTextView(tv_car_msg, "绑定车辆信息 " + truck_number);
+                else
+                    SDViewBinder.setTextView(tv_car_msg, "登录后查看车辆信息");
+            } else {
                 SDViewBinder.setTextView(tv_general, "请登录后查看");
-
-            if (!TextUtils.isEmpty(wallet_gas))
-                SDViewBinder.setTextView(tv_aerated, wallet_gas);
-            else
                 SDViewBinder.setTextView(tv_aerated, "请登录后查看");
-
-            if (!TextUtils.isEmpty(truck_number))
-                SDViewBinder.setTextView(tv_car_msg, "绑定车辆信息 " + truck_number);
-            else
-                SDViewBinder.setTextView(tv_car_msg, "暂无车辆信息");
-        } else {
-            SDViewBinder.setTextView(tv_general, "请登录后查看");
-            SDViewBinder.setTextView(tv_aerated, "请登录后查看");
-            SDViewBinder.setTextView(tv_car_msg, "登录后查看车辆信息");
+                SDViewBinder.setTextView(tv_car_msg, "登录后查看车辆信息");
+            }
         }
     }
 

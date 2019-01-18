@@ -26,6 +26,7 @@ import com.fanwe.o2o.http.AppSessionRequestCallback;
 import com.fanwe.o2o.model.LocalUserModel;
 import com.fanwe.o2o.model.Sms_send_sms_codeActModel;
 import com.fanwe.o2o.model.User_infoModel;
+import com.fanwe.o2o.utils.SharePreferencesUtil;
 import com.sunday.eventbus.SDEventManager;
 
 import org.xutils.view.annotation.ViewInject;
@@ -145,9 +146,9 @@ public class LoginPhoneFragment extends LoginBaseFragment {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.tv_login:
-                if(ll_code.getVisibility()==View.VISIBLE){
+                if (ll_code.getVisibility() == View.VISIBLE) {
                     clickLogin();
-                }else if(et_pwd.getVisibility()==View.VISIBLE){
+                } else if (et_pwd.getVisibility() == View.VISIBLE) {
                     mStrMobile = mEtMobile.getText().toString();
                     String mStrPwd = et_pwd.getText().toString();
                     getUserPwdLogin(mStrMobile, mStrPwd);
@@ -280,6 +281,7 @@ public class LoginPhoneFragment extends LoginBaseFragment {
             @Override
             protected void onSuccess(SDResponse sdResponse) {
                 if (actModel.isOk()) {
+                    SharePreferencesUtil.addString(getActivity(), "Url_Token", actModel.getToken());
                     dealLoginNormalSuccess(actModel, true);
                 }
             }
@@ -322,6 +324,7 @@ public class LoginPhoneFragment extends LoginBaseFragment {
             @Override
             protected void onSuccess(SDResponse sdResponse) {
                 if (actModel.isOk()) {
+                    SharePreferencesUtil.addString(getActivity(), "Url_Token", actModel.getToken());
                     dealLoginNormalSuccess(actModel, true);
                 }
             }

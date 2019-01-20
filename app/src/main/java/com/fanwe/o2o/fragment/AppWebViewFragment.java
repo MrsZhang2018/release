@@ -291,7 +291,7 @@ public class AppWebViewFragment extends WebViewFragment {
 	private String putSessionId(String url)
 	{
 		// 如果是域名的url，添加session
-		if (url != null && url.contains(ApkConstant.SERVER_URL_DOMAIN) &url.contains("sess_id"))
+		if (url != null && url.contains(ApkConstant.SERVER_URL_DOMAIN) && !url.contains("sess_id"))
 		{
 			String sessionId = AppConfig.getSessionId();
 			if (sessionId != null)

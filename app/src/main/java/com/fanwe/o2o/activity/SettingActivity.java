@@ -2,6 +2,7 @@ package com.fanwe.o2o.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -22,11 +23,17 @@ import com.fanwe.o2o.event.ELoginOut;
 import com.fanwe.o2o.event.ELoginSuccess;
 import com.fanwe.o2o.event.ERefreshRequest;
 import com.fanwe.o2o.http.AppRequestCallback;
+import com.fanwe.o2o.model.AccountManageActModel;
+import com.fanwe.o2o.model.AccountManageGroupInfoModel;
+import com.fanwe.o2o.model.AccountManageLevelInfoModel;
+import com.fanwe.o2o.model.AccountManageUserInfoModel;
 import com.fanwe.o2o.model.AppUserLoginOutActModel;
 import com.fanwe.o2o.model.AppUserSettingActModel;
 import com.fanwe.o2o.utils.BalanceMsgHelper;
 import com.fanwe.o2o.utils.DataCleanManager;
 import com.sunday.eventbus.SDEventManager;
+
+import java.util.List;
 
 import cn.xiaoneng.uiapi.Ntalker;
 
@@ -41,6 +48,7 @@ public class SettingActivity extends BaseTitleActivity {
     private TextView tv_tel;
     private RelativeLayout rl_service_mailbox;
     private TextView tv_email;
+    private RelativeLayout rl_update_pwd;
     private RelativeLayout rl_about_us;
     private RelativeLayout rl_login_out;
     private RelativeLayout rl_clean_cache;
@@ -50,6 +58,7 @@ public class SettingActivity extends BaseTitleActivity {
     private String cacheSize = "0MB";
     private MoreTitleDialog titleDialog;
     private SDDialogConfirm dialog;
+    private AccountManageUserInfoModel userInfoModel;
 
     @Override
     protected void init(Bundle savedInstanceState) {
@@ -62,6 +71,7 @@ public class SettingActivity extends BaseTitleActivity {
         tv_tel = find(R.id.tv_tel);
         rl_service_mailbox = find(R.id.rl_service_mailbox);
         tv_email = find(R.id.tv_email);
+        rl_update_pwd = find(R.id.rl_update_pwd);
         rl_about_us = find(R.id.rl_about_us);
         rl_login_out = find(R.id.rl_login_out);
         rl_clean_cache = find(R.id.rl_clean_cache);
@@ -71,12 +81,14 @@ public class SettingActivity extends BaseTitleActivity {
         title.getItemRight(0).setImageRight(R.drawable.ic_title_more);
 
         requestUserSetting();
+        requestAccountManage();
         cacheSize = getCacheSize();
         SDViewBinder.setTextView(tv_clean_chache, "(缓存大小:" + cacheSize + ")");
 
         rl_version.setOnClickListener(this);
         rl_clean_cache.setOnClickListener(this);
         rl_service_phone.setOnClickListener(this);
+        rl_update_pwd.setOnClickListener(this);
         rl_about_us.setOnClickListener(this);
         rl_login_out.setOnClickListener(this);
     }
@@ -131,7 +143,20 @@ public class SettingActivity extends BaseTitleActivity {
         } else if (v == rl_login_out) {
             //退出登录
             clickLoginOut();
+        } else if (v == rl_update_pwd) {
+            //修改密码
+            clickModifyPwd();
         }
+    }
+
+    /**
+     * 修改密码
+     */
+    private void clickModifyPwd() {
+        Intent intent = new Intent(this, ModifyPwdActivity.class);
+        intent.putExtra(ModifyPwdActivity.EXTRA_TITLE, "修改密码");
+        intent.putExtra(ModifyPwdActivity.EXTRA_MOBILE, userInfoModel.getMobile());
+        startActivity(intent);
     }
 
     private void clickAboutUs() {
@@ -215,6 +240,27 @@ public class SettingActivity extends BaseTitleActivity {
                     BalanceMsgHelper.get().setUserInfoBean(null);
                     finish();
                 }
+            }
+        });
+    }
+
+    private void requestAccountManage() {
+        CommonInterface.requestAccountManage(new AppRequestCallback<AccountManageActModel>() {
+            @Override
+            protected void onSuccess(SDResponse sdResponse) {
+                if (actModel.isOk()) {
+                    userInfoModel = actModel.getUser_info();
+                }
+            }
+
+            @Override
+            protected void onError(SDResponse resp) {
+                super.onError(resp);
+            }
+
+            @Override
+            protected void onFinish(SDResponse resp) {
+                super.onFinish(resp);
             }
         });
     }

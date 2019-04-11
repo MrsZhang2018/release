@@ -69,8 +69,8 @@ android {
     productFlavors {
         fanwe_o2o {
             applicationId "com.yitonggo.app"
-            versionCode 3
-            versionName "3.0"
+            versionCode 4
+            versionName "4.0"
             //            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"192.168.1.109/o2onew"'
             //            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"192.168.1.74/o2onew"'
             //            buildConfigField 'String', 'SERVER_URL_DOMAIN', '"192.168.1.189/o2onew"'

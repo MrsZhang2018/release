@@ -1,165 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_act_fra">
+    android:background="@color/bg_act_fra"
+    android:orientation="vertical">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/stroke"/>
+        android:background="@color/stroke" />
 
     <RelativeLayout
         android:id="@+id/rl_version"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_title_bar"
-        android:gravity="center_vertical"
-        android:background="@drawable/selector_white_to_gray_press">
+        android:background="@drawable/selector_white_to_gray_press"
+        android:gravity="center_vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="当前版本"
-            android:textSize="@dimen/text_size_content"
             android:textColor="@color/black"
-            android:layout_marginLeft="10dp"/>
+            android:textSize="@dimen/text_size_content" />
 
         <TextView
             android:id="@+id/tv_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="@dimen/text_size_content"
-            android:textColor="@color/black"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"/>
-
-    </RelativeLayout>
-
-  <View
-      android:layout_width="match_parent"
-      android:layout_height="1px"
-      android:background="@color/stroke"/>
-
-  <RelativeLayout
-      android:id="@+id/rl_clean_cache"
-      android:layout_width="match_parent"
-      android:layout_height="@dimen/height_title_bar"
-      android:gravity="center_vertical"
-      android:background="@drawable/selector_white_to_gray_press">
-
-    <TextView
-        android:id="@+id/tv_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="清理缓存"
-        android:textSize="@dimen/text_size_content"
-        android:textColor="@color/black"
-        android:layout_marginLeft="10dp"/>
-
-    <TextView
-        android:id="@+id/tv_clean_chache"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="(缓存大小121M)"
-        android:layout_toRightOf="@+id/tv_1"
-        android:textSize="@dimen/text_size_content"
-        android:textColor="@color/black"
-        android:layout_marginLeft="5dp"/>
+            android:layout_marginRight="10dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_content" />
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/stroke"/>
+        android:background="@color/stroke" />
+
+    <RelativeLayout
+        android:id="@+id/rl_clean_cache"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_title_bar"
+        android:background="@drawable/selector_white_to_gray_press"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="清理缓存"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_content" />
+
+        <TextView
+            android:id="@+id/tv_clean_chache"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/tv_1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_content"
+            tools:text="(缓存大小121M)" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/stroke" />
 
     <RelativeLayout
         android:id="@+id/rl_service_phone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_title_bar"
-        android:gravity="center_vertical"
-        android:background="@drawable/selector_white_to_gray_press">
+        android:background="@drawable/selector_white_to_gray_press"
+        android:gravity="center_vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="客服电话"
-            android:textSize="@dimen/text_size_content"
             android:textColor="@color/black"
-            android:layout_marginLeft="10dp"/>
+            android:textSize="@dimen/text_size_content" />
 
         <TextView
             android:id="@+id/tv_tel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="@dimen/text_size_content"
-            android:textColor="@color/black"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_content" />
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/stroke"/>
+        android:background="@color/stroke" />
 
     <RelativeLayout
         android:id="@+id/rl_service_mailbox"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_title_bar"
-        android:gravity="center_vertical"
-        android:background="@drawable/selector_white_to_gray_press">
+        android:background="@drawable/selector_white_to_gray_press"
+        android:gravity="center_vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="客服邮箱"
-            android:textSize="@dimen/text_size_content"
             android:textColor="@color/black"
-            android:layout_marginLeft="10dp"/>
+            android:textSize="@dimen/text_size_content" />
 
         <TextView
             android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="@dimen/text_size_content"
-            android:textColor="@color/black"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_content" />
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/stroke"/>
+        android:background="@color/stroke" />
+
+    <RelativeLayout
+        android:id="@+id/rl_update_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_title_bar"
+        android:background="@drawable/selector_white_to_gray_press"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="修改密码"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_content" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_arrow_right_gray" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/stroke" />
 
     <RelativeLayout
         android:id="@+id/rl_about_us"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_title_bar"
-        android:gravity="center_vertical"
-        android:background="@drawable/selector_white_to_gray_press">
+        android:background="@drawable/selector_white_to_gray_press"
+        android:gravity="center_vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="关于我们"
-            android:textSize="@dimen/text_size_content"
             android:textColor="@color/black"
-            android:layout_marginLeft="10dp"/>
+            android:textSize="@dimen/text_size_content" />
 
         <ImageView
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:src="@drawable/ic_arrow_right_gray"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_arrow_right_gray" />
 
     </RelativeLayout>
 
@@ -167,17 +197,17 @@
         android:id="@+id/rl_login_out"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_title_bar"
-        android:gravity="center"
         android:layout_marginTop="10dp"
         android:background="@drawable/selector_white_to_gray_press"
+        android:gravity="center"
         android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="退出登录"
-            android:textSize="@dimen/text_size_content"
-            android:textColor="@color/main_color"/>
+            android:textColor="@color/main_color"
+            android:textSize="@dimen/text_size_content" />
 
     </RelativeLayout>
 

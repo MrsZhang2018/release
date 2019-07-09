@@ -35,7 +35,7 @@ android {
 
 
         fanwetest {
-            applicationId "com.fanwe.yi"
+            applicationId "com.yitonggo.biz"
             versionCode 1
             versionName "1.0.0"
 
